@@ -1,0 +1,310 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x71c67100
+ label "Roll off super whites copied to group"
+ note_font_size 42
+ selected true
+ xpos 12096
+ ypos 30354
+ bdheight 110
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode57
+ tile_color 0x8e388e00
+ note_font_size 42
+ selected true
+ xpos 11925
+ ypos 30397
+ bdheight 231
+}
+push $cut_paste_input
+Group {
+ name DepthFix6
+ selected true
+ xpos 11940
+ ypos 30503
+ cached true
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -895
+  ypos -595
+ }
+add_layer {__depth __depth.red __depth.green __depth.blue __depth.alpha __depth.r __depth.z __depth.x __depth.y __depth.Z __depth.r __depth.Z __depth.r}
+ Unpremult {
+  channels {__depth.red __depth.green __depth.blue none}
+  name Unpremult2
+  xpos -895
+  ypos -555
+ }
+ Expression {
+  channel0 depth
+  expr0 "rgba.alpha > 0.000001? 0 : 1/__depth.red"
+  channel1 {-rgba.red rgba.green -rgba.blue none}
+  channel2 {-rgba.red -rgba.green rgba.blue none}
+  name Expression2
+  xpos -895
+  ypos -519
+ }
+ Premult {
+  channels {__depth.red __depth.green __depth.blue none}
+  name Premult2
+  selected true
+  xpos -895
+  ypos -495
+ }
+ Output {
+  name Output1
+  xpos -895
+  ypos -391
+ }
+end_group
+Group {
+ name FixNegativeValues2
+ tile_color 0xeeeeeeff
+ note_font_color 0xcbcbcbff
+ selected true
+ xpos 11935
+ ypos 30551
+ cached true
+ addUserKnob {20 User l "NegValues Viewer"}
+ addUserKnob {26 Info -STARTLINE T "This nodes fix the negative\nvalues if they are.\n\nBy default the View Negative Values option is enabled.\nIf there is no color overlay your input has no\nNegative Values.\n\nUse the Set min level slider to set the min black level of the Negative Pixels."}
+ addUserKnob {41 disable_1 l "View Negative Values" T Switch1.disable}
+ addUserKnob {41 factor l "Set min level" T Expression4.factor}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 520
+  ypos -175
+ }
+ Dot {
+  name Dot10
+  xpos 554
+  ypos -83
+ }
+set N66c44850 [stack 0]
+ Expression {
+  temp_name0 th
+  temp_expr0 threshold
+  temp_name1 min
+  temp_expr1 minvalue
+  expr0 r<th?r:0
+  expr1 g<th?g:0
+  expr2 b<th?b:0
+  name Expression1
+  xpos 520
+  ypos -3
+  addUserKnob {20 User}
+  addUserKnob {7 threshold l Treshold R 0 0.005}
+  addUserKnob {7 minvalue l MinValue R 0 0.005}
+ }
+ Dot {
+  name Dot1
+  xpos 554
+  ypos 23
+ }
+set N35a9e7a0 [stack 0]
+ Expression {
+  expr0 r*-1
+  expr1 g*-1
+  expr2 b*-1
+  name Expression2
+  xpos 520
+  ypos 45
+ }
+ Multiply {
+  value 2
+  name Multiply1
+  selected true
+  xpos 519
+  ypos 71
+ }
+ Expression {
+  temp_name0 fac
+  temp_expr0 factor
+  expr0 r==0?r:r+fac
+  expr1 g==0?g:g+fac
+  expr2 b==0?b:b+fac
+  name Expression4
+  xpos 519
+  ypos 102
+  addUserKnob {20 User}
+  addUserKnob {7 factor l "Set min level" R 0 0.005}
+ }
+ Dot {
+  name Dot12
+  xpos 554
+  ypos 142
+ }
+push $N66c44850
+ Dot {
+  name Dot11
+  xpos 670
+  ypos -83
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Plus1
+  xpos 636
+  ypos 138
+ }
+push $N35a9e7a0
+ Dot {
+  name Dot4
+  xpos 451
+  ypos 23
+ }
+ Expression {
+  expr0 r<0?1:r
+  expr1 g<0?1:g
+  expr2 b<0?1:b
+  name Expression3
+  xpos 417
+  ypos 202
+ }
+push $N66c44850
+ Dot {
+  name Dot3
+  xpos 341
+  ypos -83
+ }
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos 307
+  ypos 202
+ }
+ Dot {
+  name Dot2
+  xpos 341
+  ypos 321
+ }
+ Switch {
+  inputs 2
+  which 1
+  name Switch1
+  xpos 636
+  ypos 317
+ }
+ Output {
+  name Output1
+  xpos 636
+  ypos 363
+ }
+end_group
+Grade {
+ black 0.0005
+ name Grade35
+ selected true
+ xpos 11935
+ ypos 30598
+ cached true
+}
+push $cut_paste_input
+RolloffSuperwhites {
+ name RolloffSuperwhites1
+ selected true
+ xpos 11940
+ ypos 30434
+ input rgba
+ maskChannelInput none
+}
+Group {
+ name Group1
+ help "Rolls off with a smooth upper shoulder."
+ selected true
+ xpos 12106
+ ypos 30434
+ addUserKnob {20 RolloffSuperwhites}
+ addUserKnob {22 documentation l Documentation T "__import__('dnnuke.utils.asst', fromlist=\['openDocs']).openDocs(nuke.thisNode())" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {41 input l channels T rgbDummy.input}
+ addUserKnob {26 ""}
+ addUserKnob {18 rolloff_above l "rolloff above" t "Start the smooth upper shoulder at this value. \n\n<b>Important note:</b> Not all data will be completely clamped above this value. The rolloff only begins here." R 0.1 60}
+ rolloff_above 50
+ addUserKnob {6 rolloff_above_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {26 ""}
+ addUserKnob {41 maskChannelInput l mask t "Use this channel from the original input to mix the output with the original input." -STARTLINE T CopyChans.maskChannelInput}
+ addUserKnob {41 invert_mask l invert -STARTLINE T CopyChans.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T CopyChans.fringe}
+ addUserKnob {7 mix t "Dissolve between the original image at 0 and the full effect at 1."}
+ mix 1
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 1705
+  ypos -1011
+ }
+ Dot {
+  name Dot1
+  xpos 1739
+  ypos -716
+ }
+set N1bc14820 [stack 0]
+push $N1bc14820
+ Merge2 {
+  inputs 2
+  operation copy
+  Bchannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name InChans
+  xpos 1705
+  ypos -671
+ }
+ Expression {
+  expr0 "r > rolloff_above.r ? ( log((r - rolloff_above.r) + 1) + rolloff_above.r ) : r"
+  expr1 "g > rolloff_above.g ? ( log((g - rolloff_above.g) + 1) + rolloff_above.g ) : g"
+  expr2 "b > rolloff_above.b ? ( log((b - rolloff_above.b) + 1) + rolloff_above.b ) : b"
+  name Expression
+  selected true
+  xpos 1705
+  ypos -338
+  addUserKnob {20 User}
+ }
+set N55734980 [stack 0]
+push $N55734980
+ Merge2 {
+  inputs 2
+  operation copy
+  Achannels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name OutChans
+  xpos 1705
+  ypos 530
+ }
+push $N1bc14820
+ Dot {
+  name Dot13
+  xpos 2253
+  ypos -716
+ }
+ Dissolve {
+  inputs 2
+  channels {rgba.red rgba.green rgba.blue -rgba.alpha}
+  which {{parent.mix}}
+  name CopyChans
+  xpos 2219
+  ypos 530
+ }
+ Output {
+  name Output1
+  xpos 2219
+  ypos 956
+ }
+ Keyer {
+  inputs 0
+  input rgba
+  operation "luminance key"
+  name rgbDummy
+  knobChanged "tn = nuke.thisNode()\ninChans = nuke.toNode(\"InChans\")\noutChans = nuke.toNode(\"OutChans\")\ncopyChans = nuke.toNode(\"CopyChans\")\nchans = tn\['input'].value()\ninChans\['Achannels'].setValue(chans)\noutChans\['Bchannels'].setValue(chans)\noutChans\['output'].setValue(chans)\n\ncopyChans\[\"channels\"].setValue(chans)\ncopyChans\[\"channels\"].enableChannel(3, False)\n"
+  xpos 1549
+  ypos -679
+ }
+end_group
