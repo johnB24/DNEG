@@ -1,0 +1,45 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push $cut_paste_input
+Group {
+name Crop_Padded
+help "Extends Nuke's built-in crop with extra features, such as padding and setting the box to either the data window (bbox in Nuke parlance) or display window (format)."
+tile_color 0xa57aaa00
+selected true
+xpos 240
+ypos -349
+addUserKnob {20 CropPadded}
+addUserKnob {15 box}
+box {{input.bbox.x} {input.bbox.y} {input.bbox.r} {input.bbox.t}}
+addUserKnob {41 softness T Crop3.softness}
+addUserKnob {3 padding l "padding (pixels)" t "Add this number to bbox."}
+addUserKnob {26 "" l "  "}
+addUserKnob {41 reformat T Crop3.reformat}
+addUserKnob {41 intersect -STARTLINE T Crop3.intersect}
+addUserKnob {41 crop l "black outside" -STARTLINE T Crop3.crop}
+addUserKnob {26 ""}
+addUserKnob {22 set_to_data_window l "set box to data window" t "Sets an expression in the box knob to use the incoming bbox. Uses a live expression because the bbox may change throughout the frame range." T "__import__('dnnuke.nodes.croppadded', fromlist=\['setToDataWindowButton']).setToDataWindowButton()" +STARTLINE}
+addUserKnob {22 set_to_display_window l "set box to display window" t "Sets the box knob to use the incoming format (0, 0, width, height)." -STARTLINE T "__import__('dnnuke.nodes.croppadded', fromlist=\['setToDisplayWindowButton']).setToDisplayWindowButton()"}
+addUserKnob {6 reset_padding l "and reset padding" t "If checked, reset padding to zero when setting bbox to data window." -STARTLINE}
+addUserKnob {22 quick_bake l "quick bake" t "Loops through the root frame range and generates keyframes on the box knob. Then it will no longer reference the incoming bbox live, and you can disconnect it freely." T "__import__('dnnuke.core.animation.bake', fromlist=\['bakeKnob']).bakeKnob(nuke.thisNode(), nuke.thisNode()\['box'], nuke.root().firstFrame(), nuke.root().lastFrame())" +STARTLINE}
+}
+Input {
+ inputs 0
+ name Input1
+ xpos 461
+ ypos 484
+}
+Crop {
+ box {{"parent.box - parent.padding" i} {"parent.box - parent.padding" i} {"parent.box + parent.padding" i} {"parent.box + parent.padding" i}}
+ intersect true
+ name Crop3
+ selected true
+ xpos 461
+ ypos 538
+}
+Output {
+ name Output1
+ xpos 461
+ ypos 622
+}
+end_group
