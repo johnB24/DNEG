@@ -1,0 +1,191 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push $cut_paste_input
+Group {
+name Cmas_Imageplane
+help "Stabilizes or matchmoves an image plane at a distance relative to the camera."
+label "<font color='#BAFF00'><b> ref \[value refFrame]\n<font color='#00CFFF'><b> distance \[value distance]"
+selected true
+xpos 3265
+ypos 32290
+addUserKnob {20 imagePlane l ImagePlane}
+addUserKnob {22 documentation l Documentation t "Display node's wiki page in browser" T "__import__('dnnuke.utils.asst', fromlist=\['openDocs']).openDocs(nuke.thisNode())" +STARTLINE}
+addUserKnob {26 ""}
+addUserKnob {4 type M {Stabilize Matchmove}}
+type Matchmove
+addUserKnob {3 refFrame}
+refFrame 1056
+addUserKnob {22 setToThisFrame l "set to this frame" -STARTLINE T "nuke.thisNode()\['refFrame'].setValue(nuke.frame())"}
+addUserKnob {7 distance R 0 10000}
+distance 40
+addUserKnob {20 transformGroup l Transform n 1}
+addUserKnob {12 translate}
+addUserKnob {41 rotate T Card3D1.rotate}
+addUserKnob {14 scale R 0 100}
+scale 1
+addUserKnob {20 endGroup n -1}
+addUserKnob {26 "" l "@b;render params"}
+addUserKnob {41 format l "output format" T Card3D1.format}
+addUserKnob {41 filter T Card3D1.filter}
+addUserKnob {41 clamp T Card3D1.clamp}
+addUserKnob {41 black_outside l "black outside" T Card3D1.black_outside}
+addUserKnob {41 motionblur T Card3D1.motionblur}
+addUserKnob {41 shutter T Card3D1.shutter}
+addUserKnob {41 shutteroffset l "shutter offset" T Card3D1.shutteroffset}
+addUserKnob {41 shuttercustomoffset l "" -STARTLINE T Card3D1.shuttercustomoffset}
+}
+Camera2 {
+inputs 0
+useMatrix true
+matrix {
+    {{parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i}}
+    {{parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i}}
+    {{parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i}}
+    {{parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i} {parent.MAIN_CAM.matrix(refFrame) i}}
+  }
+projection_mode {{MAIN_CAM.projection_mode i}}
+focal {{parent.MAIN_CAM.focal(refFrame) i}}
+haperture {{parent.MAIN_CAM.haperture(refFrame) i}}
+vaperture {{parent.MAIN_CAM.vaperture(refFrame) i}}
+near {{parent.MAIN_CAM.near(refFrame) i}}
+far {{parent.MAIN_CAM.far(refFrame) i}}
+win_translate {{parent.MAIN_CAM.win_translate(refFrame) i} {parent.MAIN_CAM.win_translate(refFrame) i}}
+win_scale {{parent.MAIN_CAM.win_scale(refFrame) i} {parent.MAIN_CAM.win_scale(refFrame) i}}
+winroll {{parent.MAIN_CAM.winroll(refFrame) i}}
+focal_point {{parent.MAIN_CAM.focal_point(refFrame) i}}
+fstop {{parent.MAIN_CAM.fstop(refFrame) i}}
+name PROJ_CAM
+xpos 637
+ypos -52
+addUserKnob {20 Projector}
+addUserKnob {22 makeProjectorButton l "Make Projector..." -STARTLINE T projector.makeProjectorNode()}
+addUserKnob {20 Ivy}
+addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+addUserKnob {26 divider4 l "" +STARTLINE}
+addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+_ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+addUserKnob {26 divider0 l "" +STARTLINE}
+addUserKnob {20 dbinfo l "DB Info" n 1}
+dbinfo 0
+addUserKnob {1 twig_dnuuid l "Twig Id"}
+addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+addUserKnob {26 divider1 l "" +STARTLINE}
+addUserKnob {1 twigtype l "Twig Type"}
+addUserKnob {1 leaf_label l Leaf}
+addUserKnob {1 ivy_version l Version}
+addUserKnob {43 ivy_notes l Notes}
+addUserKnob {26 divider2 l "" +STARTLINE}
+addUserKnob {1 build_label l "Build Label"}
+addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+set N7a6065f0 [stack 0]
+Camera2 {
+inputs 0
+useMatrix true
+matrix {
+    {{"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"}}
+    {{"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"}}
+    {{"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"}}
+    {{"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"} {"\[\n# define our proc\nproc get_world_matrix_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        if \{\[expr \{\[catch \{value \$curnode.matrix\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.world_matrix\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_world_matrix_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.world_matrix"}}
+  }
+projection_mode {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.projection_mode"}}
+focal {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.focal"}}
+haperture {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.haperture"}}
+vaperture {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.vaperture"}}
+near {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.near"}}
+far {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.far"}}
+win_translate {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.win_translate"} 0}
+win_scale {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.win_scale"} 1}
+winroll {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.winroll"}}
+focal_point {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.focal_point"}}
+fstop {{"\[\n# define our proc\nproc get_cam_topnode \{\"args\"\} \{\n\n    if \{\$args == \"\"\} \{\n        set nodeid this\n    \} else \{\n        set nodeid \[lindex \$args 0]\n    \}\n    for \{set curnode \[node \$nodeid]\} \{!\[catch \{node \$curnode.input\}]\} \{set curnode \[node \$curnode.input]\} \{\n        # Check if it's a camera, break early if we can\n        # 1 == NOT present\n        if \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\n    \}\nif \{\[expr \{\[catch \{value \$curnode.vaperture\}]==0 && \[catch \{value \$curnode.haperture\}]==0\}]\} then \{return \$curnode\}\nreturn \[node root]\n\}\n# if there's NO parent.input1, the catch picks it up and flags the error\n# if we get past that we then try check the result of our query and if it's the root node, we also know something else blew up\n]\n\[catch \{node parent.input1\}] ? nan : \[expr \{\[set cam_topnode_id \[get_cam_topnode parent.input1]]==\[node root]\}] ? nan : \$cam_topnode_id.fstop"}}
+name MAIN_CAM
+label "<a>Makes use of get_cam_topnode to fetch incoming\ncamera attributes by intelligently seeking to the top \nof the tree and halting on any cameras\n\nThis protects against the situation where you have an \naxis driving a camera, which the regular topnode call \nwill see through to\n\nThe code has a legacy behaviour where it looks for the world \nmatrix upstream pulling it from the first node that matches this \ncondition which could be a camera, or an axis, and drops \nto a nan value if it can't be found\n\nNOTE: the get_cam_topnode proc is stored on EACH knob!"
+xpos 520
+ypos -54
+addUserKnob {20 Projector}
+addUserKnob {22 makeProjectorButton l "Make Projector..." -STARTLINE T projector.makeProjectorNode()}
+addUserKnob {20 Ivy}
+addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+addUserKnob {26 divider4 l "" +STARTLINE}
+addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+_ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+addUserKnob {26 divider0 l "" +STARTLINE}
+addUserKnob {20 dbinfo l "DB Info" n 1}
+dbinfo 0
+addUserKnob {1 twig_dnuuid l "Twig Id"}
+addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+addUserKnob {26 divider1 l "" +STARTLINE}
+addUserKnob {1 twigtype l "Twig Type"}
+addUserKnob {1 leaf_label l Leaf}
+addUserKnob {1 ivy_version l Version}
+addUserKnob {43 ivy_notes l Notes}
+addUserKnob {26 divider2 l "" +STARTLINE}
+addUserKnob {1 build_label l "Build Label"}
+addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+set Nfc89e3f0 [stack 0]
+Switch {
+inputs 2
+which {{parent.type}}
+name Switch1
+xpos 620
+ypos 62
+}
+Dot {
+name Dot2
+selected true
+xpos 646
+ypos 126
+}
+push $Nfc89e3f0
+push $N7a6065f0
+Switch {
+inputs 2
+which {{parent.Switch1.which}}
+name Switch2
+xpos 510
+ypos 62
+}
+Input {
+inputs 0
+name img
+xpos 372
+ypos 134
+}
+Card3D {
+inputs 3
+translate {{parent.translate.x} {parent.translate.y} {-parent.distance}}
+scaling {{parent.scale.w} {parent.scale.h} 1}
+uniform_scale {{abs(translate.z)}}
+lens_in_focal {{parent.MAIN_CAM.focal}}
+lens_in_haperture {{parent.MAIN_CAM.haperture}}
+motionblur 1
+shutteroffset centred
+name Card3D1
+xpos 510
+ypos 134
+}
+Output {
+name Output1
+xpos 510
+ypos 182
+}
+Input {
+inputs 0
+name cam
+xpos 510
+ypos -130
+number 1
+}
+end_group
