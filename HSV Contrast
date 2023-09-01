@@ -1,0 +1,192 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push $cut_paste_input
+Group {
+name IvyGroup4
+onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+tile_color 0x78a4efff
+label "<b>HSVContrast_v\[format %03d \[value ivy_version]]</b>(comp)"
+selected true
+xpos -15220
+ypos -10
+addUserKnob {20 VFX_HSVContrast}
+addUserKnob {26 shdw l <b>Shadows</b>}
+addUserKnob {7 shdw_centre l centre}
+shdw_centre 0.3
+addUserKnob {7 shdw_contrast l contrast R 0 2}
+addUserKnob {26 hghts l <b>Highlights</b>}
+addUserKnob {7 hghts_centre l centre}
+hghts_centre 0.7
+addUserKnob {7 hghts_contrast l contrast R 0 2}
+addUserKnob {20 info l Info}
+addUserKnob {26 infoText l "" +STARTLINE T "HSVContrast v01\nlast modified  on 11.05.2017 by Sebastian von Overheidt"}
+addUserKnob {1 default_values +INVISIBLE}
+default_values "\[('VFX_HSVContrast', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_HSVContrast\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_HSVContrast'\}), ('shdw', \{'knob': 'Text_Knob', 'tcl': '\{26 shdw l <b>Shadows</b>\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '', 'range': None, 'value': '', 'label': '<b>Shadows</b>'\}), ('shdw_centre', \{'knob': 'Double_Knob', 'tcl': '\{7 shdw_centre l centre\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0.3', 'range': (0.0, 1.0), 'value': 0.3, 'label': 'centre'\}), ('shdw_contrast', \{'knob': 'Double_Knob', 'tcl': '\{7 shdw_contrast l contrast R 0 2\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0', 'range': (0.0, 2.0), 'value': 0.0, 'label': 'contrast'\}), ('hghts', \{'knob': 'Text_Knob', 'tcl': '\{26 hghts l <b>Highlights</b>\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '', 'range': None, 'value': '', 'label': '<b>Highlights</b>'\}), ('hghts_centre', \{'knob': 'Double_Knob', 'tcl': '\{7 hghts_centre l centre\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0.7', 'range': (0.0, 1.0), 'value': 0.7, 'label': 'centre'\}), ('hghts_contrast', \{'knob': 'Double_Knob', 'tcl': '\{7 hghts_contrast l contrast R 0 2\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0', 'range': (0.0, 2.0), 'value': 0.0, 'label': 'contrast'\}), ('info', \{'knob': 'Tab_Knob', 'tcl': '\{20 info l Info\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'Info'\}), ('infoText', \{'knob': 'Text_Knob', 'tcl': '\{26 infoText l \"\" +STARTLINE T \"HSVContrast v01\\\\nlast modified  on 11.05.2017 by Sebastian von Overheidt\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': 'HSVContrast v01\\nlast modified  on 11.05.2017 by Sebastian von Overheidt', 'label': ''\})]"
+addUserKnob {20 ivygrouptab l IvyGroup}
+addUserKnob {2 file l "Script Path"}
+file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_HSVContrast_v001/F_NKT_LIBRARY_comp_group_VFX_HSVContrast_v001.nk
+addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+internal_updates true
+addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+save_template true
+addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+execute_spawners true
+addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ivygroup true
+addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+_class IvyGroup
+addUserKnob {26 divider10 l "" +STARTLINE}
+addUserKnob {22 ivy_publish l Publish... +HIDDEN T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+addUserKnob {26 divider1 l "" +STARTLINE}
+addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: HSVContrast\nVersion Comment (v001): first publish"}
+addUserKnob {20 Ivy}
+addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+addUserKnob {26 divider4 l "" +STARTLINE}
+addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+_ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'HSVContrast', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:HSVContrast;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+addUserKnob {26 divider0 l "" +STARTLINE}
+addUserKnob {20 dbinfo l "DB Info" n 1}
+dbinfo 0
+addUserKnob {1 twig_dnuuid l "Twig Id"}
+twig_dnuuid 0bd13dd7-3f56-4cd4-b6d8-dde1ec1e0c6d
+addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+stalk_dnuuid c4038c91-5a20-4f36-8297-8fbadbd64826
+addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+leaf_dnuuid 8b659cd7-0d24-46b5-b9e1-b4eb87d9a900
+addUserKnob {26 divider1 l "" +STARTLINE}
+addUserKnob {1 twigtype l "Twig Type"}
+twigtype nkt
+addUserKnob {1 leaf_label l Leaf}
+leaf_label main
+addUserKnob {1 ivy_version l Version}
+ivy_version 1
+addUserKnob {43 ivy_notes l Notes}
+ivy_notes "first publish"
+addUserKnob {26 divider2 l "" +STARTLINE}
+addUserKnob {1 build_label l "Build Label"}
+addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+BackdropNode {
+inputs 0
+name BackdropNode16
+tile_color 0x2a4c5dff
+label CC
+note_font_size 42
+note_font_color 0x9ecaffff
+selected true
+xpos 408
+ypos -864
+bdwidth 682
+bdheight 624
+}
+Input {
+inputs 0
+name mask_highlights
+selected true
+xpos 807
+ypos -559
+number 2
+}
+Expression {
+channel0 alpha
+expr0 1
+name Expression2
+selected true
+xpos 807
+ypos -527
+disable {{"\[exists parent.mask_highlights.name]"}}
+}
+Input {
+inputs 0
+name mask_shadows
+selected true
+xpos 809
+ypos -681
+number 1
+}
+Expression {
+channel0 alpha
+expr0 1
+name Expression1
+selected true
+xpos 809
+ypos -639
+disable {{"\[exists parent.mask_shadows.name]"}}
+}
+Input {
+inputs 0
+name img
+selected true
+xpos 498
+ypos -1027
+}
+Colorspace {
+colorspace_out HSV
+name Colorspace3
+selected true
+xpos 498
+ypos -760
+}
+set Nfa90ab50 [stack 0]
+Contrast {
+name Contrast3
+label "blacks\n"
+selected true
+xpos 627
+ypos -706
+colorValue {1 1 {shdw_contrast+1}}
+center {0.05555165187 0.2651569843 {shdw_centre}}
+maskChannel alpha
+}
+push $Nfa90ab50
+Merge2 {
+inputs 2+1
+operation min
+name Merge34
+selected true
+xpos 498
+ypos -639
+}
+set Nf03038d0 [stack 0]
+Contrast {
+name Contrast4
+label highlights
+selected true
+xpos 632
+ypos -582
+colorValue {1 1 {hghts_contrast+1}}
+center {0.5863007903 0.110320814 {hghts_centre}}
+maskChannel all
+}
+push $Nf03038d0
+Merge2 {
+inputs 2+1
+operation max
+name Merge35
+selected true
+xpos 498
+ypos -527
+}
+Colorspace {
+colorspace_in HSV
+name Colorspace1
+selected true
+xpos 498
+ypos -415
+}
+Output {
+name Output1
+tile_color 0x78a4efff
+selected true
+xpos 498
+ypos -188
+}
+end_group
