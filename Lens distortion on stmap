@@ -1,0 +1,245 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+BackdropNode {
+ inputs 0
+ name BackdropNode53
+ tile_color 0x71c67100
+ label "lens distortion on stmap"
+ note_font_size 42
+ selected true
+ xpos 18300
+ ypos 30346
+ bdwidth 361
+ bdheight 300
+}
+push $cut_paste_input
+Group {
+ name Stmap_Overscan2
+ selected true
+ xpos 18310
+ ypos 30503
+ addUserKnob {20 User}
+ addUserKnob {41 scale l "Overscan scale" T ReformatUp.scale}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 220
+  ypos -603
+ }
+ Expression {
+  expr0 (x+0.5)/(width)
+  expr1 (y+0.5)/(height)
+  channel2 alpha
+  expr2 1
+  channel3 {-rgba.red -rgba.green rgba.blue none}
+  expr3 0
+  name Expression2
+  label "STMap "
+  note_font_size 30
+  xpos 220
+  ypos -565
+ }
+ Reformat {
+  type scale
+  scale 1.2
+  pbb true
+  name ReformatUp
+  label "Scale up"
+  selected true
+  xpos 220
+  ypos -457
+ }
+ Group {
+  name UVRamp2
+  help "Creates a uv ramp which is compatible with STMap."
+  xpos 220
+  ypos -419
+  addUserKnob {20 UVRamp}
+  addUserKnob {22 documentation l Documentation T "__import__('dnnuke.utils.asst', fromlist=\['openDocs']).openDocs(nuke.thisNode())" +STARTLINE}
+  addUserKnob {26 ""}
+  addUserKnob {30 overscan t "The scale multiplier for width/height to draw the ramp beyond the top/bottom and left/right of frame.\n\nThe expression by default in the <i>overscan.v</i> knob will ensure that overscan in both dimensions is equal proportionally."}
+  overscan {0 {"overscan.u * this.Input1.width/this.Input1.height * this.Input1.pixel_aspect"}}
+  addUserKnob {41 output t "Draw the ramps into these two channels." T STMapKnobDummy.uv}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 365
+   ypos -618
+  }
+set N57a3aa00 [stack 0]
+  Crop {
+   box {{"-(parent.overscan.u * width)/2"} {"-(parent.overscan.v * height)/2"} {"width + (width * parent.overscan.u)/2"} {"height + (height * parent.overscan.v)/2"}}
+   reformat true
+   crop false
+   name Crop1
+   xpos 365
+   ypos -560
+  }
+  Expression {
+   expr0 (x+.5)/width
+   expr1 (y+.5)/height
+   expr2 0
+   name Expression1
+   xpos 365
+   ypos -525
+  }
+  Reformat {
+   type "to box"
+   box_width {{Input1.width}}
+   box_height {{Input1.height}}
+   box_fixed true
+   resize none
+   pbb true
+   name Reformat2
+   label "shrink display window"
+   selected true
+   xpos 365
+   ypos -494
+   disable {{"parent.overscan.u == 0 && parent.overscan.v == 0"}}
+  }
+push $N57a3aa00
+  Copy {
+   inputs 2
+   from0 -rgba.red
+   to0 -rgba.red
+   from1 -rgba.green
+   to1 -rgba.green
+   channels {rgba.red rgba.green -rgba.blue -rgba.alpha}
+   name Copy
+   xpos 509
+   ypos -500
+  }
+  Output {
+   name Output1
+   xpos 509
+   ypos -419
+  }
+  STMap {
+   inputs 0
+   uv rgb
+   name STMapKnobDummy
+   knobChanged "__import__(\"dnnuke.init.callbacks.knob_changed.uv_ramp\", fromlist=\[\"outputKC\"]).outputKC()"
+   label "knob dummy - don't delete"
+   xpos 503
+   ypos -615
+  }
+ end_group
+ Shuffle {
+  alpha white
+  name Shuffle7
+  xpos 220
+  ypos -393
+ }
+ Add {
+  channels rgb
+  value {{-(1-(1/ReformatUp.scale))/2}}
+  name Add
+  label "move x/y (centre of frame)"
+  xpos 220
+  ypos -346
+ }
+ Grade {
+  white {{parent.ReformatUp.scale}}
+  black_clamp false
+  name Grade
+  label "realign STmap to adjusted scale"
+  xpos 220
+  ypos -293
+ }
+ BlackOutside {
+  name BlackOutside1
+  xpos 220
+  ypos -255
+ }
+ Reformat {
+  type scale
+  scale {{1/parent.ReformatUp.scale}}
+  resize none
+  pbb true
+  name ReformatDown
+  label "Scale back"
+  xpos 220
+  ypos -229
+ }
+ Output {
+  name Output1
+  xpos 220
+  ypos -121
+ }
+end_group
+Reformat {
+ pbb true
+ name Reformat22
+ selected true
+ xpos 18310
+ ypos 30554
+}
+dnLensDistort_v2 {
+ lensDataFile /jobs/JOYRIDE/str0810/ivy/lnd/LND_str0810_layout_shot_v005/LND_str0810_layout_shot_v005.lensdata
+ inputFilmback "Force Lens Native"
+ filmbackOverride "Force Lens Native"
+ lensMode distort
+ name dnLensDistort16
+ selected true
+ xpos 18310
+ ypos 30604
+ cached true
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/JOYRIDE/str0810/ivy/lnd/LND_str0810_layout_shot_v005/LND_str0810_layout_shot_v005.lensdata
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ _expressions {{curve}}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 958f4733-2fe2-47aa-aed2-506b1327a737
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 6b442f03-298b-48dd-86dc-0a05e183bc43
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 7912c4c0-9e46-4e27-ab18-7c2529a7dcbe
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 039bebf9-21d7-45e1-94e3-317947b58ba9
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype lnd
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 5
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "updated to the latest rig."
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ selected true
+ xpos 18554
+ ypos 30429
+}
+STMap {
+ inputs 2
+ uv rgb
+ name STMap1
+ selected true
+ xpos 18554
+ ypos 30604
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ label "Applying the lens distortion into the stmap generator so that you can apply the distortion through an stmap. Could be good when things are getting cropped "
+ selected true
+ xpos 18088
+ ypos 30668
+}
