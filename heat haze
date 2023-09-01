@@ -1,0 +1,529 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push 0
+PostageStamp {
+name Stamp24
+help "Stamps by Adrian Pueyo and Alexey Kuchinski.\nUpdated May 18 2021"
+onCreate "if nuke.GUI:\n    try:\n        import stamps; stamps.wiredOnCreate()\n    except:\n        pass\n"
+knobChanged "import stamps; stamps.wiredKnobChanged()"
+autolabel "nuke.thisNode().knob(\"title\").value()"
+tile_color 0x1000001
+note_font "Bitstream Vera Sans"
+note_font_size 20
+selected true
+xpos -14769
+ypos 63029
+hide_input true
+addUserKnob {20 wired_tab l "Wired Stamp"}
+addUserKnob {26 identifier -STARTLINE +HIDDEN T wired}
+addUserKnob {3 lockCallbacks l "" +STARTLINE +HIDDEN}
+addUserKnob {6 toReconnect -STARTLINE +HIDDEN}
+addUserKnob {1 title l Title: t "Displayed name on the Node Graph for this Stamp and its Anchor.\nIMPORTANT: This is only for display purposes, and is different from the real/internal name of the Stamps."}
+title "fx mesh"
+addUserKnob {26 prev_title l "" +STARTLINE +HIDDEN T "fx mesh"}
+addUserKnob {26 tags l Tags: t "Tags of this stamp's Anchor, for information purpose only.\nClick \"show anchor\" to change them." T "<i>2D, mattes</i>"}
+addUserKnob {26 backdrops l Backdrops: t "Labels of backdrop nodes which contain this stamp's Anchor." +HIDDEN T " "}
+addUserKnob {26 line1 l "" +STARTLINE}
+addUserKnob {6 postageStamp_show l "postage stamp" t "Enable the postage stamp thumbnail in this node.\nYou're seeing this because the class of this node includes the postage_stamp knob." +STARTLINE}
+addUserKnob {26 anchor_label l Anchor: T " "}
+addUserKnob {22 show_anchor l " show anchor " t "Show the properties panel for this Stamp's Anchor." -STARTLINE T stamps.wiredShowAnchor()}
+addUserKnob {22 zoom_anchor l "zoom anchor" t "Navigate to this Stamp's Anchor on the Node Graph." -STARTLINE T stamps.wiredZoomAnchor()}
+addUserKnob {26 stamps_label l Stamps: T " "}
+addUserKnob {22 zoomNext l " zoom next " t "Navigate to this Stamp's next sibling on the Node Graph." -STARTLINE T stamps.wiredZoomNext()}
+addUserKnob {22 selectSimilar l " select similar " t "Select all similar Stamps to this one on the Node Graph." -STARTLINE T stamps.wiredSelectSimilar()}
+addUserKnob {26 space_1 l "" +STARTLINE T " "}
+addUserKnob {26 reconnect_label l Reconnect: t "Reconnect by the stored Anchor name." T " "}
+addUserKnob {22 reconnect_this l this t "Reconnect this Stamp to its Anchor, by its stored Anchor name." -STARTLINE T "n = nuke.thisNode()\ntry:\n    n.setInput(0,nuke.toNode(n.knob(\"anchor\").value()))\nexcept:\n    nuke.message(\"Unable to reconnect.\")\ntry:\n    import stamps\n    stamps.wiredGetStyle(n)\nexcept:\n    pass\n"}
+addUserKnob {22 reconnect_similar l similar t "Reconnect this Stamp and similar ones to their Anchor, by their stored anchor name." -STARTLINE T stamps.wiredReconnectSimilar()}
+addUserKnob {22 reconnect_all l all t "Reconnect all the Stamps to their Anchors, by their stored anchor names." -STARTLINE T stamps.wiredReconnectAll()}
+addUserKnob {26 space_2 l "" +STARTLINE T " "}
+addUserKnob {20 advanced_reconnection l "Advanced Reconnection" n 2}
+addUserKnob {26 reconnect_by_title_label l "<font color=gold>By Title:" t "Reconnect by searching for a matching title." T " "}
+addUserKnob {22 reconnect_by_title_this l this t "Look for an Anchor that shares this Stamp's title, and connect this Stamp to it.\nIMPORTANT: Use this carefully, and only when the normal reconnection doesn't work." -STARTLINE T stamps.wiredReconnectByTitle()}
+addUserKnob {22 reconnect_by_title_similar l similar t "Look for an Anchor that shares this Stamp's title, and connect this Stamp and similar ones to it.\nIMPORTANT: Use this carefully, and only when the normal reconnection doesn't work." -STARTLINE T stamps.wiredReconnectByTitleSimilar()}
+addUserKnob {22 reconnect_by_title_selected l selected t "For each Stamp selected, look for an Anchor that shares its title, and connect to it.\nIMPORTANT: Use this carefully, and only when the normal reconnection doesn't work." -STARTLINE T stamps.wiredReconnectByTitleSelected()}
+addUserKnob {26 reconnect_by_selection_label l "<font color=orangered>By Selection:" t "Force reconnect to a selected Anchor." T " "}
+addUserKnob {22 reconnect_by_selection_this l this t "Force reconnect this Stamp to a selected Anchor, whatever its name or title.\nIMPORTANT: Use this carefully, and only when the normal reconnection doesn't work." -STARTLINE T stamps.wiredReconnectBySelection()}
+addUserKnob {22 reconnect_by_selection_similar l similar t "Force reconnect this Stamp and similar ones to a selected Anchor, whatever its name or title.\nIMPORTANT: Use this carefully, and only when the normal reconnection doesn't work." -STARTLINE T stamps.wiredReconnectBySelectionSimilar()}
+addUserKnob {22 reconnect_by_selection_selected l selected t "Force reconnect all selected Stamps to an also selected Anchor, whatever its name or title.\nIMPORTANT: Use this carefully, and only when the normal reconnection doesn't work." -STARTLINE T stamps.wiredReconnectBySelectionSelected()}
+addUserKnob {1 anchor l Anchor}
+anchor Anchor_a19b4f81e
+addUserKnob {6 auto_reconnect_by_title l "<font color=#ED9977>&nbsp; auto-reconnect by title" t "When creating this stamp again (like on copy-paste), auto-reconnect it by title instead of doing it by the saved anchor's name, and auto-turn this off immediately.\nIMPORTANT: Should be off by default. Only use this for setting up templates." +STARTLINE}
+addUserKnob {26 line2 l "" +STARTLINE}
+addUserKnob {22 buttonHelp l Help -STARTLINE T stamps.showHelp()}
+addUserKnob {26 version l " " t "Stamps by Adrian Pueyo and Alexey Kuchinski.\nUpdated May 18 2021." -STARTLINE T "<a href=\"http://www.nukepedia.com/gizmos/other/stamps\" style=\"color:#666;text-decoration: none;\"><span style=\"color:#666\"> <big>Stamps v1.1</big></b></a>"}
+}
+FilterErode {
+size -23
+name FilterErode15
+selected true
+xpos -14769
+ypos 63093
+}
+Blur {
+size 100
+name Blur34
+selected true
+xpos -14756
+ypos 63144
+}
+Noise {
+inputs 0
+type turbulence
+size 20
+zoffset {{curve x1017 0 x1166 2.511346817}}
+center {1920 1038}
+name Noise2
+selected true
+xpos -14598
+ypos 63047
+}
+Merge2 {
+inputs 2
+operation mask
+name Merge25
+selected true
+xpos -14598
+ypos 63154
+}
+Reformat {
+pbb true
+name Reformat41
+selected true
+xpos -14623
+ypos 63264
+}
+set N856dc480 [stack 0]
+Dot {
+name Dot178
+selected true
+xpos -14509
+ypos 63266
+}
+Shuffle {
+alpha green
+name Shuffle119
+selected true
+xpos -14541
+ypos 63413
+}
+set N856f07e0 [stack 0]
+Blur {
+size 6
+name Blur87
+selected true
+xpos -14546
+ypos 63519
+}
+Dot {
+name Dot179
+selected true
+xpos -14531
+ypos 63606
+}
+push $N856dc480
+Dot {
+name Dot181
+selected true
+xpos -14681
+ypos 63266
+}
+Dot {
+name Dot182
+selected true
+xpos -14681
+ypos 63447
+}
+Blur {
+size 4
+name Blur36
+selected true
+xpos -14703
+ypos 63489
+}
+push $N856f07e0
+push $N856dc480
+Shuffle {
+alpha red
+name Shuffle120
+selected true
+xpos -14623
+ypos 63305
+}
+Dot {
+name Dot183
+selected true
+xpos -14591
+ypos 63349
+}
+push $cut_paste_input
+Dot {
+name Dot184
+selected true
+xpos -15015
+ypos 63292
+}
+Soften {
+inputs 1+1
+amount 0.31
+size 25.5
+name Soften7
+selected true
+xpos -15052
+ypos 63341
+}
+Soften {
+inputs 1+1
+amount 0.31
+size 61
+name Soften8
+selected true
+xpos -15052
+ypos 63408
+}
+ShuffleCopy {
+inputs 2
+red red
+green green
+blue blue
+out forward
+name ShuffleCopy6
+selected true
+xpos -15052
+ypos 63481
+}
+IDistort {
+channels rgb
+uv forward
+uv_scale 15
+name IDistort3
+selected true
+xpos -15052
+ypos 63567
+}
+Group {
+inputs 2
+name Glass
+help "Distorts the image using a control channel to give a glass-like look.\n\nOriginally from Nukepedia.\n\nEan brought it into the 21st century with ZDefocus, channel and control channel knobs."
+knobChanged "\ntn = nuke.thisNode()\ntk = nuke.thisKnob()\nif tk.name() == 'channels':\n    shufInput = nuke.toNode('ShuffleInputToRGBA')\n    shufInput\['in'].setValue(tk.value())\n    shufCopyOut = nuke.toNode('ShuffleCopyToOutput')\n    shufCopyOut\['out2'].setValue(tk.value())\n    if 'rgb' in tk.value():\n        shufCopyOut\['out'].setValue('none')\n    else:\n        shufCopyOut\['out'].setValue('rgba')\n"
+selected true
+xpos -15052
+ypos 63637
+addUserKnob {20 "" l Glass}
+addUserKnob {22 documentation l Documentation T nukescripts.openurl.start('http://dnet.dneg.com/display/2D/2D+CTD+DOCS+Glass') +STARTLINE}
+addUserKnob {26 ""}
+addUserKnob {11 channels}
+channels rgb
+addUserKnob {41 from0 l "control channel" T Copy6.from0}
+addUserKnob {7 displace l Displace R 0 20}
+displace {{curve x1017 0.02 x1050 0.02 x1166 0.001}}
+addUserKnob {41 size_1 l "smooth vectors" T Blur1.size}
+addUserKnob {7 abberation l Abberation}
+abberation 1
+addUserKnob {26 "" l Defocus}
+addUserKnob {6 useDef l "Apply Defocus" -STARTLINE}
+addUserKnob {41 size T ZDefocus1.size}
+addUserKnob {41 max_size l maximum T ZDefocus1.max_size}
+}
+Input {
+inputs 0
+name img
+xpos -432
+ypos -573
+}
+Shuffle {
+in rgb
+alpha blue
+name ShuffleInputToRGBA
+xpos -432
+ypos 71
+}
+set Nc10454c0 [stack 0]
+Dot {
+name Dot1
+xpos -398
+ypos 632
+}
+set Nb67c2bb0 [stack 0]
+Input {
+inputs 0
+name control
+xpos -64
+ypos -573
+number 1
+}
+AddChannels {
+channels depth
+name AddChannels1
+xpos -64
+ypos -427
+}
+set Ne0ebde20 [stack 0]
+push $Ne0ebde20
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+name Copy6
+xpos -64
+ypos -353
+}
+set Ne0d86930 [stack 0]
+Dot {
+name Dot2
+xpos 94
+ypos -343
+}
+set Nd43def20 [stack 0]
+Transform {
+translate {0 -1}
+center {320 240}
+name down
+xpos 60
+ypos -140
+}
+push $Ne0d86930
+Dot {
+name Dot3
+xpos -122
+ypos -343
+}
+Dot {
+name Dot4
+xpos -207
+ypos -343
+}
+Transform {
+translate {0 1}
+center {320 240}
+name up
+xpos -241
+ypos -180
+}
+push $Nd43def20
+Dot {
+name Dot5
+xpos 176
+ypos -343
+}
+Transform {
+translate {1 0}
+center {320 240}
+name right
+xpos 142
+ypos -221
+}
+push $Ne0d86930
+Shuffle {
+in alpha
+green black
+blue black
+out rgb
+name Shuffle1
+xpos -64
+ypos -311
+}
+Transform {
+translate {-1 0}
+center {320 240}
+name left
+xpos -64
+ypos -285
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.green
+name Copy2
+xpos -64
+ypos -228
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.blue
+name Copy3
+xpos -64
+ypos -187
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+name Copy4
+xpos -64
+ypos -147
+}
+Expression {
+temp_name0 l
+temp_expr0 red
+temp_name1 r
+temp_expr1 green
+temp_name2 u
+temp_expr2 blue
+temp_name3 d
+temp_expr3 alpha
+channel0 {forward.u -forward.v none -backward.u}
+expr0 (l-r)*width
+channel1 {-forward.u forward.v none -backward.u}
+expr1 (d-u)*width
+channel2 depth
+expr2 (abs(l-r)+abs(d-u))*width/2
+name Expression1
+xpos -64
+ypos -15
+}
+Blur {
+channels motion
+crop false
+name Blur1
+xpos -64
+ypos 13
+}
+set Ne0c51a50 [stack 0]
+Dot {
+name Dot6
+xpos 89
+ypos 22
+}
+Dot {
+name Dot7
+xpos 89
+ypos 193
+}
+push $Ne0c51a50
+push $Nc10454c0
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels forward
+name Copy1
+xpos -64
+ypos 67
+}
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels depth
+name Copy8
+xpos -64
+ypos 175
+}
+ZDefocus2 {
+math -direct
+size 2
+name ZDefocus1
+xpos -64
+ypos 232
+disable {{!parent.useDef}}
+}
+Dot {
+name Dot8
+xpos -30
+ypos 276
+}
+set Nd72b2660 [stack 0]
+IDistort {
+channels rgba
+uv forward
+uv_scale {{parent.displace i}}
+name IDistort4
+xpos 98
+ypos 491
+}
+push $Nd72b2660
+IDistort {
+channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+uv forward
+uv_scale {{parent.displace/(1+parent.abberation/10)}}
+name IDistort3
+xpos 66
+ypos 314
+}
+push $Nd72b2660
+IDistort {
+channels {rgba.red -rgba.green -rgba.blue rgba.alpha}
+uv forward
+uv_scale {{parent.displace/(1-parent.abberation/10)}}
+name IDistort1
+xpos -188
+ypos 309
+}
+push $Nd72b2660
+IDistort {
+channels {-rgba.red rgba.green -rgba.blue rgba.alpha}
+uv forward
+uv_scale {{parent.displace i}}
+name IDistort2
+xpos -64
+ypos 311
+}
+Copy {
+inputs 2
+from0 rgba.red
+to0 rgba.red
+name Copy9
+xpos -64
+ypos 372
+}
+Copy {
+inputs 2
+from0 rgba.blue
+to0 rgba.blue
+name Copy10
+xpos -64
+ypos 412
+}
+Switch {
+inputs 2
+which {{parent.abberation==0}}
+name Switch1
+xpos -64
+ypos 491
+addUserKnob {20 "" l Weta}
+addUserKnob {32 knob l "update input order" t "changes the input order according to the input nodes' horizontal order (left most node becomes input 0)" -STARTLINE T " reconnectInputs"}
+}
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels depth
+name Copy5
+xpos -64
+ypos 616
+}
+push $Nb67c2bb0
+ShuffleCopy {
+inputs 2
+alpha alpha2
+black red
+white green
+red2 blue
+out none
+out2 rgb
+name ShuffleCopyToOutput
+xpos -64
+ypos 740
+}
+Output {
+name Output1
+xpos -64
+ypos 889
+}
+end_group
+Dot {
+name Dot187
+selected true
+xpos -15020
+ypos 63715
+}
+CropPadded {
+name CropPadded5
+selected true
+xpos -15042
+ypos 63757
+box {0 0 3840 2076}
+padding 100
+}
