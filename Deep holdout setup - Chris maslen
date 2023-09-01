@@ -1,0 +1,2371 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0x3c7900ff
+ label "<CENTER><font color= \"white\">DEEP MANAGEMENT\nIN"
+ note_font "Bitstream Vera Sans Bold"
+ note_font_size 39.3
+ selected true
+ xpos 26866
+ ypos 30518
+ bdwidth 374
+ bdheight 304
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode5
+ tile_color 0x95bcff
+ label "<CENTER>DEEP MANAGEMENT\nLOCAL"
+ note_font "Bitstream Vera Sans Bold"
+ note_font_size 39.3
+ selected true
+ xpos 26866
+ ypos 29807
+ bdwidth 375
+ bdheight 625
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode7
+ tile_color 0xbf008fff
+ label "<CENTER><font color= \"white\">DEEP MANAGEMENT\nOUT"
+ note_font "Bitstream Vera Sans Bold"
+ note_font_size 39.3
+ selected true
+ xpos 26866
+ ypos 30868
+ bdwidth 374
+ bdheight 304
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ tile_color 0x7fff00ff
+ label "Brings in Deep from other modules"
+ note_font_size 18.2
+ selected true
+ xpos 26901
+ ypos 30756
+}
+StickyNote {
+ inputs 0
+ name StickyNote6
+ tile_color 0xff00bfff
+ label "Sends out Deep from this module to all others"
+ note_font_size 18.2
+ selected true
+ xpos 26854
+ ypos 31106
+}
+Read {
+ inputs 0
+ file_type exr
+ file /jobs/S2/ds0320/ELEMENT/E_ds0320_comp_precomp_domeEdge_holdouts_v002/4312x2304/E_ds0320_comp_precomp_domeEdge_holdouts_v002.%04d.exr
+ localizationPolicy off
+ format "4312 2304 0 0 4312 2304 1 S2 Working"
+ proxy_format "640 480 0 0 640 480 1 Alexa 65 HD 1.78(proxy)"
+ first 1001
+ last 1107
+ origfirst 1001
+ origlast 1107
+ origset true
+ smartGrade true
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ name REPLACE_ME
+ tile_color 0xff00bfff
+ selected true
+ xpos 27013
+ ypos 30200
+ disable true
+ postage_stamp false
+ postage_stamp_frame 1054
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile "no results were found for query (Leaf) (WHERE Leaf.job = 'S2' AND Leaf.location = '/jobs/S2/ds0320/ELEMENT/E_ds0320_comp_precomp_domeEdge_holdouts_v002/4312x2304/E_ds0320_comp_precomp_domeEdge_holdouts_v002.#.exr' AND Leaf.deleted = '0000-00-00 00:00:00' AND Leaf.archived = '0000-00-00 00:00:00' AND Leaf.provisional = '0')"
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ _expressions {{curve}}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ addUserKnob {1 leaf_label l Leaf}
+ addUserKnob {1 ivy_version l Version}
+ addUserKnob {43 ivy_notes l Notes}
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+push 0
+Switch {
+ inputs 2
+ which 1
+ name SWITCH
+ knobChanged "\n\nn = nuke.thisNode()\nx = n\['which'].getValue()\n\nred = int('%02x%02x%02x%02x' % (1*255,0*255,0*255,1),16)\ngreen = int('%02x%02x%02x%02x' % (0*255,1*255,0*255,1),16)\n\nif x == 0:\n        n\['tile_color'].setValue(red)\nif x == 1:\n        n\['tile_color'].setValue(green)\n\n"
+ tile_color 0xff0001
+ note_font_size 20
+ selected true
+ xpos 27013
+ ypos 30306
+ disable {{"\[topnode this.input1].disable"}}
+ addUserKnob {20 User}
+}
+set Nb7bfd5f0 [stack 0]
+Dot {
+ name Dot10
+ label "DEEP PRECOMP\n"
+ note_font normal
+ note_font_size 22
+ selected true
+ xpos 26494
+ ypos 30311
+ hide_input true
+}
+DeepMerge {
+ inputs 0
+ name DEEP_IN_MODULE_01
+ tile_color 0x7fff00ff
+ note_font_size 25
+ selected true
+ xpos 27013
+ ypos 30703
+ hide_input true
+}
+set Ne7dfb0d0 [stack 0]
+Dot {
+ inputs 0
+ name Dot11
+ label "CG INPUT"
+ note_font_size 35
+ selected true
+ xpos 25244
+ ypos 29761
+}
+Dot {
+ name Dot12
+ note_font_size 35
+ selected true
+ xpos 25244
+ ypos 29911
+}
+set Nb7dff3b0 [stack 0]
+Dot {
+ name Dot13
+ note_font_size 35
+ selected true
+ xpos 25544
+ ypos 29911
+}
+DeepReformat {
+ pbb true
+ name DeepReformat11
+ selected true
+ xpos 25513
+ ypos 29960
+}
+Dot {
+ name Dot16
+ note_font_size 35
+ selected true
+ xpos 25544
+ ypos 30011
+}
+set Ne7dfaad0 [stack 0]
+NoOp {
+ name L050_OUT
+ tile_color 0xff00bf01
+ note_font normal
+ note_font_color 0xff9901
+ selected true
+ xpos 25663
+ ypos 30010
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set Ne7efc970 [stack 0]
+Dot {
+ inputs 0
+ name Dot548
+ label "CG INPUT"
+ note_font_size 35
+ selected true
+ xpos 24494
+ ypos 29761
+}
+Dot {
+ name Dot550
+ note_font_size 35
+ selected true
+ xpos 24494
+ ypos 29911
+}
+set Nb7cff230 [stack 0]
+Dot {
+ name Dot555
+ note_font_size 35
+ selected true
+ xpos 24794
+ ypos 29911
+}
+DeepReformat {
+ pbb true
+ name DeepReformat12
+ selected true
+ xpos 24763
+ ypos 29960
+}
+Dot {
+ name Dot556
+ note_font_size 35
+ selected true
+ xpos 24794
+ ypos 30011
+}
+set N3a860100 [stack 0]
+NoOp {
+ name L040_OUT
+ tile_color 0xff00bf01
+ note_font normal
+ note_font_color 0xff9901
+ selected true
+ xpos 24913
+ ypos 30010
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set N147f7e60 [stack 0]
+Dot {
+ inputs 0
+ name Dot557
+ label "CG INPUT"
+ note_font_size 35
+ selected true
+ xpos 23694
+ ypos 29761
+}
+Dot {
+ name Dot558
+ note_font_size 35
+ selected true
+ xpos 23694
+ ypos 29911
+}
+set Nb76f3370 [stack 0]
+Dot {
+ name Dot559
+ note_font_size 35
+ selected true
+ xpos 23994
+ ypos 29911
+}
+DeepReformat {
+ pbb true
+ name DeepReformat10
+ selected true
+ xpos 23963
+ ypos 29960
+}
+Dot {
+ name Dot560
+ note_font_size 35
+ selected true
+ xpos 23994
+ ypos 30011
+}
+set Nb7cf42d0 [stack 0]
+NoOp {
+ name L030_OUT
+ tile_color 0xff00bf01
+ note_font normal
+ note_font_color 0xff9901
+ selected true
+ xpos 24113
+ ypos 30010
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set Ne7cf5080 [stack 0]
+Dot {
+ inputs 0
+ name Dot561
+ label "CG INPUT"
+ note_font_size 35
+ selected true
+ xpos 22944
+ ypos 29761
+}
+Dot {
+ name Dot562
+ note_font_size 35
+ selected true
+ xpos 22944
+ ypos 29911
+}
+set N10f5d330 [stack 0]
+Dot {
+ name Dot563
+ note_font_size 35
+ selected true
+ xpos 23244
+ ypos 29911
+}
+DeepReformat {
+ pbb true
+ name DeepReformat5
+ selected true
+ xpos 23213
+ ypos 29960
+}
+Dot {
+ name Dot564
+ note_font_size 35
+ selected true
+ xpos 23244
+ ypos 30011
+}
+set N3c595d70 [stack 0]
+NoOp {
+ name L020_OUT
+ tile_color 0xff00bf01
+ note_font normal
+ note_font_color 0xff9901
+ selected true
+ xpos 23363
+ ypos 30010
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set Ne7bf1b70 [stack 0]
+push $cut_paste_input
+Dot {
+ name Dot565
+ label "CG INPUT"
+ note_font_size 35
+ selected true
+ xpos 22244
+ ypos 29761
+}
+Dot {
+ name Dot566
+ note_font_size 35
+ selected true
+ xpos 22244
+ ypos 29911
+}
+set N13628ed0 [stack 0]
+Dot {
+ name Dot567
+ note_font_size 35
+ selected true
+ xpos 22544
+ ypos 29911
+}
+DeepReformat {
+ pbb true
+ name DeepReformat9
+ selected true
+ xpos 22513
+ ypos 29960
+}
+Dot {
+ name Dot568
+ note_font_size 35
+ selected true
+ xpos 22544
+ ypos 30011
+}
+set Ne77f6710 [stack 0]
+NoOp {
+ name L010_OUT
+ tile_color 0xff00bf01
+ note_font normal
+ note_font_color 0xff9901
+ selected true
+ xpos 22663
+ ypos 30010
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set N13cf7f00 [stack 0]
+DeepMerge {
+ inputs 6
+ name Deep_IN5
+ tile_color 0x1fff0001
+ note_font normal
+ selected true
+ xpos 26463
+ ypos 30110
+ hide_input true
+}
+Dot {
+ inputs 0
+ name Dot569
+ label "CG INPUT"
+ note_font_size 35
+ selected true
+ xpos 26044
+ ypos 29761
+}
+Dot {
+ name Dot570
+ note_font_size 35
+ selected true
+ xpos 26044
+ ypos 29911
+}
+set Nd233e50 [stack 0]
+Dot {
+ name Dot571
+ note_font_size 35
+ selected true
+ xpos 26344
+ ypos 29911
+}
+DeepReformat {
+ pbb true
+ name DeepReformat13
+ selected true
+ xpos 26313
+ ypos 29960
+}
+Dot {
+ name Dot572
+ note_font_size 35
+ selected true
+ xpos 26344
+ ypos 30011
+}
+set N17d73130 [stack 0]
+DeepHoldout2 {
+ inputs 2
+ name DeepHoldout2
+ selected true
+ xpos 26313
+ ypos 30110
+}
+add_layer {L060 L060.alpha}
+Shuffle {
+ in alpha
+ out L060
+ name Shuffle87
+ tile_color 0xffffff01
+ selected true
+ xpos 26313
+ ypos 30154
+}
+Remove {
+ operation keep
+ channels L060
+ name Remove6
+ selected true
+ xpos 26313
+ ypos 30204
+}
+NoOp {
+ name TO_HOLDOUTS5
+ tile_color 0x222222ff
+ note_font_color 0xff9901
+ selected true
+ xpos 26313
+ ypos 30260
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set Ne7efe5f0 [stack 0]
+Switch {
+ inputs 2
+ which {{parent.SWITCH.which}}
+ name Switch14
+ knobChanged "\n\nn = nuke.thisNode()\nx = n\['which'].getValue()\n\nred = int('%02x%02x%02x%02x' % (1*255,0*255,0*255,1),16)\ngreen = int('%02x%02x%02x%02x' % (0*255,1*255,0*255,1),16)\n\nif x == 0:\n        n\['tile_color'].setValue(red)\nif x == 1:\n        n\['tile_color'].setValue(green)\n\n"
+ tile_color 0xff0001
+ note_font_size 20
+ selected true
+ xpos 26313
+ ypos 30306
+ disable {{parent.SWITCH.disable}}
+ addUserKnob {20 User}
+ addUserKnob {52 python l "" +STARTLINE T "nuke.thisNode().knob('knobChanged').setValue(\"\"\"\n\nn = nuke.thisNode()\nx = n\['which'].getValue()\n\nred = int('%02x%02x%02x%02x' % (1*255,0*255,0*255,1),16)\ngreen = int('%02x%02x%02x%02x' % (0*255,1*255,0*255,1),16)\n\nif x == 0:\n        n\['tile_color'].setValue(red)\nif x == 1:\n        n\['tile_color'].setValue(green)\n\n\"\"\")" +STARTLINE}
+}
+Shuffle {
+ in L060
+ out alpha
+ name Shuffle93
+ tile_color 0xffffff01
+ selected true
+ xpos 26313
+ ypos 30354
+}
+Dot {
+ name Dot573
+ note_font_size 35
+ selected true
+ xpos 26344
+ ypos 30411
+}
+push $Nd233e50
+Reformat {
+ pbb true
+ name Reformat6
+ selected true
+ xpos 26013
+ ypos 29960
+}
+AdjBBox {
+ name AdjBBox4
+ selected true
+ xpos 26013
+ ypos 30010
+}
+Group {
+ name UNPREMULT_32BIT5
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 26013
+ ypos 30054
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  selected true
+  xpos -58
+  ypos 394
+ }
+set N2e6a4a20 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  selected true
+  xpos 100
+  ypos 394
+ }
+add_layer {__depth __depth.red __depth.green __depth.blue __depth.alpha __depth.r __depth.z __depth.x __depth.y __depth.Z __depth.r __depth.Z __depth.r}
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  selected true
+  xpos 66
+  ypos 440
+ }
+set Ndba23180 [stack 0]
+push $Ndba23180
+push $Ndba23180
+push $Ndba23180
+push $Ndba23180
+push $Ndba23180
+push $N2e6a4a20
+ Unpremult {
+  channels all
+  name Unpremult
+  selected true
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  selected true
+  xpos -92
+  ypos 496
+ }
+add_layer {__normal_world __normal_world.x __normal_world.y __normal_world.z __normal_world.red __normal_world.green __normal_world.blue __normal_world.alpha __normal_world.alpha}
+ Copy {
+  inputs 2
+  channels __normal_world
+  name Copy2
+  selected true
+  xpos -92
+  ypos 546
+ }
+add_layer {__position_object __position_object.x __position_object.y __position_object.z __position_object.y __position_object.z}
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  selected true
+  xpos -92
+  ypos 595
+ }
+add_layer {__position_reference __position_reference.x __position_reference.y __position_reference.z}
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  selected true
+  xpos -92
+  ypos 644
+ }
+add_layer {__position_world __position_world.x __position_world.y __position_world.z __position_world.red __position_world.green __position_world.blue __position_world.alpha __position_world.alpha}
+ Copy {
+  inputs 2
+  channels __position_world
+  name Copy5
+  selected true
+  xpos -92
+  ypos 695
+ }
+add_layer {__motion_vector __motion_vector.x __motion_vector.y __motion_vector.z __motion_vector.red __motion_vector.green __motion_vector.blue __motion_vector.alpha}
+ Copy {
+  inputs 2
+  channels __motion_vector
+  name Copy6
+  selected true
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -92
+  ypos 839
+ }
+end_group
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy2
+ selected true
+ xpos 26013
+ ypos 30404
+}
+Premult {
+ channels all
+ name Premult5
+ selected true
+ xpos 26013
+ ypos 30454
+}
+Dot {
+ name Dot574
+ note_font_size 35
+ selected true
+ xpos 26044
+ ypos 31011
+}
+Dot {
+ name Dot575
+ label "LABEL 5\n"
+ note_font_size 35
+ selected true
+ xpos 22394
+ ypos 31011
+}
+push $Nb7bfd5f0
+Dot {
+ name Dot576
+ label "DEEP PRECOMP\n"
+ note_font normal
+ note_font_size 22
+ selected true
+ xpos 25694
+ ypos 30311
+ hide_input true
+}
+push $Ne7dfb0d0
+push $N17d73130
+NoOp {
+ name L060_OUT
+ tile_color 0xff00bf01
+ note_font normal
+ note_font_color 0xff9901
+ selected true
+ xpos 26463
+ ypos 30010
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set N1135de70 [stack 0]
+push $N147f7e60
+push $Ne7cf5080
+push $Ne7bf1b70
+push $N13cf7f00
+DeepMerge {
+ inputs 6
+ name Deep_IN4
+ tile_color 0x1fff0001
+ note_font normal
+ selected true
+ xpos 25663
+ ypos 30110
+ hide_input true
+}
+push $Ne7dfaad0
+DeepHoldout2 {
+ inputs 2
+ name DeepHoldout1
+ selected true
+ xpos 25513
+ ypos 30110
+}
+add_layer {L050 L050.alpha}
+Shuffle {
+ in alpha
+ out L050
+ name Shuffle88
+ tile_color 0xffffff01
+ selected true
+ xpos 25513
+ ypos 30154
+}
+Remove {
+ operation keep
+ channels L050
+ name Remove5
+ selected true
+ xpos 25513
+ ypos 30204
+}
+NoOp {
+ name TO_HOLDOUTS4
+ tile_color 0x222222ff
+ note_font_color 0xff9901
+ selected true
+ xpos 25513
+ ypos 30260
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set N39662750 [stack 0]
+Switch {
+ inputs 2
+ which {{parent.SWITCH.which}}
+ name Switch15
+ knobChanged "\n\nn = nuke.thisNode()\nx = n\['which'].getValue()\n\nred = int('%02x%02x%02x%02x' % (1*255,0*255,0*255,1),16)\ngreen = int('%02x%02x%02x%02x' % (0*255,1*255,0*255,1),16)\n\nif x == 0:\n        n\['tile_color'].setValue(red)\nif x == 1:\n        n\['tile_color'].setValue(green)\n\n"
+ tile_color 0xff0001
+ note_font_size 20
+ selected true
+ xpos 25513
+ ypos 30306
+ disable {{parent.SWITCH.disable}}
+ addUserKnob {20 User}
+}
+Shuffle {
+ in L050
+ out alpha
+ name Shuffle94
+ tile_color 0xffffff01
+ selected true
+ xpos 25513
+ ypos 30354
+}
+Dot {
+ name Dot577
+ note_font_size 35
+ selected true
+ xpos 25544
+ ypos 30411
+}
+push $Nb7dff3b0
+Reformat {
+ pbb true
+ name Reformat8
+ selected true
+ xpos 25213
+ ypos 29960
+}
+AdjBBox {
+ name AdjBBox1
+ selected true
+ xpos 25213
+ ypos 30010
+}
+Group {
+ name UNPREMULT_32BIT4
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 25213
+ ypos 30054
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  selected true
+  xpos -58
+  ypos 394
+ }
+set N2eebd2e0 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  selected true
+  xpos 100
+  ypos 394
+ }
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  selected true
+  xpos 66
+  ypos 440
+ }
+set Ne4e5b5f0 [stack 0]
+push $Ne4e5b5f0
+push $Ne4e5b5f0
+push $Ne4e5b5f0
+push $Ne4e5b5f0
+push $Ne4e5b5f0
+push $N2eebd2e0
+ Unpremult {
+  channels all
+  name Unpremult
+  selected true
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  selected true
+  xpos -92
+  ypos 496
+ }
+ Copy {
+  inputs 2
+  channels __normal_world
+  name Copy2
+  selected true
+  xpos -92
+  ypos 546
+ }
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  selected true
+  xpos -92
+  ypos 595
+ }
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  selected true
+  xpos -92
+  ypos 644
+ }
+ Copy {
+  inputs 2
+  channels __position_world
+  name Copy5
+  selected true
+  xpos -92
+  ypos 695
+ }
+ Copy {
+  inputs 2
+  channels __motion_vector
+  name Copy6
+  selected true
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -92
+  ypos 839
+ }
+end_group
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy1
+ selected true
+ xpos 25213
+ ypos 30404
+}
+Premult {
+ channels all
+ name Premult9
+ selected true
+ xpos 25213
+ ypos 30454
+}
+Dot {
+ name Dot578
+ note_font_size 35
+ selected true
+ xpos 25244
+ ypos 30961
+}
+Dot {
+ name Dot579
+ label "LABEL 4\n"
+ note_font_size 35
+ selected true
+ xpos 22394
+ ypos 30961
+}
+push $Nb7bfd5f0
+Dot {
+ name Dot580
+ label "DEEP PRECOMP\n"
+ note_font normal
+ note_font_size 22
+ selected true
+ xpos 24944
+ ypos 30311
+ hide_input true
+}
+push $Ne7dfb0d0
+push $N1135de70
+push $Ne7efc970
+push $Ne7cf5080
+push $Ne7bf1b70
+push $N13cf7f00
+DeepMerge {
+ inputs 6
+ name Deep_IN3
+ tile_color 0x1fff0001
+ note_font normal
+ selected true
+ xpos 24913
+ ypos 30110
+ hide_input true
+}
+push $N3a860100
+DeepHoldout2 {
+ inputs 2
+ name DeepHoldout9
+ selected true
+ xpos 24763
+ ypos 30110
+}
+add_layer {L040 L040.alpha}
+Shuffle {
+ in alpha
+ out L040
+ name Shuffle89
+ tile_color 0xffffff01
+ selected true
+ xpos 24763
+ ypos 30154
+}
+Remove {
+ operation keep
+ channels L040
+ name Remove4
+ selected true
+ xpos 24763
+ ypos 30204
+}
+NoOp {
+ name TO_HOLDOUTS3
+ tile_color 0x222222ff
+ note_font_color 0xff9901
+ selected true
+ xpos 24763
+ ypos 30260
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set N395d05f0 [stack 0]
+Switch {
+ inputs 2
+ which {{parent.SWITCH.which}}
+ name Switch18
+ knobChanged "\n\nn = nuke.thisNode()\nx = n\['which'].getValue()\n\nred = int('%02x%02x%02x%02x' % (1*255,0*255,0*255,1),16)\ngreen = int('%02x%02x%02x%02x' % (0*255,1*255,0*255,1),16)\n\nif x == 0:\n        n\['tile_color'].setValue(red)\nif x == 1:\n        n\['tile_color'].setValue(green)\n\n"
+ tile_color 0xff0001
+ note_font_size 20
+ selected true
+ xpos 24763
+ ypos 30306
+ disable {{parent.SWITCH.disable}}
+ addUserKnob {20 User}
+}
+Shuffle {
+ in L040
+ out alpha
+ name Shuffle105
+ tile_color 0xffffff01
+ selected true
+ xpos 24763
+ ypos 30354
+}
+Dot {
+ name Dot581
+ note_font_size 35
+ selected true
+ xpos 24794
+ ypos 30411
+}
+push $Nb7cff230
+Reformat {
+ pbb true
+ name Reformat32
+ selected true
+ xpos 24463
+ ypos 29960
+}
+AdjBBox {
+ name AdjBBox7
+ selected true
+ xpos 24463
+ ypos 30010
+}
+Group {
+ name UNPREMULT_32BIT3
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 24463
+ ypos 30054
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  selected true
+  xpos -58
+  ypos 394
+ }
+set Nde8269c0 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  selected true
+  xpos 100
+  ypos 394
+ }
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  selected true
+  xpos 66
+  ypos 440
+ }
+set Ndd52c130 [stack 0]
+push $Ndd52c130
+push $Ndd52c130
+push $Ndd52c130
+push $Ndd52c130
+push $Ndd52c130
+push $Nde8269c0
+ Unpremult {
+  channels all
+  name Unpremult
+  selected true
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  selected true
+  xpos -92
+  ypos 496
+ }
+ Copy {
+  inputs 2
+  channels __normal_world
+  name Copy2
+  selected true
+  xpos -92
+  ypos 546
+ }
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  selected true
+  xpos -92
+  ypos 595
+ }
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  selected true
+  xpos -92
+  ypos 644
+ }
+ Copy {
+  inputs 2
+  channels __position_world
+  name Copy5
+  selected true
+  xpos -92
+  ypos 695
+ }
+ Copy {
+  inputs 2
+  channels __motion_vector
+  name Copy6
+  selected true
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -92
+  ypos 839
+ }
+end_group
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy13
+ selected true
+ xpos 24463
+ ypos 30404
+}
+Premult {
+ channels all
+ name Premult11
+ selected true
+ xpos 24463
+ ypos 30454
+}
+Dot {
+ name Dot582
+ note_font_size 35
+ selected true
+ xpos 24494
+ ypos 30911
+}
+Dot {
+ name Dot583
+ label "LABEL 3\n\n"
+ note_font_size 35
+ selected true
+ xpos 22394
+ ypos 30911
+}
+push $Nb7bfd5f0
+Dot {
+ name Dot584
+ label "DEEP PRECOMP\n"
+ note_font normal
+ note_font_size 22
+ selected true
+ xpos 24144
+ ypos 30311
+ hide_input true
+}
+push $Ne7dfb0d0
+push $N1135de70
+push $Ne7efc970
+push $N147f7e60
+push $Ne7bf1b70
+push $N13cf7f00
+DeepMerge {
+ inputs 6
+ name Deep_IN2
+ tile_color 0x1fff0001
+ note_font normal
+ selected true
+ xpos 24113
+ ypos 30110
+ hide_input true
+}
+push $Nb7cf42d0
+DeepHoldout2 {
+ inputs 2
+ name DeepHoldout8
+ selected true
+ xpos 23963
+ ypos 30110
+}
+add_layer {L030 L030.alpha}
+Shuffle {
+ in alpha
+ out L030
+ name Shuffle90
+ tile_color 0xffffff01
+ selected true
+ xpos 23963
+ ypos 30154
+}
+Remove {
+ operation keep
+ channels L030
+ name Remove3
+ selected true
+ xpos 23963
+ ypos 30204
+}
+NoOp {
+ name TO_HOLDOUTS2
+ tile_color 0x222222ff
+ note_font_color 0xff9901
+ selected true
+ xpos 23963
+ ypos 30260
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set Ne70f2350 [stack 0]
+Switch {
+ inputs 2
+ which {{parent.SWITCH.which}}
+ name Switch55
+ knobChanged "\n\nn = nuke.thisNode()\nx = n\['which'].getValue()\n\nred = int('%02x%02x%02x%02x' % (1*255,0*255,0*255,1),16)\ngreen = int('%02x%02x%02x%02x' % (0*255,1*255,0*255,1),16)\n\nif x == 0:\n        n\['tile_color'].setValue(red)\nif x == 1:\n        n\['tile_color'].setValue(green)\n\n"
+ tile_color 0xff0001
+ note_font_size 20
+ selected true
+ xpos 23963
+ ypos 30306
+ disable {{parent.SWITCH.disable}}
+ addUserKnob {20 User}
+}
+Shuffle {
+ in L030
+ out alpha
+ name Shuffle106
+ tile_color 0xffffff01
+ selected true
+ xpos 23963
+ ypos 30354
+}
+Dot {
+ name Dot585
+ note_font_size 35
+ selected true
+ xpos 23994
+ ypos 30411
+}
+push $Nb76f3370
+Reformat {
+ pbb true
+ name Reformat31
+ selected true
+ xpos 23663
+ ypos 29960
+}
+AdjBBox {
+ name AdjBBox6
+ selected true
+ xpos 23663
+ ypos 30010
+}
+Group {
+ name UNPREMULT_32BIT2
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 23663
+ ypos 30054
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  selected true
+  xpos -58
+  ypos 394
+ }
+set Nce45e680 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  selected true
+  xpos 100
+  ypos 394
+ }
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  selected true
+  xpos 66
+  ypos 440
+ }
+set N12d33f50 [stack 0]
+push $N12d33f50
+push $N12d33f50
+push $N12d33f50
+push $N12d33f50
+push $N12d33f50
+push $Nce45e680
+ Unpremult {
+  channels all
+  name Unpremult
+  selected true
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  selected true
+  xpos -92
+  ypos 496
+ }
+ Copy {
+  inputs 2
+  channels __normal_world
+  name Copy2
+  selected true
+  xpos -92
+  ypos 546
+ }
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  selected true
+  xpos -92
+  ypos 595
+ }
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  selected true
+  xpos -92
+  ypos 644
+ }
+ Copy {
+  inputs 2
+  channels __position_world
+  name Copy5
+  selected true
+  xpos -92
+  ypos 695
+ }
+ Copy {
+  inputs 2
+  channels __motion_vector
+  name Copy6
+  selected true
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -92
+  ypos 839
+ }
+end_group
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy14
+ selected true
+ xpos 23663
+ ypos 30404
+}
+Premult {
+ channels all
+ name Premult14
+ selected true
+ xpos 23663
+ ypos 30454
+}
+Dot {
+ name Dot586
+ note_font_size 35
+ selected true
+ xpos 23694
+ ypos 30861
+}
+Dot {
+ name Dot587
+ label "LABEL 2\n"
+ note_font_size 35
+ selected true
+ xpos 22394
+ ypos 30861
+}
+push $Nb7bfd5f0
+Dot {
+ name Dot588
+ label "DEEP PRECOMP\n"
+ note_font_size 22
+ selected true
+ xpos 23394
+ ypos 30311
+ hide_input true
+}
+push $Ne7dfb0d0
+push $N1135de70
+push $Ne7efc970
+push $N147f7e60
+push $Ne7cf5080
+push $N13cf7f00
+DeepMerge {
+ inputs 6
+ name Deep_IN1
+ tile_color 0x1fff0001
+ note_font normal
+ selected true
+ xpos 23363
+ ypos 30110
+ hide_input true
+}
+push $N3c595d70
+DeepHoldout2 {
+ inputs 2
+ name DeepHoldout3
+ selected true
+ xpos 23213
+ ypos 30110
+}
+add_layer {L020 L020.alpha}
+Shuffle {
+ in alpha
+ out L020
+ name Shuffle91
+ tile_color 0xffffff01
+ selected true
+ xpos 23213
+ ypos 30154
+}
+Remove {
+ operation keep
+ channels L020
+ name Remove2
+ selected true
+ xpos 23213
+ ypos 30204
+}
+NoOp {
+ name TO_HOLDOUTS1
+ tile_color 0x222222ff
+ note_font_color 0xff9901
+ selected true
+ xpos 23213
+ ypos 30260
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set Ne545bbb0 [stack 0]
+Switch {
+ inputs 2
+ which {{parent.SWITCH.which}}
+ name Switch59
+ knobChanged "\n\nn = nuke.thisNode()\nx = n\['which'].getValue()\n\nred = int('%02x%02x%02x%02x' % (1*255,0*255,0*255,1),16)\ngreen = int('%02x%02x%02x%02x' % (0*255,1*255,0*255,1),16)\n\nif x == 0:\n        n\['tile_color'].setValue(red)\nif x == 1:\n        n\['tile_color'].setValue(green)\n\n"
+ tile_color 0xff0001
+ note_font_size 20
+ selected true
+ xpos 23213
+ ypos 30306
+ disable {{parent.SWITCH.disable}}
+ addUserKnob {20 User}
+}
+Shuffle {
+ in L020
+ out alpha
+ name Shuffle107
+ tile_color 0xffffff01
+ selected true
+ xpos 23213
+ ypos 30354
+}
+Dot {
+ name Dot589
+ note_font_size 35
+ selected true
+ xpos 23244
+ ypos 30411
+}
+push $N10f5d330
+Reformat {
+ pbb true
+ name Reformat9
+ selected true
+ xpos 22913
+ ypos 29960
+}
+AdjBBox {
+ name AdjBBox2
+ selected true
+ xpos 22913
+ ypos 30010
+}
+Group {
+ name UNPREMULT_32BIT1
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 22913
+ ypos 30054
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  selected true
+  xpos -58
+  ypos 394
+ }
+set Ndea278a0 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  selected true
+  xpos 100
+  ypos 394
+ }
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  selected true
+  xpos 66
+  ypos 440
+ }
+set N1d5550e0 [stack 0]
+push $N1d5550e0
+push $N1d5550e0
+push $N1d5550e0
+push $N1d5550e0
+push $N1d5550e0
+push $Ndea278a0
+ Unpremult {
+  channels all
+  name Unpremult
+  selected true
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  selected true
+  xpos -92
+  ypos 496
+ }
+ Copy {
+  inputs 2
+  channels __normal_world
+  name Copy2
+  selected true
+  xpos -92
+  ypos 546
+ }
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  selected true
+  xpos -92
+  ypos 595
+ }
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  selected true
+  xpos -92
+  ypos 644
+ }
+ Copy {
+  inputs 2
+  channels __position_world
+  name Copy5
+  selected true
+  xpos -92
+  ypos 695
+ }
+ Copy {
+  inputs 2
+  channels __motion_vector
+  name Copy6
+  selected true
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -92
+  ypos 839
+ }
+end_group
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy15
+ selected true
+ xpos 22913
+ ypos 30404
+}
+Premult {
+ channels all
+ name Premult15
+ selected true
+ xpos 22913
+ ypos 30454
+}
+Dot {
+ name Dot590
+ note_font_size 35
+ selected true
+ xpos 22944
+ ypos 30811
+}
+Dot {
+ name Dot591
+ label "LABEL 1\n"
+ note_font_size 35
+ selected true
+ xpos 22394
+ ypos 30811
+}
+push $Nb7bfd5f0
+Dot {
+ name Dot592
+ label "DEEP PRECOMP\n"
+ note_font_size 22
+ selected true
+ xpos 22694
+ ypos 30311
+ hide_input true
+}
+push $Ne7dfb0d0
+push $N1135de70
+push $Ne7efc970
+push $N147f7e60
+push $Ne7cf5080
+push $Ne7bf1b70
+DeepMerge {
+ inputs 6
+ name Deep_IN
+ tile_color 0x1fff0001
+ note_font normal
+ selected true
+ xpos 22663
+ ypos 30110
+ hide_input true
+}
+push $Ne77f6710
+DeepHoldout2 {
+ inputs 2
+ name DeepHoldout6
+ selected true
+ xpos 22513
+ ypos 30110
+}
+add_layer {L010 L010.alpha}
+Shuffle {
+ in alpha
+ out L010
+ name Shuffle92
+ tile_color 0xffffff01
+ selected true
+ xpos 22513
+ ypos 30154
+}
+Remove {
+ operation keep
+ channels L010
+ name Remove7
+ selected true
+ xpos 22513
+ ypos 30204
+}
+NoOp {
+ name TO_HOLDOUTS
+ tile_color 0x222222ff
+ note_font_color 0xff9901
+ selected true
+ xpos 22513
+ ypos 30260
+ addUserKnob {20 User}
+ addUserKnob {26 text l "" +STARTLINE T "Name plate for linking to hidden inputs"}
+}
+set Ncea539e0 [stack 0]
+Switch {
+ inputs 2
+ which {{parent.SWITCH.which}}
+ name Switch60
+ knobChanged "\n\nn = nuke.thisNode()\nx = n\['which'].getValue()\n\nred = int('%02x%02x%02x%02x' % (1*255,0*255,0*255,1),16)\ngreen = int('%02x%02x%02x%02x' % (0*255,1*255,0*255,1),16)\n\nif x == 0:\n        n\['tile_color'].setValue(red)\nif x == 1:\n        n\['tile_color'].setValue(green)\n\n"
+ tile_color 0xff0001
+ note_font_size 20
+ selected true
+ xpos 22513
+ ypos 30306
+ disable {{parent.SWITCH.disable}}
+ addUserKnob {20 User}
+}
+Shuffle {
+ in L010
+ out alpha
+ name Shuffle108
+ tile_color 0xffffff01
+ selected true
+ xpos 22513
+ ypos 30354
+}
+Dot {
+ name Dot593
+ note_font_size 35
+ selected true
+ xpos 22544
+ ypos 30411
+}
+push $N13628ed0
+Reformat {
+ pbb true
+ name Reformat15
+ selected true
+ xpos 22213
+ ypos 29960
+}
+AdjBBox {
+ name AdjBBox3
+ selected true
+ xpos 22213
+ ypos 30010
+}
+Group {
+ name UNPREMULT_32BIT6
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 22213
+ ypos 30054
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  selected true
+  xpos -58
+  ypos 394
+ }
+set N104a1930 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  selected true
+  xpos 100
+  ypos 394
+ }
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  selected true
+  xpos 66
+  ypos 440
+ }
+set Nc7343d0 [stack 0]
+push $Nc7343d0
+push $Nc7343d0
+push $Nc7343d0
+push $Nc7343d0
+push $Nc7343d0
+push $N104a1930
+ Unpremult {
+  channels all
+  name Unpremult
+  selected true
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  selected true
+  xpos -92
+  ypos 496
+ }
+ Copy {
+  inputs 2
+  channels __normal_world
+  name Copy2
+  selected true
+  xpos -92
+  ypos 546
+ }
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  selected true
+  xpos -92
+  ypos 595
+ }
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  selected true
+  xpos -92
+  ypos 644
+ }
+ Copy {
+  inputs 2
+  channels __position_world
+  name Copy5
+  selected true
+  xpos -92
+  ypos 695
+ }
+ Copy {
+  inputs 2
+  channels __motion_vector
+  name Copy6
+  selected true
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -92
+  ypos 839
+ }
+end_group
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy16
+ selected true
+ xpos 22213
+ ypos 30404
+}
+Premult {
+ channels all
+ name Premult16
+ selected true
+ xpos 22213
+ ypos 30454
+}
+Merge2 {
+ inputs 2
+ operation disjoint-over
+ also_merge all
+ name Merge8
+ label "also merge -\[value also_merge] mix - \[expr \[value mix] * 100]%"
+ selected true
+ xpos 22213
+ ypos 30804
+}
+Merge2 {
+ inputs 2
+ operation disjoint-over
+ also_merge all
+ name Merge232
+ label "also merge -\[value also_merge] mix - \[expr \[value mix] * 100]%"
+ selected true
+ xpos 22213
+ ypos 30854
+}
+Merge2 {
+ inputs 2
+ operation disjoint-over
+ also_merge all
+ name Merge233
+ label "also merge -\[value also_merge] mix - \[expr \[value mix] * 100]%"
+ selected true
+ xpos 22213
+ ypos 30904
+}
+Merge2 {
+ inputs 2
+ operation disjoint-over
+ also_merge all
+ name Merge234
+ label "also merge -\[value also_merge] mix - \[expr \[value mix] * 100]%"
+ selected true
+ xpos 22213
+ ypos 30954
+}
+Merge2 {
+ inputs 2
+ operation disjoint-over
+ also_merge all
+ name Merge235
+ label "also merge -\[value also_merge] mix - \[expr \[value mix] * 100]%"
+ selected true
+ xpos 22213
+ ypos 31004
+}
+push $N1135de70
+push $Ne7efc970
+push $N147f7e60
+push $Ne7cf5080
+push $Ne7bf1b70
+push $N13cf7f00
+DeepMerge {
+ inputs 6
+ name DEEP_OUT_MODULE_01
+ tile_color 0xff00bfff
+ note_font_size 25
+ selected true
+ xpos 27013
+ ypos 31053
+ hide_input true
+}
+push $Ne7efe5f0
+push $N39662750
+push $N395d05f0
+push $Ne70f2350
+push 0
+push $Ne545bbb0
+push $Ncea539e0
+Merge2 {
+ inputs 6+1
+ also_merge all
+ name Merge236
+ tile_color 0x7fff01
+ label all
+ note_font " Bold"
+ note_font_color 0xffffff01
+ selected true
+ xpos 27013
+ ypos 30004
+ hide_input true
+}
+FileOut {
+ name RENDER_HOLDOUTS
+ tile_color 0xbfbf00ff
+ label deep_holdouts_01
+ note_font_size 20
+ selected true
+ xpos 27013
+ ypos 30080
+ icon smartgrade.png
+ channels all
+ _destination /jobs
+ _stemstatus ""
+ file ""
+ proxy ""
+ fileProxy ""
+ views {main}
+ pbb true
+ smart_grade on
+ dw_compression_level 0
+ interleave channels
+ tex_metadata "default metadata and exr/*"
+ disable_autolabel_format true
+ _defaults "\{'smart_grade': 0, 'compression': 1, 'tile_color': 3216965887, 'pbb': True, 'dw_compression_level': 0, 'label': u'deep_holdouts_01'\}"
+ _format ""
+ _generator "NukeRenderGenerator dnnuke.core.render.v1"
+ _ivyVals "\{'variant': None, 'job': 'STONE', 'versionNum': '1', 'twigType': 'spider://query@TwigType.one?TwigType.code==2d', 'twigNameTags': \{'subtask': u'precomp', 'task': u'comp', 'out_dir': u'ELEMENT', 'label': u'deep_holdouts_01'\}, 'host': None, 'stalk': None, 'stalkAttrs': \{'framerange': '\[knob first_frame]-\[knob last_frame]'\}, 'twig': None, 'stem': '\[getenv SHOT]'\}"
+ _old_filetype exr
+ _stalkname E_comp_general_seq_comp_precomp_deep_holdouts_01_v001
+ _twigtype 2d
+ _wrapper "FileOut dnnuke.nodes.file_out.wrapper"
+ beforeRender ""
+ beforeFrameRender ""
+ afterFrameRender ""
+ afterRender ""
+ renderProgress ""
+ _invert_grade /tools/STONE/ivyasset/110_fof_0010/ivy/grade/GRD_110_fof_0010_neutral_v001/GRD_110_fof_0010_neutral_v001.grade
+}
+StickyNote {
+ inputs 0
+ name docs1
+ tile_color 0x6aff55ff
+ label DOCUMENTATION
+ note_font_size 44.4
+ selected true
+ xpos 26866
+ ypos 29742
+ addUserKnob {20 User l info}
+ addUserKnob {22 deepHoldouts l "Deep holdouts" T nukescripts.openurl.start('http://dnet.dneg.com/display/~cmas/Deep+Holdouts') +STARTLINE}
+}
