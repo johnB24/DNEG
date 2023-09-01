@@ -1,0 +1,12 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push $cut_paste_input
+add_layer {girl girl.red girl.green girl.blue girl.alpha}
+ShuffleCopy {
+ in alpha
+ out girl
+ name ShuffleCopy7
+ selected true
+ xpos 18452
+ ypos 30050
+}
