@@ -1,0 +1,14 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push $cut_paste_input
+Dot {
+ name Dot621
+ tile_color 0xff00ff
+ label "Connected to:\n\[value input.name]"
+ note_font "DejaVu Sans"
+ note_font_size 25
+ selected true
+ xpos 12018
+ ypos 30386
+ hide_input true
+}
