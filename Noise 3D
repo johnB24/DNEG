@@ -1,0 +1,169 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push $cut_paste_input
+add_layer {__position_world __position_world.x __position_world.y __position_world.z}
+Group {
+name Noise_3D
+help "Applies 3D noise to a position pass."
+knobChanged "n = nuke.thisNode()\nk = nuke.thisKnob()\nif k.name() == \"type\":\n\tn\['axis'].setVisible( k.value() == 'sin' )\n\tn\['octaves'].setVisible( k.value() == 'fBm' )\n\tn\['lucanarity'].setVisible( k.value() == 'fBm' )\n\tn\['gain'].setVisible( k.value() == 'fBm' )"
+selected true
+xpos 87
+ypos -178
+addUserKnob {20 noise3D l Noise3D}
+addUserKnob {22 Documentation t "Click here to see the DNeg user docs for this tool." T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())" +STARTLINE}
+addUserKnob {26 ""}
+addUserKnob {41 in l "position data" t "Which channel contains the position data of the image." T Shuffle_Input_Channels.in}
+addUserKnob {41 to0 l output t "Which channel to apply the noise to." T Copy1.to0}
+addUserKnob {6 unpremultiply t "Unpremultiplies the incoming position data by the alpha channel." +STARTLINE}
+unpremultiply true
+addUserKnob {6 useAlpha l "ignore outside alpha" t "If your input has an alpha channel, checking this will force everything outside that alpha channel to be black." -STARTLINE}
+useAlpha true
+addUserKnob {26 ""}
+addUserKnob {4 type t "Type of noise pattern to apply." M {random sin fBm ""}}
+addUserKnob {4 axis +HIDDEN M {x y z}}
+addUserKnob {3 octaves t "How many times is the base noise function called?" +HIDDEN}
+octaves 5
+addUserKnob {7 lucanarity t "Determines how much the frequency increases with each octave." +HIDDEN R 0 2}
+lucanarity 1.25
+addUserKnob {7 gain t "Determines how much effect higher octaves have." +HIDDEN R 0 0.999}
+gain 0.5
+addUserKnob {26 ""}
+addUserKnob {41 offset t "An offset to apply to the 3D noise - useful for animating etc." T Expression2.offset}
+addUserKnob {41 scale t "Scale to apply to the noise in each axis." T Expression2.scale}
+addUserKnob {41 uniform_scale l "uniform scale" t "Overall scaling factor of noise." T Expression2.uniform_scale}
+addUserKnob {26 ""}
+addUserKnob {7 blackpoint t "Used to scale the strength of the noise."}
+addUserKnob {7 whitepoint t "Used to scale the strength of the noise."}
+whitepoint 1
+addUserKnob {7 gamma t "Used to scale the strength of the noise." R 0 2}
+gamma 1
+}
+Input {
+ inputs 0
+ name img
+ xpos 489
+ ypos -310
+}
+set N14656cc0 [stack 0]
+AddChannels {
+ channels alpha
+ color 1
+ name AddChannels1
+ label "Make sure there's an alpha channel"
+ xpos 658
+ ypos -322
+}
+Shuffle {
+ in __position_world
+ alpha blue
+ out rgb
+ name Shuffle_Input_Channels
+ label "Shuffles position data into RGB channels"
+ xpos 658
+ ypos -272
+}
+Unpremult {
+ name Unpremult1
+ xpos 658
+ ypos -210
+ disable {{!parent.unpremultiply i}}
+}
+set N149ae410 [stack 0]
+Expression {
+ channel0 alpha
+ expr0 "a ==0.0 ? 0 : (parent.unpremultiply ? 1 : a)"
+ channel1 none
+ channel2 none
+ channel3 none
+ name IgnoreOutsideAlpha
+ xpos 768
+ ypos -210
+}
+Dot {
+ name Dot2
+ xpos 802
+ ypos -74
+}
+push $N149ae410
+Expression {
+ temp_name0 random
+ temp_expr0 "random((r + offset.x) * 1/uniform_scale * 1/scale.x, (g + offset.y) * 1/uniform_scale * 1/scale.y, (b + offset.z) * 1/uniform_scale * 1/scale.z)"
+ temp_name1 sin
+ temp_expr1 "axis == 0 ? sin((r + offset.x) * 1/uniform_scale * 1/scale.x) : axis == 1 ? sin((g + offset.y) * 1/uniform_scale * 1/scale.y) : sin((b + offset.z) * 1/uniform_scale * 1/scale.z)"
+ temp_name2 fBm
+ temp_expr2 "fBm((r + offset.x) * 1/uniform_scale * 1/scale.x, (g + offset.y) * 1/uniform_scale * 1/scale.y, (b + offset.z) * 1/uniform_scale * 1/scale.z, octaves, lucanarity, gain)"
+ channel0 alpha
+ expr0 "type == 0 ? random : type == 1 ? sin : fBm"
+ channel1 none
+ channel2 none
+ channel3 none
+ name Expression2
+ label "Applies the noise formula"
+ xpos 658
+ ypos -184
+ addUserKnob {20 User}
+ addUserKnob {13 offset}
+ addUserKnob {13 scale}
+ scale {1 1 1}
+ addUserKnob {7 uniform_scale l "uniform scale" R 0.0001 100}
+ uniform_scale 50
+ addUserKnob {4 type M {random sin fBm}}
+ type {{parent.type i}}
+ addUserKnob {4 axis M {x y z}}
+ axis {{parent.axis i}}
+ addUserKnob {3 octaves}
+ octaves {{parent.octaves i}}
+ addUserKnob {7 lucanarity R 0 2}
+ lucanarity {{parent.lucanarity i}}
+ addUserKnob {7 gain R 0 0.999}
+ gain {{parent.gain i}}
+}
+Grade {
+ channels alpha
+ blackpoint {{parent.blackpoint i}}
+ whitepoint {{parent.whitepoint i}}
+ gamma {{parent.gamma i}}
+ white_clamp true
+ name Grade1
+ label "Scales resultant noise"
+ xpos 658
+ ypos -146
+}
+ChannelMerge {
+ inputs 2
+ operation multiply
+ name ChannelMerge1
+ label "Apply the noise to the alpha channel"
+ xpos 658
+ ypos -96
+ disable {{!parent.useAlpha i}}
+}
+Remove {
+ operation keep
+ channels alpha
+ name Remove1
+ label "Added for performance reasons"
+ xpos 658
+ ypos -34
+}
+push $N14656cc0
+Dot {
+ name Dot1
+ xpos 523
+ ypos 20
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy1
+ label "Merge noise back with original image"
+ xpos 658
+ ypos 4
+}
+Output {
+ name Output2
+ xpos 658
+ ypos 66
+}
+end_group
