@@ -1,0 +1,599 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+BackdropNode {
+ inputs 0
+ name BackdropNode45
+ tile_color 0xaaaaaa00
+ label "Position to STMAP"
+ note_font_size 42
+ selected true
+ xpos 18617
+ ypos 29297
+ bdwidth 1027
+ bdheight 589
+ z_order -1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode48
+ tile_color 0x8e388e00
+ label "from derek rein"
+ note_font_size 42
+ selected true
+ xpos 19169
+ ypos 29554
+ bdheight 110
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode49
+ tile_color 0x388e8e00
+ label test
+ note_font_size 42
+ selected true
+ xpos 19470
+ ypos 29552
+ bdheight 110
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode50
+ tile_color 0x388e8e00
+ label test
+ note_font_size 42
+ selected true
+ xpos 18619
+ ypos 29395
+ bdwidth 546
+ bdheight 480
+}
+Group {
+ inputs 0
+ name AOVCodex31
+ autolabel "__import__(\"dnnuke.nodes.codex_utils\", fromlist=\[\"autolabel_codex_group\"]).autolabel_codex_group()"
+ tile_color 0x242424ff
+ label CG_str0843_lighting_prop_stretchingRoom_telescopic_pitOfDynamite_L010_BEAUTY_v006
+ note_font_color 0xffffffff
+ selected true
+ xpos 18627
+ ypos 29451
+ postage_stamp true
+ addUserKnob {20 AOVCodex}
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class AOVCodex
+ addUserKnob {1 _wrapper l "" +STARTLINE +INVISIBLE}
+ _wrapper "AOVCodex dnnuke.nodes.aov_codex.wrapper"
+ addUserKnob {22 docButton l Documentation -STARTLINE T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())"}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ file /jobs/JOYRIDE/str0843/CG/CG_str0843_lighting_prop_stretchingRoom_telescopic_pitOfDynamite_L010_BEAUTY_v006/beauty/2156x1806/CG_str0843_lighting_prop_stretchingRoom_telescopic_pitOfDynamite_L010_BEAUTY_v006.####.exr
+ addUserKnob {41 AOVs T Codex.aovs}
+ addUserKnob {20 custom l Custom n 1}
+ addUserKnob {20 custom_end l Custom n -1}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {41 format T Codex.format}
+ addUserKnob {41 first l "frame range" T Codex.first}
+ addUserKnob {41 before l "" -STARTLINE T Codex.before}
+ addUserKnob {41 last l "" -STARTLINE T Codex.last}
+ addUserKnob {41 after l "" -STARTLINE T Codex.after}
+ addUserKnob {41 frame_mode l frame T Codex.frame_mode}
+ addUserKnob {41 frame l "" -STARTLINE T Codex.frame}
+ addUserKnob {41 on_error l "missing frames" T Codex.on_error}
+ addUserKnob {20 readknobsEndGroup l "Read Knobs" n -1}
+ addUserKnob {20 leafmeta_tab l LeafMeta}
+ addUserKnob {41 leaf0 l 0 T Codex.leaf0}
+ addUserKnob {41 meta0 l "" -STARTLINE T Codex.meta0}
+ addUserKnob {41 leaf1 l 1 T Codex.leaf1}
+ addUserKnob {41 meta1 l "" -STARTLINE T Codex.meta1}
+ addUserKnob {41 leaf2 l 2 T Codex.leaf2}
+ addUserKnob {41 meta2 l "" -STARTLINE T Codex.meta2}
+ addUserKnob {20 template_tab l Template}
+ addUserKnob {26 template l "script : " T CDXC_LIBRARY_v002.nk}
+ addUserKnob {26 _1 l "" +STARTLINE T " "}
+ addUserKnob {22 ivy_publish l Publish... t "Publish internal nodes as a new codex template to the SHOW.<br />New AOVCodex nodes import the latest published, approved template." T "__import__('dnnuke.core.codex.publisher', fromlist=\['publish']).publish(group=nuke.thisNode())" +STARTLINE}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid bbdddea3-1d0f-47a4-843f-ab3594a00040
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid f9f5ad8c-ccb0-407a-8073-6788966f734a
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 73df8bf2-1007-4957-b410-b8c316895957
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype cgr
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 6
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes ffr
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ MetaPython {
+  inputs 0
+  python "stalk_dnuuid = nuke.thisNode()\['stalk_dnuuid'].value()\n\nthis.catalog\['stalk'].clear()\nif stalk_dnuuid:\n    codex_item = codex.CodexItem.create(stalk_dnuuid, \"Stalk\")\n    this.catalog\['stalk'].append(codex_item)\n"
+  name MetaStalkCreatePy
+  tile_color 0x4800ff
+  label "stalk_dnuuid : \[value stalk_dnuuid]"
+  selected true
+  xpos -40
+  ypos -46
+  addUserKnob {20 StalkCreate}
+  addUserKnob {1 stalk_dnuuid}
+  stalk_dnuuid f9f5ad8c-ccb0-407a-8073-6788966f734a
+ }
+ MetaPython {
+  python "if len(this.catalog\[\"stalk\"]):\n    stalk_dnuuid = this.catalog\[\"stalk\"]\[0]\[\"dnuuid\"]\n    codex_array = codex.CodexArray.create(stalk_dnuuid)\n    this.catalog\['leaf'] = codex_array.filter(codex.ItemType.deep, \"0\")\n    for item in codex_array.filter(codex.ItemType.deep, \"1\"):\n        if item.get(\"dnuuid\"):\n            data_object = item.get(\"dnuuid\").as_data_object()\n            if data_object.hasAttr(\"format\") and data_object.get(\"format\") == \"id\":\n                this.catalog\['id'].append(item)\n            else:\n                this.catalog\['leaf'].append(item)\n    this.catalog\['stalk'].clear()\n"
+  name MetaLeafsFromStalkPy
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos -10
+ }
+ MetaFilter {
+  regex variance_|playback
+  name MetaFilter1
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 14
+ }
+ ModifyMetaData {
+  metadata {
+   {set input/stalk_dnuuid "\[value parent.stalk_dnuuid \"knob stalk_dnnuid not found\"]"}
+  }
+  name ModifyMetaData1
+  selected true
+  xpos -40
+  ypos 51
+ }
+ Codex {
+  file /jobs/JOYRIDE/str0843/CG/CG_str0843_lighting_prop_stretchingRoom_telescopic_pitOfDynamite_L010_BEAUTY_v006/beauty/2156x1806/CG_str0843_lighting_prop_stretchingRoom_telescopic_pitOfDynamite_L010_BEAUTY_v006.####.exr
+  format "2156 1806 0 0 2156 1806 2 JOYRIDE Working"
+  first 1001
+  last 1069
+  on_error "nearest frame"
+  smartGrade true
+  aovs ""
+  name Codex
+  selected true
+  xpos -40
+  ypos 75
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -40
+  ypos 123
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "<p>Codex Template Script\n/jobs/LIBRARY/ASSET/ivy/cdxc/CDXC_LIBRARY_v002/CDXC_LIBRARY_v002.nk"
+  note_font_size 12
+  xpos 160
+  ypos -46
+ }
+end_group
+Group {
+ name IvyGroup1
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 18627
+ ypos 29627
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ _expressions {{curve}}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  selected true
+  xpos -58
+  ypos 394
+ }
+set N3f993000 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  selected true
+  xpos 100
+  ypos 394
+ }
+add_layer {__depth __depth.red __depth.green __depth.blue __depth.alpha __depth.r __depth.z __depth.x __depth.y __depth.Z __depth.r __depth.Z __depth.r}
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  selected true
+  xpos 66
+  ypos 440
+ }
+set N3f981b10 [stack 0]
+push $N3f981b10
+push $N3f981b10
+push $N3f981b10
+push $N3f981b10
+push $N3f981b10
+push $N3f993000
+ Unpremult {
+  channels all
+  name Unpremult
+  selected true
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  selected true
+  xpos -92
+  ypos 496
+ }
+add_layer {__normal_world __normal_world.x __normal_world.y __normal_world.z __normal_world.red __normal_world.green __normal_world.blue __normal_world.alpha __normal_world.alpha}
+ Copy {
+  inputs 2
+  channels __normal_world
+  name Copy2
+  selected true
+  xpos -92
+  ypos 546
+ }
+add_layer {__position_object __position_object.x __position_object.y __position_object.z __position_object.y __position_object.z}
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  selected true
+  xpos -92
+  ypos 595
+ }
+add_layer {__position_reference __position_reference.x __position_reference.y __position_reference.z}
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  selected true
+  xpos -92
+  ypos 644
+ }
+add_layer {__position_world __position_world.x __position_world.y __position_world.z __position_world.red __position_world.green __position_world.blue __position_world.alpha __position_world.alpha}
+ Copy {
+  inputs 2
+  channels __position_world
+  name Copy5
+  selected true
+  xpos -92
+  ypos 695
+ }
+add_layer {__motion_vector __motion_vector.x __motion_vector.y __motion_vector.z __motion_vector.red __motion_vector.green __motion_vector.blue __motion_vector.alpha}
+ Copy {
+  inputs 2
+  channels __motion_vector
+  name Copy6
+  selected true
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -92
+  ypos 839
+ }
+end_group
+Shuffle {
+ in __position_reference
+ green blue
+ blue green
+ name Shuffle76
+ label "\[value in]"
+ selected true
+ xpos 18909
+ ypos 29631
+}
+Grade {
+ white {1.6 0.4 0.1 1}
+ white_panelDropped true
+ multiply 1.3
+ name Grade26
+ selected true
+ xpos 18909
+ ypos 29757
+}
+Noise {
+ inputs 0
+ type turbulence
+ size 185
+ zoffset 1.34
+ center {1078 903}
+ name Noise7
+ selected true
+ xpos 19035
+ ypos 29835
+}
+STMap {
+ inputs 2
+ channels rgba
+ uv rgb
+ name STMap5
+ selected true
+ xpos 18909
+ ypos 29835
+}
+Group {
+ inputs 0
+ name AOVCodex30
+ autolabel "__import__(\"dnnuke.nodes.codex_utils\", fromlist=\[\"autolabel_codex_group\"]).autolabel_codex_group()"
+ tile_color 0x242424ff
+ label CG_str0843_lighting_prop_stretchingRoom_telescopic_carpet_L010_BEAUTY_v004
+ note_font_color 0xffffffff
+ selected true
+ xpos 19336
+ ypos 29377
+ postage_stamp true
+ addUserKnob {20 AOVCodex}
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class AOVCodex
+ addUserKnob {1 _wrapper l "" +STARTLINE +INVISIBLE}
+ _wrapper "AOVCodex dnnuke.nodes.aov_codex.wrapper"
+ addUserKnob {22 docButton l Documentation -STARTLINE T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())"}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ file /jobs/JOYRIDE/str0843/CG/CG_str0843_lighting_prop_stretchingRoom_telescopic_carpet_L010_BEAUTY_v004/beauty/2156x1806/CG_str0843_lighting_prop_stretchingRoom_telescopic_carpet_L010_BEAUTY_v004.####.exr
+ addUserKnob {41 AOVs T Codex.aovs}
+ addUserKnob {20 custom l Custom n 1}
+ addUserKnob {20 custom_end l Custom n -1}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {41 format T Codex.format}
+ addUserKnob {41 first l "frame range" T Codex.first}
+ addUserKnob {41 before l "" -STARTLINE T Codex.before}
+ addUserKnob {41 last l "" -STARTLINE T Codex.last}
+ addUserKnob {41 after l "" -STARTLINE T Codex.after}
+ addUserKnob {41 frame_mode l frame T Codex.frame_mode}
+ addUserKnob {41 frame l "" -STARTLINE T Codex.frame}
+ addUserKnob {41 on_error l "missing frames" T Codex.on_error}
+ addUserKnob {20 readknobsEndGroup l "Read Knobs" n -1}
+ addUserKnob {20 leafmeta_tab l LeafMeta}
+ addUserKnob {41 leaf0 l 0 T Codex.leaf0}
+ addUserKnob {41 meta0 l "" -STARTLINE T Codex.meta0}
+ addUserKnob {41 leaf1 l 1 T Codex.leaf1}
+ addUserKnob {41 meta1 l "" -STARTLINE T Codex.meta1}
+ addUserKnob {41 leaf2 l 2 T Codex.leaf2}
+ addUserKnob {41 meta2 l "" -STARTLINE T Codex.meta2}
+ addUserKnob {20 template_tab l Template}
+ addUserKnob {26 template l "script : " T CDXC_LIBRARY_v002.nk}
+ addUserKnob {26 _1 l "" +STARTLINE T " "}
+ addUserKnob {22 ivy_publish l Publish... t "Publish internal nodes as a new codex template to the SHOW.<br />New AOVCodex nodes import the latest published, approved template." T "__import__('dnnuke.core.codex.publisher', fromlist=\['publish']).publish(group=nuke.thisNode())" +STARTLINE}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 8e74e79e-ae35-4d29-855d-5a3f4aa136ad
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 456b19af-602a-4653-a793-4d43bf42bb06
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 19a2ba16-325f-4b90-910e-101f3eb001c1
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype cgr
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 4
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes ffr
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ MetaPython {
+  inputs 0
+  python "stalk_dnuuid = nuke.thisNode()\['stalk_dnuuid'].value()\n\nthis.catalog\['stalk'].clear()\nif stalk_dnuuid:\n    codex_item = codex.CodexItem.create(stalk_dnuuid, \"Stalk\")\n    this.catalog\['stalk'].append(codex_item)\n"
+  name MetaStalkCreatePy
+  tile_color 0x4800ff
+  label "stalk_dnuuid : \[value stalk_dnuuid]"
+  selected true
+  xpos -40
+  ypos -46
+  addUserKnob {20 StalkCreate}
+  addUserKnob {1 stalk_dnuuid}
+  stalk_dnuuid 456b19af-602a-4653-a793-4d43bf42bb06
+ }
+ MetaPython {
+  python "if len(this.catalog\[\"stalk\"]):\n    stalk_dnuuid = this.catalog\[\"stalk\"]\[0]\[\"dnuuid\"]\n    codex_array = codex.CodexArray.create(stalk_dnuuid)\n    this.catalog\['leaf'] = codex_array.filter(codex.ItemType.deep, \"0\")\n    for item in codex_array.filter(codex.ItemType.deep, \"1\"):\n        if item.get(\"dnuuid\"):\n            data_object = item.get(\"dnuuid\").as_data_object()\n            if data_object.hasAttr(\"format\") and data_object.get(\"format\") == \"id\":\n                this.catalog\['id'].append(item)\n            else:\n                this.catalog\['leaf'].append(item)\n    this.catalog\['stalk'].clear()\n"
+  name MetaLeafsFromStalkPy
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos -10
+ }
+ MetaFilter {
+  regex variance_|playback
+  name MetaFilter1
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 14
+ }
+ ModifyMetaData {
+  metadata {
+   {set input/stalk_dnuuid "\[value parent.stalk_dnuuid \"knob stalk_dnnuid not found\"]"}
+  }
+  name ModifyMetaData1
+  selected true
+  xpos -40
+  ypos 51
+ }
+ Codex {
+  file /jobs/JOYRIDE/str0843/CG/CG_str0843_lighting_prop_stretchingRoom_telescopic_carpet_L010_BEAUTY_v004/beauty/2156x1806/CG_str0843_lighting_prop_stretchingRoom_telescopic_carpet_L010_BEAUTY_v004.####.exr
+  format "2156 1806 0 0 2156 1806 2 JOYRIDE Working"
+  first 1001
+  last 1069
+  on_error "nearest frame"
+  smartGrade true
+  aovs ""
+  name Codex
+  selected true
+  xpos -40
+  ypos 75
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -40
+  ypos 123
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "<p>Codex Template Script\n/jobs/LIBRARY/ASSET/ivy/cdxc/CDXC_LIBRARY_v002/CDXC_LIBRARY_v002.nk"
+  note_font_size 12
+  xpos 160
+  ypos -46
+ }
+end_group
+Shuffle {
+ in __position_reference
+ green blue
+ blue green
+ name Shuffle63
+ label "\[value in]"
+ selected true
+ xpos 19336
+ ypos 29534
+}
+set N1b1a1070 [stack 0]
+Grade {
+ blackpoint {66.439919 79.686668 -0.3409799933 87.6866684}
+ whitepoint {80.330765 96.1008 -0.3363293707 94.10079956}
+ black_clamp false
+ name Grade32
+ selected true
+ xpos 19179
+ ypos 29634
+}
+push $N1b1a1070
+Grade {
+ blackpoint {67 81 0.1 50}
+ whitepoint {95 111 -0.2 50}
+ white 2
+ black_clamp false
+ name Grade33
+ selected true
+ xpos 19480
+ ypos 29632
+}
+Switch {
+ inputs 2
+ which 1
+ name Switch3
+ selected true
+ xpos 19332
+ ypos 29724
+}
+Noise {
+ inputs 0
+ size 121
+ center {1078 903}
+ name Noise6
+ selected true
+ xpos 19554
+ ypos 29856
+}
+STMap {
+ inputs 2
+ channels rgba
+ uv rgb
+ name STMap4
+ selected true
+ xpos 19332
+ ypos 29856
+}
