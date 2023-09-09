@@ -1,0 +1,42 @@
+#! /builds/nuke_runtime/12.1v5/3d48c54e28/libnuke-12.1.5.so -nx
+version 12.1 v5
+Gizmo {
+}
+ NoOp {
+  inputs 0
+  name _txt_linker_1
+  knobChanged "\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n"
+  tile_color 0x222222ff
+  label "<font color='#BAFF00'><b><center> to Switch5"
+  note_font "DejaVu Sans"
+  note_font_color 0xff9901
+  selected true
+  xpos 501
+  ypos -446
+  hide_input true
+  addUserKnob {20 User l "" +STARTLINE}
+  addUserKnob {52 PYTHON l "" +STARTLINE T "nuke.thisNode().knob('knobChanged').setValue(\"\"\"\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n\"\"\")" +STARTLINE}
+  addUserKnob {26 text l "" +STARTLINE T "AUTO LINK TO ANY NODE VIA TEXT INPUT"}
+  addUserKnob {26 text_2 l " " -STARTLINE T "                            \t                "}
+  addUserKnob {22 docs l Documentation -STARTLINE T nukescripts.openurl.start('http://dnet.dneg.com/display/~cmas/Text+Linker')}
+  addUserKnob {26 ""}
+  addUserKnob {1 linkTo l "link to"}
+  linkTo Switch5
+  addUserKnob {22 list l "all links" t "A list of all nodes currently linked to Text Linkers in the script" -STARTLINE T "list = \[]\nfor a in nuke.allNodes():\n    if '_txt_linker_' in a\['name'].value():\n\n\n        x = a.knob('linkTo').value()\n        if x not in list:\n    \n            list.append(x)\n            print list\n\ntitle = \"<font color='#BAFF00'><b>Text Linker is currently linked to these nodes:</b><font color>\"\ngap = \"\"\ntext = \"<font color='white'>\"\n\nnuke.message(title+gap+text+'\\n''\\n'+'\\n'.join(map(str, list)))"}
+  addUserKnob {22 loadSelected l "<font color='#BAFF00'>load selected" T "x=nuke.selectedNode()\nn=nuke.thisNode()\nname = x.knob('name').value()\nn.knob(\"linkTo\").setValue(name)\n" +STARTLINE}
+  addUserKnob {22 reset l "<font color='#FFFFFF'>reset" -STARTLINE T "n=nuke.thisNode()\nn.knob(\"linkTo\").setValue(\"\")"}
+  addUserKnob {26 ""}
+  addUserKnob {26 text_1 l "<font color='#BAFF00'>Text Linker" T "Built by Christopher Maslen<br>\n\ncmas@dneg.com<br>\n\n</font>\nLast updated February 9th 2022"}
+ }
+ Output {
+  name Output1
+  xpos 440
+  ypos -362
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 440
+  ypos -502
+ }
+end_group
