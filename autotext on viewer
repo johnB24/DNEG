@@ -1,0 +1,214 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x8e878eff
+ label AutoText
+ note_font_size 42
+ selected true
+ xpos 2856
+ ypos -1549
+ bdwidth 292
+ bdheight 390
+}
+Read {
+ inputs 0
+ file_type exr
+ file /jobs/STONE/110_evb_0400/SCAN/S_110_evb_0400_bg01_s01_00/3840x2076/S_110_evb_0400_bg01_s01_00.####.exr
+ localizationPolicy off
+ format "3840 2076 0 0 3840 2076 1 STONE Working Alexa Sph UHD"
+ proxy /jobs/STONE/110_evb_0400/SCAN/S_110_evb_0400_bg01_s01_00/2880x1557/S_110_evb_0400_bg01_s01_00.%04d.exr
+ proxy_format "2880 1557 0 0 2880 1557 1 "
+ first 1001
+ last 1079
+ origfirst 1001
+ origlast 1079
+ origset true
+ smartGrade true
+ name Read318
+ selected true
+ xpos 2974
+ ypos -1474
+ postage_stamp_frame 1040
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/STONE/110_evb_0400/SCAN/S_110_evb_0400_bg01_s01_00/3840x2076/S_110_evb_0400_bg01_s01_00.####.exr
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ _expressions {{curve}}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 98608db6-4e27-43bf-84cf-51455d7eb133
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 12931874-37c9-45f8-bb72-13b4caf8ecf7
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 38226990-7e50-479d-9b0e-7db373dd96c9
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 926f66b7-13f5-4d9a-9457-051525ff61f4
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype scan
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "IO-301262\n20230502_pull_0208_DNG_ShotProd_edl\n/hosts/mtlnfs31/user_data/STONE/IO-301262/20230502_pull_0208_DNG_ShotProd_edl/exr/110_evb_0400_bg01_v01/110_evb_0400_bg01_v01.1001-1079#######.exr\n/hosts/mtlnfs31/user_data/STONE/IO-301262/20230502_pull_0208_DNG_ShotProd_edl/exr/110_evb_0400_bg01_v01/110_evb_0400_bg01_v01.aaf\n/hosts/mtlnfs31/user_data/STONE/IO-301262/20230502_pull_0208_DNG_ShotProd_edl/exr/110_evb_0400_bg01_v01/110_evb_0400_bg01_v01.amf\n/hosts/mtlnfs31/user_data/STONE/IO-301262/20230502_pull_0208_DNG_ShotProd_edl/exr/110_evb_0400_bg01_v01/110_evb_0400_bg01_v01.mxf\n/hosts/mtlnfs31/user_data/STONE/IO-301262/20230502_pull_0208_DNG_ShotProd_edl/exr/110_evb_0400_bg01_v01/110_evb_0400_bg01_v01.ccc\n/hosts/mtlnfs31/user_data/STONE/IO-301262/20230502_pull_0208_DNG_ShotProd_edl/exr/110_evb_0400_bg01_v01/110_evb_0400_bg01_v01.cdl"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+Group {
+ name STONE_End_of_Comp
+ tile_color 0xb2041dff
+ note_font_size 21
+ selected true
+ xpos 2974
+ ypos -1340
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 565
+  ypos 427
+ }
+set N273e2db0 [stack 0]
+ Reformat {
+  format "3840 2160 0 0 3840 2160 1 Alexa MINI LF UHD"
+  black_outside true
+  name Reformat2
+  xpos 565
+  ypos 486
+ }
+ Crop {
+  box {0 0 3840 2160}
+  name Crop1
+  xpos 565
+  ypos 524
+ }
+set N273f7350 [stack 0]
+ Remove {
+  operation keep
+  channels rgb
+  name Remove1
+  xpos 565
+  ypos 557
+ }
+ Output {
+  name Output1
+  xpos 565
+  ypos 656
+ }
+push $N273e2db0
+push $N273f7350
+ Viewer {
+  inputs 2
+  frame 1041
+  frame_range 1001-1023
+  frame_increment 8
+  overscan 300
+  center_fstop 0
+  viewerProcess "Film (sRGB)"
+  far 100000
+  name Viewer1
+  xpos 768
+  ypos 686
+ }
+end_group
+Dot {
+ name Dot1
+ selected true
+ xpos 2996
+ ypos -1263
+}
+set N27435ff0 [stack 0]
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ opacity 0.965
+ message "\[python os.path.basename(nuke.tcl(\"metadata input/filename\"))]"
+ old_message {{83 95 49 49 48 95 101 118 98 95 48 52 48 48 95 98 103 48 49 95 115 48 49 95 48 48 46 49 48 48 49 46 101 120 114}
+   }
+ old_expression_markers {{0 34}
+   }
+ box {55 25 3780 210}
+ xjustify right
+ yjustify bottom
+ transforms {{0 2}
+   }
+ center {2021 1137}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{4389 150.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 2021 1137 0 0 1 1 0 0 0 0}
+   }
+ enable_background true
+ background_opacity 0.7
+ enable_shadows true
+ shadow_opacity 1
+ name STONE_Auto_Text2
+ label "Small Text"
+ selected true
+ xpos 3042
+ ypos -1198
+ addUserKnob {20 dneg l DNeg}
+ addUserKnob {26 _version l "" +STARTLINE +INVISIBLE T 1.0}
+ addUserKnob {7 padding l "padding %" R 0 20}
+ padding 4
+ addUserKnob {15 orig_box +HIDDEN}
+ orig_box {-98.6 -58.04 3933.6 293.04}
+}
+push $N27435ff0
+Text2 {
+ font_size_toolbar 200
+ font_width_toolbar 100
+ font_height_toolbar 100
+ opacity 0.965
+ message "\[python os.path.basename(nuke.tcl(\"metadata input/filename\"))]"
+ old_message {{83 95 49 49 48 95 101 118 98 95 48 52 48 48 95 98 103 48 49 95 115 48 49 95 48 48 46 49 48 48 49 46 101 120 114}
+   }
+ old_expression_markers {{0 34}
+   }
+ box {55 25 3780 210}
+ xjustify right
+ yjustify bottom
+ transforms {{0 2}
+   }
+ font_size_values {{0 200 1 200 2 200 3 200 4 200 5 200 6 200 7 200 8 200 9 200 10 200 11 200 12 200 13 200 14 200 15 200 16 200 17 200 18 200 19 200 20 200 21 200 22 200 23 200 24 200 25 200 26 200 27 200 28 200 29 200 30 200 31 200 32 200 33 200 34 200 0 200 1 200 2 200 3 200 4 200 5 200 6 200 7 200 8 200 9 200 10 200 11 200 12 200 13 200 14 200 15 200 16 200 17 200 18 200 19 200 20 200 21 200 22 200 23 200 24 200 25 200 26 200 27 200 28 200 29 200 30 200 31 200 32 200}
+   }
+ cursor_position 62
+ font_size 200
+ center {2021 1137}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{4389 150.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 2021 1137 0 0 1 1 0 0 0 0}
+   }
+ enable_background true
+ background_opacity 0.7
+ enable_shadows true
+ shadow_opacity 1
+ name STONE_Auto_Text9
+ label "Big Text"
+ selected true
+ xpos 2844
+ ypos -1200
+ addUserKnob {20 dneg l DNeg}
+ addUserKnob {26 _version l "" +STARTLINE +INVISIBLE T 1.0}
+ addUserKnob {7 padding l "padding %" R 0 20}
+ padding 4
+ addUserKnob {15 orig_box +HIDDEN}
+ orig_box {-98.6 -58.04 3933.6 293.04}
+}
