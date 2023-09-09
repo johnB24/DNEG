@@ -1,0 +1,2385 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+NoOp {
+ inputs 0
+ name _txt_linker_33
+ knobChanged "\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n"
+ tile_color 0x222222ff
+ label "<font color='#BAFF00'><b><center> to ENV_DEEP_MERGE"
+ note_font "DejaVu Sans"
+ note_font_color 0xff9901
+ selected true
+ xpos 4907
+ ypos -10817
+ hide_input true
+ addUserKnob {20 User l "" +STARTLINE}
+ addUserKnob {52 PYTHON l "" +STARTLINE T "nuke.thisNode().knob('knobChanged').setValue(\"\"\"\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n\"\"\")" +STARTLINE}
+ addUserKnob {26 text l "" +STARTLINE T "AUTO LINK TO ANY NODE VIA TEXT INPUT"}
+ addUserKnob {26 text_2 l " " -STARTLINE T "                            \t                "}
+ addUserKnob {22 docs l Documentation -STARTLINE T nukescripts.openurl.start('http://dnet.dneg.com/display/~cmas/Text+Linker')}
+ addUserKnob {26 ""}
+ addUserKnob {1 linkTo l "link to"}
+ linkTo ENV_DEEP_MERGE
+ addUserKnob {22 list l "all links" t "A list of all nodes currently linked to Text Linkers in the script" -STARTLINE T "list = \[]\nfor a in nuke.allNodes():\n    if '_txt_linker_' in a\['name'].value():\n\n\n        x = a.knob('linkTo').value()\n        if x not in list:\n    \n            list.append(x)\n            print list\n\ntitle = \"<font color='#BAFF00'><b>Text Linker is currently linked to these nodes:</b><font color>\"\ngap = \"\"\ntext = \"<font color='white'>\"\n\nnuke.message(title+gap+text+'\\n''\\n'+'\\n'.join(map(str, list)))"}
+ addUserKnob {22 loadSelected l "<font color='#BAFF00'>load selected" T "x=nuke.selectedNode()\nn=nuke.thisNode()\nname = x.knob('name').value()\nn.knob(\"linkTo\").setValue(name)\n" +STARTLINE}
+ addUserKnob {22 reset l "<font color='#FFFFFF'>reset" -STARTLINE T "n=nuke.thisNode()\nn.knob(\"linkTo\").setValue(\"\")"}
+ addUserKnob {26 ""}
+ addUserKnob {26 text_1 l "<font color='#BAFF00'>Text Linker" T "Built by Christopher Maslen<br>\n\ncmas@dneg.com<br>\n\n</font>\nLast updated February 9th 2022"}
+}
+Group {
+ inputs 0
+ name AOVCodex1
+ autolabel "__import__(\"dnnuke.nodes.codex_utils\", fromlist=\[\"autolabel_codex_group\"]).autolabel_codex_group()"
+ tile_color 0x242424ff
+ label CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005
+ note_font_color 0xffffffff
+ selected true
+ xpos 6307
+ ypos -11551
+ postage_stamp true
+ addUserKnob {20 AOVCodex}
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class AOVCodex
+ addUserKnob {1 _wrapper l "" +STARTLINE +INVISIBLE}
+ _wrapper "AOVCodex dnnuke.nodes.aov_codex.wrapper"
+ addUserKnob {22 docButton l Documentation -STARTLINE T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())"}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ file /jobs/S2/us0240/CG/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005/beauty/4312x2304/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005.####.exr
+ addUserKnob {41 AOVs T Codex.aovs}
+ addUserKnob {20 custom l Custom n 1}
+ addUserKnob {41 enableFilters T Output1.enableFilters}
+ addUserKnob {41 removeDeep +INVISIBLE T Output1.removeDeep}
+ addUserKnob {20 custom_end l Custom n -1}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {41 format T Codex.format}
+ addUserKnob {41 first l "frame range" T Codex.first}
+ addUserKnob {41 before l "" -STARTLINE T Codex.before}
+ addUserKnob {41 last l "" -STARTLINE T Codex.last}
+ addUserKnob {41 after l "" -STARTLINE T Codex.after}
+ addUserKnob {41 frame_mode l frame T Codex.frame_mode}
+ addUserKnob {41 frame l "" -STARTLINE T Codex.frame}
+ addUserKnob {41 on_error l "missing frames" T Codex.on_error}
+ addUserKnob {20 readknobsEndGroup l "Read Knobs" n -1}
+ addUserKnob {20 leafmeta_tab l LeafMeta}
+ addUserKnob {41 leaf0 l 0 T Codex.leaf0}
+ addUserKnob {41 meta0 l "" -STARTLINE T Codex.meta0}
+ addUserKnob {41 leaf1 l 1 T Codex.leaf1}
+ addUserKnob {41 meta1 l "" -STARTLINE T Codex.meta1}
+ addUserKnob {41 leaf2 l 2 T Codex.leaf2}
+ addUserKnob {41 meta2 l "" -STARTLINE T Codex.meta2}
+ addUserKnob {20 template_tab l Template}
+ addUserKnob {26 template l "script : " T CDXC_S2_v006.nk}
+ addUserKnob {26 _1 l "" +STARTLINE T " "}
+ addUserKnob {22 ivy_publish l Publish... t "Publish internal nodes as a new codex template to the SHOW.<br />New AOVCodex nodes import the latest published, approved template." T "__import__('dnnuke.core.codex.publisher', fromlist=\['publish']).publish(group=nuke.thisNode())" +STARTLINE}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 326fd58c-4be4-4a81-81d4-bacfcdd71b67
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid c7aed120-aaf6-4ca3-ba15-b1dea90fe686
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid becf7aaf-b7a0-4be7-90a7-c48ac7548487
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype cgr
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 5
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "FFR | 4K latest update stg5 + denoise"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ MetaPython {
+  inputs 0
+  python "stalk_dnuuid = nuke.thisNode()\['stalk_dnuuid'].value()\n\nthis.catalog\['stalk'].clear()\nif stalk_dnuuid:\n    codex_item = codex.CodexItem.create(stalk_dnuuid, \"Stalk\")\n    this.catalog\['stalk'].append(codex_item)\n"
+  name MetaStalkCreatePy
+  tile_color 0x4800ff
+  label "stalk_dnuuid : \[value stalk_dnuuid]"
+  selected true
+  xpos -40
+  ypos -46
+  addUserKnob {20 StalkCreate}
+  addUserKnob {1 stalk_dnuuid}
+  stalk_dnuuid c7aed120-aaf6-4ca3-ba15-b1dea90fe686
+ }
+ MetaPython {
+  python "if len(this.catalog\[\"stalk\"]):\n    stalk_dnuuid = this.catalog\[\"stalk\"]\[0]\[\"dnuuid\"]\n    codex_array = codex.CodexArray.create(stalk_dnuuid)\n    this.catalog\['leaf'] = codex_array.filter(codex.ItemType.deep, \"0\")\n    for item in codex_array.filter(codex.ItemType.deep, \"1\"):\n        if item.get(\"dnuuid\"):\n            data_object = item.get(\"dnuuid\").as_data_object()\n            if data_object.hasAttr(\"format\") and data_object.get(\"format\") == \"id\":\n                this.catalog\['id'].append(item)\n            else:\n                this.catalog\['leaf'].append(item)\n    this.catalog\['stalk'].clear()\n"
+  name MetaLeafsFromStalkPy
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos -10
+ }
+ MetaFilter {
+  regex variance_|playback
+  name MetaFilter1
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 14
+ }
+set N12d79270 [stack 0]
+ MetaLayerEdit {
+  edit "20 alpha_proxy0:__alpha11 6 enable1 030 beauty_lpe_proxy0:__beauty_lpe11 6 enable1 042 clearcoat_albedo_proxy0:__clearcoat_albedo11 6 enable1 048 clearcoat_roughness_proxy0:__clearcoat_roughness11 6 enable1 048 cryptomatte_asset00_proxy0:__cryptomatte_asset0011 6 enable1 048 cryptomatte_asset02_proxy0:__cryptomatte_asset0211 6 enable1 044 cryptomatte_asset_proxy0:__cryptomatte_asset11 6 enable1 054 cryptomatte_material00_proxy0:__cryptomatte_material0011 6 enable1 054 cryptomatte_material01_proxy0:__cryptomatte_material0111 6 enable1 054 cryptomatte_material02_proxy0:__cryptomatte_material0211 6 enable1 050 cryptomatte_material_proxy0:__cryptomatte_material11 6 enable1 050 cryptomatte_object00_proxy0:__cryptomatte_object0011 6 enable1 050 cryptomatte_object01_proxy0:__cryptomatte_object0111 6 enable1 050 cryptomatte_object02_proxy0:__cryptomatte_object0211 6 enable1 046 cryptomatte_object_proxy0:__cryptomatte_object11 6 enable1 020 depth_proxy0:__depth0 72 diagnostics_camera_sample_count_proxy0:__diagnostics_camera_sample_count11 6 enable1 038 diffuse_albedo_proxy0:__diffuse_albedo11 6 enable1 044 diffuse_roughness_proxy0:__diffuse_roughness11 6 enable1 052 diffuse_transmittance_proxy0:__diffuse_transmittance11 6 enable1 048 direct_incandescent_proxy0:__direct_incandescent0 42 disney_basecolor_proxy0:__disney_basecolor11 6 enable1 026 distance_proxy0:__distance11 6 enable1 051 genericLightning_01_proxy0:dneg_genericlightning_010 51 genericLightning_02_proxy0:dneg_genericlightning_020 51 genericLightning_03_proxy0:dneg_genericlightning_030 51 genericLightning_04_proxy0:dneg_genericlightning_040 36 global_matte0_proxy0:__global_matte011 6 enable1 038 global_matte10_proxy0:__global_matte1011 6 enable1 038 global_matte11_proxy0:__global_matte110 38 global_matte12_proxy0:__global_matte1211 6 enable1 038 global_matte13_proxy0:__global_matte1311 6 enable1 038 global_matte14_proxy0:__global_matte1411 6 enable1 038 global_matte15_proxy0:__global_matte1511 6 enable1 038 global_matte16_proxy0:__global_matte1611 6 enable1 036 global_matte1_proxy0:__global_matte111 6 enable1 036 global_matte2_proxy0:__global_matte211 6 enable1 036 global_matte3_proxy0:__global_matte311 6 enable1 036 global_matte4_proxy0:__global_matte411 6 enable1 036 global_matte5_proxy0:__global_matte50 36 global_matte6_proxy0:__global_matte611 6 enable1 036 global_matte7_proxy0:__global_matte711 6 enable1 036 global_matte8_proxy0:__global_matte811 6 enable1 036 global_matte9_proxy0:__global_matte911 6 enable1 034 incandescent_proxy0:__incandescent11 6 enable1 052 indirect_incandescent_proxy0:__indirect_incandescent11 6 enable1 060 light_grp0_direct_diffuse_proxy0:__light_grp0_direct_diffuse11 6 enable1 082 light_grp0_direct_diffuse_unoccluded_proxy0:__light_grp0_direct_diffuse_unoccluded11 6 enable1 062 light_grp0_direct_specular_proxy0:__light_grp0_direct_specular11 6 enable1 064 light_grp0_indirect_diffuse_proxy0:__light_grp0_indirect_diffuse11 6 enable1 066 light_grp0_indirect_specular_proxy0:__light_grp0_indirect_specular11 6 enable1 030 light_grp0_proxy0:__light_grp00 62 light_grp10_direct_diffuse_proxy0:__light_grp10_direct_diffuse11 6 enable1 064 light_grp10_direct_specular_proxy0:__light_grp10_direct_specular11 6 enable1 066 light_grp10_indirect_diffuse_proxy0:__light_grp10_indirect_diffuse11 6 enable1 068 light_grp10_indirect_specular_proxy0:__light_grp10_indirect_specular11 6 enable1 032 light_grp10_proxy0:__light_grp100 62 light_grp11_direct_diffuse_proxy0:__light_grp11_direct_diffuse11 6 enable1 064 light_grp11_direct_specular_proxy0:__light_grp11_direct_specular11 6 enable1 066 light_grp11_indirect_diffuse_proxy0:__light_grp11_indirect_diffuse11 6 enable1 068 light_grp11_indirect_specular_proxy0:__light_grp11_indirect_specular11 6 enable1 032 light_grp11_proxy0:__light_grp110 62 light_grp12_direct_diffuse_proxy0:__light_grp12_direct_diffuse11 6 enable1 064 light_grp12_direct_specular_proxy0:__light_grp12_direct_specular11 6 enable1 066 light_grp12_indirect_diffuse_proxy0:__light_grp12_indirect_diffuse11 6 enable1 068 light_grp12_indirect_specular_proxy0:__light_grp12_indirect_specular11 6 enable1 032 light_grp12_proxy0:__light_grp120 62 light_grp13_direct_diffuse_proxy0:__light_grp13_direct_diffuse11 6 enable1 064 light_grp13_direct_specular_proxy0:__light_grp13_direct_specular11 6 enable1 066 light_grp13_indirect_diffuse_proxy0:__light_grp13_indirect_diffuse11 6 enable1 068 light_grp13_indirect_specular_proxy0:__light_grp13_indirect_specular11 6 enable1 032 light_grp13_proxy0:__light_grp130 60 light_grp1_direct_diffuse_proxy0:__light_grp1_direct_diffuse11 6 enable1 082 light_grp1_direct_diffuse_unoccluded_proxy0:__light_grp1_direct_diffuse_unoccluded11 6 enable1 062 light_grp1_direct_specular_proxy0:__light_grp1_direct_specular11 6 enable1 064 light_grp1_indirect_diffuse_proxy0:__light_grp1_indirect_diffuse11 6 enable1 066 light_grp1_indirect_specular_proxy0:__light_grp1_indirect_specular11 6 enable1 030 light_grp1_proxy0:__light_grp10 60 light_grp2_direct_diffuse_proxy0:__light_grp2_direct_diffuse11 6 enable1 062 light_grp2_direct_specular_proxy0:__light_grp2_direct_specular11 6 enable1 064 light_grp2_indirect_diffuse_proxy0:__light_grp2_indirect_diffuse11 6 enable1 066 light_grp2_indirect_specular_proxy0:__light_grp2_indirect_specular11 6 enable1 030 light_grp2_proxy0:__light_grp20 60 light_grp3_direct_diffuse_proxy0:__light_grp3_direct_diffuse11 6 enable1 062 light_grp3_direct_specular_proxy0:__light_grp3_direct_specular11 6 enable1 064 light_grp3_indirect_diffuse_proxy0:__light_grp3_indirect_diffuse11 6 enable1 066 light_grp3_indirect_specular_proxy0:__light_grp3_indirect_specular11 6 enable1 030 light_grp3_proxy0:__light_grp30 60 light_grp4_direct_diffuse_proxy0:__light_grp4_direct_diffuse11 6 enable1 062 light_grp4_direct_specular_proxy0:__light_grp4_direct_specular11 6 enable1 064 light_grp4_indirect_diffuse_proxy0:__light_grp4_indirect_diffuse11 6 enable1 066 light_grp4_indirect_specular_proxy0:__light_grp4_indirect_specular11 6 enable1 030 light_grp4_proxy0:__light_grp40 60 light_grp5_direct_diffuse_proxy0:__light_grp5_direct_diffuse11 6 enable1 062 light_grp5_direct_specular_proxy0:__light_grp5_direct_specular11 6 enable1 064 light_grp5_indirect_diffuse_proxy0:__light_grp5_indirect_diffuse11 6 enable1 066 light_grp5_indirect_specular_proxy0:__light_grp5_indirect_specular11 6 enable1 030 light_grp5_proxy0:__light_grp50 60 light_grp6_direct_diffuse_proxy0:__light_grp6_direct_diffuse11 6 enable1 062 light_grp6_direct_specular_proxy0:__light_grp6_direct_specular11 6 enable1 064 light_grp6_indirect_diffuse_proxy0:__light_grp6_indirect_diffuse11 6 enable1 066 light_grp6_indirect_specular_proxy0:__light_grp6_indirect_specular11 6 enable1 030 light_grp6_proxy0:__light_grp60 60 light_grp7_direct_diffuse_proxy0:__light_grp7_direct_diffuse11 6 enable1 062 light_grp7_direct_specular_proxy0:__light_grp7_direct_specular11 6 enable1 064 light_grp7_indirect_diffuse_proxy0:__light_grp7_indirect_diffuse11 6 enable1 066 light_grp7_indirect_specular_proxy0:__light_grp7_indirect_specular11 6 enable1 030 light_grp7_proxy0:__light_grp70 60 light_grp8_direct_diffuse_proxy0:__light_grp8_direct_diffuse11 6 enable1 062 light_grp8_direct_specular_proxy0:__light_grp8_direct_specular11 6 enable1 064 light_grp8_indirect_diffuse_proxy0:__light_grp8_indirect_diffuse11 6 enable1 066 light_grp8_indirect_specular_proxy0:__light_grp8_indirect_specular11 6 enable1 030 light_grp8_proxy0:__light_grp80 60 light_grp9_direct_diffuse_proxy0:__light_grp9_direct_diffuse11 6 enable1 062 light_grp9_direct_specular_proxy0:__light_grp9_direct_specular11 6 enable1 064 light_grp9_indirect_diffuse_proxy0:__light_grp9_indirect_diffuse11 6 enable1 066 light_grp9_indirect_specular_proxy0:__light_grp9_indirect_specular11 6 enable1 030 light_grp9_proxy0:__light_grp90 36 motion_vector_proxy0:__motion_vector11 6 enable1 036 normal_camera_proxy0:__normal_camera11 6 enable1 034 normal_world_proxy0:__normal_world11 6 enable1 040 position_object_proxy0:__position_object11 6 enable1 046 position_reference_proxy0:__position_reference0 38 position_world_proxy0:__position_world0 40 specular_albedo_proxy0:__specular_albedo11 6 enable1 046 specular_roughness_proxy0:__specular_roughness11 6 enable1 054 specular_transmittance_proxy0:__specular_transmittance11 6 enable1 024 uv_map1_proxy0:__uv_map111 6 enable1 0"
+  name MetaLayerEdit1
+  selected true
+  xpos 133
+  ypos 63
+ }
+push $N12d79270
+ Switch {
+  inputs 2
+  which {{Output1.enableFilters}}
+  name Switch1
+  label "\[value which]"
+  selected true
+  xpos -40
+  ypos 93
+ }
+ MetaFilter {
+  regex deep
+  name MetaFilter2
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 129
+  disable {{!parent.Output1.removeDeep}}
+ }
+ ModifyMetaData {
+  metadata {
+   {set input/stalk_dnuuid "\[value parent.stalk_dnuuid \"knob stalk_dnnuid not found\"]"}
+  }
+  name ModifyMetaData1
+  selected true
+  xpos -40
+  ypos 228
+ }
+ Codex {
+  file /jobs/S2/us0240/CG/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005/beauty/4312x2304/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005.####.exr
+  format "4312 2304 0 0 4312 2304 1 S2 Working"
+  first 1001
+  last 1102
+  on_error "nearest frame"
+  smartGrade true
+  aovs ""
+  name Codex
+  selected true
+  xpos -40
+  ypos 252
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -40
+  ypos 300
+  addUserKnob {20 User}
+  addUserKnob {6 enableFilters l "Enable Filters (removes uncommon AOVs)" +STARTLINE}
+  addUserKnob {6 removeDeep l "Remove Deep (removes deep from being loaded)" +INVISIBLE +STARTLINE}
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "<p>Codex Template Script\n/jobs/S2/ASSET/ivy/cdxc/CDXC_S2_v006/CDXC_S2_v006.nk"
+  note_font_size 12
+  xpos 160
+  ypos -46
+ }
+end_group
+set N13333270 [stack 0]
+Dot {
+ name Dot195
+ selected true
+ xpos 6255
+ ypos -11307
+}
+set N13797750 [stack 0]
+Reformat {
+ pbb true
+ name Reformat65
+ selected true
+ xpos 6227
+ ypos -11256
+}
+Dot {
+ name Dot196
+ selected true
+ xpos 6255
+ ypos -11139
+}
+Remove {
+ operation keep
+ channels rgba
+ channels2 rgba
+ name Remove41
+ selected true
+ xpos 5347
+ ypos -11160
+}
+add_layer {alpha_fog_bottom_l120 alpha_fog_bottom_l120.red alpha_fog_bottom_l120.green alpha_fog_bottom_l120.blue alpha_fog_bottom_l120.alpha}
+Shuffle {
+ out alpha_fog_bottom_l120
+ name Shuffle44
+ selected true
+ xpos 5347
+ ypos -11094
+}
+push $N13797750
+Dot {
+ name Dot197
+ selected true
+ xpos 5155
+ ypos -11307
+}
+DeepReformat {
+ pbb true
+ name DeepReformat20
+ selected true
+ xpos 5127
+ ypos -11256
+}
+DeepRecolor {
+ inputs 2
+ channels all
+ targetInputAlpha true
+ name DeepRecolor20
+ selected true
+ xpos 5127
+ ypos -11166
+}
+Dot {
+ name Dot198
+ selected true
+ xpos 5155
+ ypos -10947
+}
+DeepHoldout2 {
+ inputs 2
+ name DeepHoldout20
+ selected true
+ xpos 5127
+ ypos -10800
+}
+Shuffle {
+ out alpha_fog_bottom_l120
+ name Shuffle85
+ selected true
+ xpos 5127
+ ypos -10686
+}
+NoOp {
+ inputs 0
+ name _txt_linker_36
+ knobChanged "\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n"
+ tile_color 0x222222ff
+ label "<font color='#BAFF00'><b><center> to ENV_DEEP_MERGE"
+ note_font "DejaVu Sans"
+ note_font_color 0xff9901
+ selected true
+ xpos 3807
+ ypos -12473
+ hide_input true
+ addUserKnob {20 User l "" +STARTLINE}
+ addUserKnob {52 PYTHON l "" +STARTLINE T "nuke.thisNode().knob('knobChanged').setValue(\"\"\"\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n\"\"\")" +STARTLINE}
+ addUserKnob {26 text l "" +STARTLINE T "AUTO LINK TO ANY NODE VIA TEXT INPUT"}
+ addUserKnob {26 text_2 l " " -STARTLINE T "                            \t                "}
+ addUserKnob {22 docs l Documentation -STARTLINE T nukescripts.openurl.start('http://dnet.dneg.com/display/~cmas/Text+Linker')}
+ addUserKnob {26 ""}
+ addUserKnob {1 linkTo l "link to"}
+ linkTo ENV_DEEP_MERGE
+ addUserKnob {22 list l "all links" t "A list of all nodes currently linked to Text Linkers in the script" -STARTLINE T "list = \[]\nfor a in nuke.allNodes():\n    if '_txt_linker_' in a\['name'].value():\n\n\n        x = a.knob('linkTo').value()\n        if x not in list:\n    \n            list.append(x)\n            print list\n\ntitle = \"<font color='#BAFF00'><b>Text Linker is currently linked to these nodes:</b><font color>\"\ngap = \"\"\ntext = \"<font color='white'>\"\n\nnuke.message(title+gap+text+'\\n''\\n'+'\\n'.join(map(str, list)))"}
+ addUserKnob {22 loadSelected l "<font color='#BAFF00'>load selected" T "x=nuke.selectedNode()\nn=nuke.thisNode()\nname = x.knob('name').value()\nn.knob(\"linkTo\").setValue(name)\n" +STARTLINE}
+ addUserKnob {22 reset l "<font color='#FFFFFF'>reset" -STARTLINE T "n=nuke.thisNode()\nn.knob(\"linkTo\").setValue(\"\")"}
+ addUserKnob {26 ""}
+ addUserKnob {26 text_1 l "<font color='#BAFF00'>Text Linker" T "Built by Christopher Maslen<br>\n\ncmas@dneg.com<br>\n\n</font>\nLast updated February 9th 2022"}
+}
+Group {
+ inputs 0
+ name AOVCodex5
+ autolabel "__import__(\"dnnuke.nodes.codex_utils\", fromlist=\[\"autolabel_codex_group\"]).autolabel_codex_group()"
+ tile_color 0x242424ff
+ label CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005
+ note_font_color 0xffffffff
+ selected true
+ xpos 6205
+ ypos -13225
+ postage_stamp true
+ addUserKnob {20 AOVCodex}
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class AOVCodex
+ addUserKnob {1 _wrapper l "" +STARTLINE +INVISIBLE}
+ _wrapper "AOVCodex dnnuke.nodes.aov_codex.wrapper"
+ addUserKnob {22 docButton l Documentation -STARTLINE T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())"}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ file /jobs/S2/us0240/CG/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005/beauty/4312x2304/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005.####.exr
+ addUserKnob {41 AOVs T Codex.aovs}
+ addUserKnob {20 custom l Custom n 1}
+ addUserKnob {41 enableFilters T Output1.enableFilters}
+ addUserKnob {41 removeDeep +INVISIBLE T Output1.removeDeep}
+ addUserKnob {20 custom_end l Custom n -1}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {41 format T Codex.format}
+ addUserKnob {41 first l "frame range" T Codex.first}
+ addUserKnob {41 before l "" -STARTLINE T Codex.before}
+ addUserKnob {41 last l "" -STARTLINE T Codex.last}
+ addUserKnob {41 after l "" -STARTLINE T Codex.after}
+ addUserKnob {41 frame_mode l frame T Codex.frame_mode}
+ addUserKnob {41 frame l "" -STARTLINE T Codex.frame}
+ addUserKnob {41 on_error l "missing frames" T Codex.on_error}
+ addUserKnob {20 readknobsEndGroup l "Read Knobs" n -1}
+ addUserKnob {20 leafmeta_tab l LeafMeta}
+ addUserKnob {41 leaf0 l 0 T Codex.leaf0}
+ addUserKnob {41 meta0 l "" -STARTLINE T Codex.meta0}
+ addUserKnob {41 leaf1 l 1 T Codex.leaf1}
+ addUserKnob {41 meta1 l "" -STARTLINE T Codex.meta1}
+ addUserKnob {41 leaf2 l 2 T Codex.leaf2}
+ addUserKnob {41 meta2 l "" -STARTLINE T Codex.meta2}
+ addUserKnob {20 template_tab l Template}
+ addUserKnob {26 template l "script : " T CDXC_S2_v006.nk}
+ addUserKnob {26 _1 l "" +STARTLINE T " "}
+ addUserKnob {22 ivy_publish l Publish... t "Publish internal nodes as a new codex template to the SHOW.<br />New AOVCodex nodes import the latest published, approved template." T "__import__('dnnuke.core.codex.publisher', fromlist=\['publish']).publish(group=nuke.thisNode())" +STARTLINE}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 62001703-8385-4993-87e7-a1bb703b30db
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 4bd577cd-c097-4c9f-a188-4b4e79947d09
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid ee5037c1-9e17-48ed-852c-d8509a47a5dc
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype cgr
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 5
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "FFR | 4K latest update stg5 + denoise"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ MetaPython {
+  inputs 0
+  python "stalk_dnuuid = nuke.thisNode()\['stalk_dnuuid'].value()\n\nthis.catalog\['stalk'].clear()\nif stalk_dnuuid:\n    codex_item = codex.CodexItem.create(stalk_dnuuid, \"Stalk\")\n    this.catalog\['stalk'].append(codex_item)\n"
+  name MetaStalkCreatePy
+  tile_color 0x4800ff
+  label "stalk_dnuuid : \[value stalk_dnuuid]"
+  selected true
+  xpos -40
+  ypos -46
+  addUserKnob {20 StalkCreate}
+  addUserKnob {1 stalk_dnuuid}
+  stalk_dnuuid 4bd577cd-c097-4c9f-a188-4b4e79947d09
+ }
+ MetaPython {
+  python "if len(this.catalog\[\"stalk\"]):\n    stalk_dnuuid = this.catalog\[\"stalk\"]\[0]\[\"dnuuid\"]\n    codex_array = codex.CodexArray.create(stalk_dnuuid)\n    this.catalog\['leaf'] = codex_array.filter(codex.ItemType.deep, \"0\")\n    for item in codex_array.filter(codex.ItemType.deep, \"1\"):\n        if item.get(\"dnuuid\"):\n            data_object = item.get(\"dnuuid\").as_data_object()\n            if data_object.hasAttr(\"format\") and data_object.get(\"format\") == \"id\":\n                this.catalog\['id'].append(item)\n            else:\n                this.catalog\['leaf'].append(item)\n    this.catalog\['stalk'].clear()\n"
+  name MetaLeafsFromStalkPy
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos -10
+ }
+ MetaFilter {
+  regex variance_|playback
+  name MetaFilter1
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 14
+ }
+set N1460d680 [stack 0]
+ MetaLayerEdit {
+  edit "20 alpha_proxy0:__alpha11 6 enable1 030 beauty_lpe_proxy0:__beauty_lpe11 6 enable1 042 clearcoat_albedo_proxy0:__clearcoat_albedo11 6 enable1 048 clearcoat_roughness_proxy0:__clearcoat_roughness11 6 enable1 048 cryptomatte_asset00_proxy0:__cryptomatte_asset0011 6 enable1 048 cryptomatte_asset02_proxy0:__cryptomatte_asset0211 6 enable1 044 cryptomatte_asset_proxy0:__cryptomatte_asset11 6 enable1 054 cryptomatte_material00_proxy0:__cryptomatte_material0011 6 enable1 054 cryptomatte_material01_proxy0:__cryptomatte_material0111 6 enable1 054 cryptomatte_material02_proxy0:__cryptomatte_material0211 6 enable1 050 cryptomatte_material_proxy0:__cryptomatte_material11 6 enable1 050 cryptomatte_object00_proxy0:__cryptomatte_object0011 6 enable1 050 cryptomatte_object01_proxy0:__cryptomatte_object0111 6 enable1 050 cryptomatte_object02_proxy0:__cryptomatte_object0211 6 enable1 046 cryptomatte_object_proxy0:__cryptomatte_object11 6 enable1 020 depth_proxy0:__depth0 72 diagnostics_camera_sample_count_proxy0:__diagnostics_camera_sample_count11 6 enable1 038 diffuse_albedo_proxy0:__diffuse_albedo11 6 enable1 044 diffuse_roughness_proxy0:__diffuse_roughness11 6 enable1 052 diffuse_transmittance_proxy0:__diffuse_transmittance11 6 enable1 048 direct_incandescent_proxy0:__direct_incandescent0 42 disney_basecolor_proxy0:__disney_basecolor11 6 enable1 026 distance_proxy0:__distance11 6 enable1 051 genericLightning_01_proxy0:dneg_genericlightning_010 51 genericLightning_02_proxy0:dneg_genericlightning_020 51 genericLightning_03_proxy0:dneg_genericlightning_030 51 genericLightning_04_proxy0:dneg_genericlightning_040 36 global_matte0_proxy0:__global_matte011 6 enable1 038 global_matte10_proxy0:__global_matte1011 6 enable1 038 global_matte11_proxy0:__global_matte110 38 global_matte12_proxy0:__global_matte1211 6 enable1 038 global_matte13_proxy0:__global_matte1311 6 enable1 038 global_matte14_proxy0:__global_matte1411 6 enable1 038 global_matte15_proxy0:__global_matte1511 6 enable1 038 global_matte16_proxy0:__global_matte1611 6 enable1 036 global_matte1_proxy0:__global_matte111 6 enable1 036 global_matte2_proxy0:__global_matte211 6 enable1 036 global_matte3_proxy0:__global_matte311 6 enable1 036 global_matte4_proxy0:__global_matte411 6 enable1 036 global_matte5_proxy0:__global_matte50 36 global_matte6_proxy0:__global_matte611 6 enable1 036 global_matte7_proxy0:__global_matte711 6 enable1 036 global_matte8_proxy0:__global_matte811 6 enable1 036 global_matte9_proxy0:__global_matte911 6 enable1 034 incandescent_proxy0:__incandescent11 6 enable1 052 indirect_incandescent_proxy0:__indirect_incandescent11 6 enable1 060 light_grp0_direct_diffuse_proxy0:__light_grp0_direct_diffuse11 6 enable1 082 light_grp0_direct_diffuse_unoccluded_proxy0:__light_grp0_direct_diffuse_unoccluded11 6 enable1 062 light_grp0_direct_specular_proxy0:__light_grp0_direct_specular11 6 enable1 064 light_grp0_indirect_diffuse_proxy0:__light_grp0_indirect_diffuse11 6 enable1 066 light_grp0_indirect_specular_proxy0:__light_grp0_indirect_specular11 6 enable1 030 light_grp0_proxy0:__light_grp00 62 light_grp10_direct_diffuse_proxy0:__light_grp10_direct_diffuse11 6 enable1 064 light_grp10_direct_specular_proxy0:__light_grp10_direct_specular11 6 enable1 066 light_grp10_indirect_diffuse_proxy0:__light_grp10_indirect_diffuse11 6 enable1 068 light_grp10_indirect_specular_proxy0:__light_grp10_indirect_specular11 6 enable1 032 light_grp10_proxy0:__light_grp100 62 light_grp11_direct_diffuse_proxy0:__light_grp11_direct_diffuse11 6 enable1 064 light_grp11_direct_specular_proxy0:__light_grp11_direct_specular11 6 enable1 066 light_grp11_indirect_diffuse_proxy0:__light_grp11_indirect_diffuse11 6 enable1 068 light_grp11_indirect_specular_proxy0:__light_grp11_indirect_specular11 6 enable1 032 light_grp11_proxy0:__light_grp110 62 light_grp12_direct_diffuse_proxy0:__light_grp12_direct_diffuse11 6 enable1 064 light_grp12_direct_specular_proxy0:__light_grp12_direct_specular11 6 enable1 066 light_grp12_indirect_diffuse_proxy0:__light_grp12_indirect_diffuse11 6 enable1 068 light_grp12_indirect_specular_proxy0:__light_grp12_indirect_specular11 6 enable1 032 light_grp12_proxy0:__light_grp120 62 light_grp13_direct_diffuse_proxy0:__light_grp13_direct_diffuse11 6 enable1 064 light_grp13_direct_specular_proxy0:__light_grp13_direct_specular11 6 enable1 066 light_grp13_indirect_diffuse_proxy0:__light_grp13_indirect_diffuse11 6 enable1 068 light_grp13_indirect_specular_proxy0:__light_grp13_indirect_specular11 6 enable1 032 light_grp13_proxy0:__light_grp130 60 light_grp1_direct_diffuse_proxy0:__light_grp1_direct_diffuse11 6 enable1 082 light_grp1_direct_diffuse_unoccluded_proxy0:__light_grp1_direct_diffuse_unoccluded11 6 enable1 062 light_grp1_direct_specular_proxy0:__light_grp1_direct_specular11 6 enable1 064 light_grp1_indirect_diffuse_proxy0:__light_grp1_indirect_diffuse11 6 enable1 066 light_grp1_indirect_specular_proxy0:__light_grp1_indirect_specular11 6 enable1 030 light_grp1_proxy0:__light_grp10 60 light_grp2_direct_diffuse_proxy0:__light_grp2_direct_diffuse11 6 enable1 062 light_grp2_direct_specular_proxy0:__light_grp2_direct_specular11 6 enable1 064 light_grp2_indirect_diffuse_proxy0:__light_grp2_indirect_diffuse11 6 enable1 066 light_grp2_indirect_specular_proxy0:__light_grp2_indirect_specular11 6 enable1 030 light_grp2_proxy0:__light_grp20 60 light_grp3_direct_diffuse_proxy0:__light_grp3_direct_diffuse11 6 enable1 062 light_grp3_direct_specular_proxy0:__light_grp3_direct_specular11 6 enable1 064 light_grp3_indirect_diffuse_proxy0:__light_grp3_indirect_diffuse11 6 enable1 066 light_grp3_indirect_specular_proxy0:__light_grp3_indirect_specular11 6 enable1 030 light_grp3_proxy0:__light_grp30 60 light_grp4_direct_diffuse_proxy0:__light_grp4_direct_diffuse11 6 enable1 062 light_grp4_direct_specular_proxy0:__light_grp4_direct_specular11 6 enable1 064 light_grp4_indirect_diffuse_proxy0:__light_grp4_indirect_diffuse11 6 enable1 066 light_grp4_indirect_specular_proxy0:__light_grp4_indirect_specular11 6 enable1 030 light_grp4_proxy0:__light_grp40 60 light_grp5_direct_diffuse_proxy0:__light_grp5_direct_diffuse11 6 enable1 062 light_grp5_direct_specular_proxy0:__light_grp5_direct_specular11 6 enable1 064 light_grp5_indirect_diffuse_proxy0:__light_grp5_indirect_diffuse11 6 enable1 066 light_grp5_indirect_specular_proxy0:__light_grp5_indirect_specular11 6 enable1 030 light_grp5_proxy0:__light_grp50 60 light_grp6_direct_diffuse_proxy0:__light_grp6_direct_diffuse11 6 enable1 062 light_grp6_direct_specular_proxy0:__light_grp6_direct_specular11 6 enable1 064 light_grp6_indirect_diffuse_proxy0:__light_grp6_indirect_diffuse11 6 enable1 066 light_grp6_indirect_specular_proxy0:__light_grp6_indirect_specular11 6 enable1 030 light_grp6_proxy0:__light_grp60 60 light_grp7_direct_diffuse_proxy0:__light_grp7_direct_diffuse11 6 enable1 062 light_grp7_direct_specular_proxy0:__light_grp7_direct_specular11 6 enable1 064 light_grp7_indirect_diffuse_proxy0:__light_grp7_indirect_diffuse11 6 enable1 066 light_grp7_indirect_specular_proxy0:__light_grp7_indirect_specular11 6 enable1 030 light_grp7_proxy0:__light_grp70 60 light_grp8_direct_diffuse_proxy0:__light_grp8_direct_diffuse11 6 enable1 062 light_grp8_direct_specular_proxy0:__light_grp8_direct_specular11 6 enable1 064 light_grp8_indirect_diffuse_proxy0:__light_grp8_indirect_diffuse11 6 enable1 066 light_grp8_indirect_specular_proxy0:__light_grp8_indirect_specular11 6 enable1 030 light_grp8_proxy0:__light_grp80 60 light_grp9_direct_diffuse_proxy0:__light_grp9_direct_diffuse11 6 enable1 062 light_grp9_direct_specular_proxy0:__light_grp9_direct_specular11 6 enable1 064 light_grp9_indirect_diffuse_proxy0:__light_grp9_indirect_diffuse11 6 enable1 066 light_grp9_indirect_specular_proxy0:__light_grp9_indirect_specular11 6 enable1 030 light_grp9_proxy0:__light_grp90 36 motion_vector_proxy0:__motion_vector11 6 enable1 036 normal_camera_proxy0:__normal_camera11 6 enable1 034 normal_world_proxy0:__normal_world11 6 enable1 040 position_object_proxy0:__position_object11 6 enable1 046 position_reference_proxy0:__position_reference0 38 position_world_proxy0:__position_world0 40 specular_albedo_proxy0:__specular_albedo11 6 enable1 046 specular_roughness_proxy0:__specular_roughness11 6 enable1 054 specular_transmittance_proxy0:__specular_transmittance11 6 enable1 024 uv_map1_proxy0:__uv_map111 6 enable1 0"
+  name MetaLayerEdit1
+  selected true
+  xpos 133
+  ypos 63
+ }
+push $N1460d680
+ Switch {
+  inputs 2
+  which {{Output1.enableFilters}}
+  name Switch1
+  label "\[value which]"
+  selected true
+  xpos -40
+  ypos 93
+ }
+ MetaFilter {
+  regex deep
+  name MetaFilter2
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 129
+  disable {{!parent.Output1.removeDeep}}
+ }
+ ModifyMetaData {
+  metadata {
+   {set input/stalk_dnuuid "\[value parent.stalk_dnuuid \"knob stalk_dnnuid not found\"]"}
+  }
+  name ModifyMetaData1
+  selected true
+  xpos -40
+  ypos 228
+ }
+ Codex {
+  file /jobs/S2/us0240/CG/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005/beauty/4312x2304/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005.####.exr
+  format "4312 2304 0 0 4312 2304 1 S2 Working"
+  first 1001
+  last 1102
+  on_error "nearest frame"
+  smartGrade true
+  aovs ""
+  name Codex
+  selected true
+  xpos -40
+  ypos 252
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -40
+  ypos 300
+  addUserKnob {20 User}
+  addUserKnob {6 enableFilters l "Enable Filters (removes uncommon AOVs)" +STARTLINE}
+  addUserKnob {6 removeDeep l "Remove Deep (removes deep from being loaded)" +INVISIBLE +STARTLINE}
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "<p>Codex Template Script\n/jobs/S2/ASSET/ivy/cdxc/CDXC_S2_v006/CDXC_S2_v006.nk"
+  note_font_size 12
+  xpos 160
+  ypos -46
+ }
+end_group
+set N13e92670 [stack 0]
+Dot {
+ name Dot199
+ selected true
+ xpos 6255
+ ypos -12987
+}
+set N13c5cfd0 [stack 0]
+Reformat {
+ pbb true
+ name Reformat66
+ selected true
+ xpos 6227
+ ypos -12864
+}
+Dot {
+ name Dot200
+ selected true
+ xpos 6255
+ ypos -12675
+}
+Remove {
+ operation keep
+ channels rgba
+ channels2 rgba
+ name Remove54
+ selected true
+ xpos 3587
+ ypos -12696
+}
+add_layer {alpha_fog_bottom_l100 alpha_fog_bottom_l100.red alpha_fog_bottom_l100.green alpha_fog_bottom_l100.blue alpha_fog_bottom_l100.alpha}
+Shuffle {
+ out alpha_fog_bottom_l100
+ name Shuffle86
+ selected true
+ xpos 3587
+ ypos -12654
+}
+Remove {
+ channels rgba
+ channels2 rgba
+ name Remove55
+ selected true
+ xpos 3587
+ ypos -12576
+ disable true
+}
+push $N13c5cfd0
+Dot {
+ name Dot201
+ selected true
+ xpos 3395
+ ypos -12987
+}
+DeepReformat {
+ pbb true
+ name DeepReformat21
+ selected true
+ xpos 3367
+ ypos -12840
+}
+DeepRecolor {
+ inputs 2
+ channels all
+ targetInputAlpha true
+ name DeepRecolor21
+ selected true
+ xpos 3367
+ ypos -12582
+}
+Dot {
+ name Dot202
+ selected true
+ xpos 3395
+ ypos -12488
+}
+DeepHoldout2 {
+ inputs 2
+ name DeepHoldout21
+ selected true
+ xpos 3367
+ ypos -12401
+}
+Shuffle {
+ out alpha_fog_bottom_l100
+ name Shuffle87
+ selected true
+ xpos 3363
+ ypos -12294
+}
+Dot {
+ inputs 0
+ name Dot203
+ selected true
+ xpos 3295
+ ypos -12950
+}
+Merge2 {
+ inputs 2
+ also_merge all
+ name Merge112
+ selected true
+ xpos 3257
+ ypos -12288
+}
+Merge2 {
+ inputs 2
+ also_merge all
+ name Merge116
+ selected true
+ xpos 3257
+ ypos -10680
+}
+Remove {
+ channels depth
+ channels4 rgb
+ name Remove56
+ selected true
+ xpos 3257
+ ypos -10330
+}
+push $cut_paste_input
+NoOp {
+ name _txt_linker_37
+ knobChanged "\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n"
+ tile_color 0x222222ff
+ label "<font color='#BAFF00'><b><center> to Switch5"
+ note_font "DejaVu Sans"
+ note_font_color 0xff9901
+ selected true
+ xpos 5897
+ ypos -10577
+ hide_input true
+ addUserKnob {20 User l "" +STARTLINE}
+ addUserKnob {52 PYTHON l "" +STARTLINE T "nuke.thisNode().knob('knobChanged').setValue(\"\"\"\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n\"\"\")" +STARTLINE}
+ addUserKnob {26 text l "" +STARTLINE T "AUTO LINK TO ANY NODE VIA TEXT INPUT"}
+ addUserKnob {26 text_2 l " " -STARTLINE T "                            \t                "}
+ addUserKnob {22 docs l Documentation -STARTLINE T nukescripts.openurl.start('http://dnet.dneg.com/display/~cmas/Text+Linker')}
+ addUserKnob {26 ""}
+ addUserKnob {1 linkTo l "link to"}
+ linkTo Switch5
+ addUserKnob {22 list l "all links" t "A list of all nodes currently linked to Text Linkers in the script" -STARTLINE T "list = \[]\nfor a in nuke.allNodes():\n    if '_txt_linker_' in a\['name'].value():\n\n\n        x = a.knob('linkTo').value()\n        if x not in list:\n    \n            list.append(x)\n            print list\n\ntitle = \"<font color='#BAFF00'><b>Text Linker is currently linked to these nodes:</b><font color>\"\ngap = \"\"\ntext = \"<font color='white'>\"\n\nnuke.message(title+gap+text+'\\n''\\n'+'\\n'.join(map(str, list)))"}
+ addUserKnob {22 loadSelected l "<font color='#BAFF00'>load selected" T "x=nuke.selectedNode()\nn=nuke.thisNode()\nname = x.knob('name').value()\nn.knob(\"linkTo\").setValue(name)\n" +STARTLINE}
+ addUserKnob {22 reset l "<font color='#FFFFFF'>reset" -STARTLINE T "n=nuke.thisNode()\nn.knob(\"linkTo\").setValue(\"\")"}
+ addUserKnob {26 ""}
+ addUserKnob {26 text_1 l "<font color='#BAFF00'>Text Linker" T "Built by Christopher Maslen<br>\n\ncmas@dneg.com<br>\n\n</font>\nLast updated February 9th 2022"}
+}
+Shuffle {
+ in alpha_fog_bottom_l120
+ name Shuffle88
+ selected true
+ xpos 5842
+ ypos -10462
+}
+set N14738500 [stack 0]
+Dot {
+ name Dot204
+ selected true
+ xpos 5155
+ ypos -10443
+}
+NoOp {
+ inputs 0
+ name _txt_linker_38
+ knobChanged "\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n"
+ tile_color 0x222222ff
+ label "<font color='#BAFF00'><b><center> to Switch5"
+ note_font "DejaVu Sans"
+ note_font_color 0xff9901
+ selected true
+ xpos 5787
+ ypos -12401
+ hide_input true
+ addUserKnob {20 User l "" +STARTLINE}
+ addUserKnob {52 PYTHON l "" +STARTLINE T "nuke.thisNode().knob('knobChanged').setValue(\"\"\"\nn = nuke.thisNode()\nx = n.knob('linkTo').getValue()\nn.setInput(0, nuke.toNode(x))\n####z = n.knob('input0').name()\n\nif x == \"\":\n    n\['label'].setValue(\"<font color='#FF0000'><b><center> EMPTY\")\nelse:\n    n\['label'].setValue(\"<font color='#BAFF00'><b><center> to \" + x)\n\n\"\"\")" +STARTLINE}
+ addUserKnob {26 text l "" +STARTLINE T "AUTO LINK TO ANY NODE VIA TEXT INPUT"}
+ addUserKnob {26 text_2 l " " -STARTLINE T "                            \t                "}
+ addUserKnob {22 docs l Documentation -STARTLINE T nukescripts.openurl.start('http://dnet.dneg.com/display/~cmas/Text+Linker')}
+ addUserKnob {26 ""}
+ addUserKnob {1 linkTo l "link to"}
+ linkTo Switch5
+ addUserKnob {22 list l "all links" t "A list of all nodes currently linked to Text Linkers in the script" -STARTLINE T "list = \[]\nfor a in nuke.allNodes():\n    if '_txt_linker_' in a\['name'].value():\n\n\n        x = a.knob('linkTo').value()\n        if x not in list:\n    \n            list.append(x)\n            print list\n\ntitle = \"<font color='#BAFF00'><b>Text Linker is currently linked to these nodes:</b><font color>\"\ngap = \"\"\ntext = \"<font color='white'>\"\n\nnuke.message(title+gap+text+'\\n''\\n'+'\\n'.join(map(str, list)))"}
+ addUserKnob {22 loadSelected l "<font color='#BAFF00'>load selected" T "x=nuke.selectedNode()\nn=nuke.thisNode()\nname = x.knob('name').value()\nn.knob(\"linkTo\").setValue(name)\n" +STARTLINE}
+ addUserKnob {22 reset l "<font color='#FFFFFF'>reset" -STARTLINE T "n=nuke.thisNode()\nn.knob(\"linkTo\").setValue(\"\")"}
+ addUserKnob {26 ""}
+ addUserKnob {26 text_1 l "<font color='#BAFF00'>Text Linker" T "Built by Christopher Maslen<br>\n\ncmas@dneg.com<br>\n\n</font>\nLast updated February 9th 2022"}
+}
+set N139b5820 [stack 0]
+Shuffle {
+ name Shuffle89
+ selected true
+ xpos 5677
+ ypos -12246
+}
+Group {
+ inputs 0
+ name AOVCodex9
+ autolabel "__import__(\"dnnuke.nodes.codex_utils\", fromlist=\[\"autolabel_codex_group\"]).autolabel_codex_group()"
+ tile_color 0x242424ff
+ label CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v004
+ note_font_color 0xffffffff
+ selected true
+ xpos 6071
+ ypos -13218
+ postage_stamp true
+ addUserKnob {20 AOVCodex}
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class AOVCodex
+ addUserKnob {1 _wrapper l "" +STARTLINE +INVISIBLE}
+ _wrapper "AOVCodex dnnuke.nodes.aov_codex.wrapper"
+ addUserKnob {22 docButton l Documentation -STARTLINE T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())"}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ file /jobs/S2/us0240/CG/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v004/beauty/2156x1152/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v004.####.exr
+ addUserKnob {41 AOVs T Codex.aovs}
+ addUserKnob {20 custom l Custom n 1}
+ addUserKnob {20 custom_end l Custom n -1}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {41 format T Codex.format}
+ addUserKnob {41 first l "frame range" T Codex.first}
+ addUserKnob {41 before l "" -STARTLINE T Codex.before}
+ addUserKnob {41 last l "" -STARTLINE T Codex.last}
+ addUserKnob {41 after l "" -STARTLINE T Codex.after}
+ addUserKnob {41 frame_mode l frame T Codex.frame_mode}
+ addUserKnob {41 frame l "" -STARTLINE T Codex.frame}
+ addUserKnob {41 on_error l "missing frames" T Codex.on_error}
+ addUserKnob {20 readknobsEndGroup l "Read Knobs" n -1}
+ addUserKnob {20 leafmeta_tab l LeafMeta}
+ addUserKnob {41 leaf0 l 0 T Codex.leaf0}
+ addUserKnob {41 meta0 l "" -STARTLINE T Codex.meta0}
+ addUserKnob {41 leaf1 l 1 T Codex.leaf1}
+ addUserKnob {41 meta1 l "" -STARTLINE T Codex.meta1}
+ addUserKnob {41 leaf2 l 2 T Codex.leaf2}
+ addUserKnob {41 meta2 l "" -STARTLINE T Codex.meta2}
+ addUserKnob {20 template_tab l Template}
+ addUserKnob {26 template l "script : " T CDXC_LIBRARY_v002.nk}
+ addUserKnob {26 _1 l "" +STARTLINE T " "}
+ addUserKnob {22 ivy_publish l Publish... t "Publish internal nodes as a new codex template to the SHOW.<br />New AOVCodex nodes import the latest published, approved template." T "__import__('dnnuke.core.codex.publisher', fromlist=\['publish']).publish(group=nuke.thisNode())" +STARTLINE}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 62001703-8385-4993-87e7-a1bb703b30db
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 65707546-5d3c-4426-a465-e7c8cc3eee6a
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 0f3271e1-971a-4e35-854a-ec81dfc51bbf
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype cgr
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 4
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "FFR | 2K fx fog density + light update"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ MetaPython {
+  inputs 0
+  python "stalk_dnuuid = nuke.thisNode()\['stalk_dnuuid'].value()\n\nthis.catalog\['stalk'].clear()\nif stalk_dnuuid:\n    codex_item = codex.CodexItem.create(stalk_dnuuid, \"Stalk\")\n    this.catalog\['stalk'].append(codex_item)\n"
+  name MetaStalkCreatePy
+  tile_color 0x4800ff
+  label "stalk_dnuuid : \[value stalk_dnuuid]"
+  xpos -40
+  ypos -46
+  addUserKnob {20 StalkCreate}
+  addUserKnob {1 stalk_dnuuid}
+  stalk_dnuuid 65707546-5d3c-4426-a465-e7c8cc3eee6a
+ }
+ MetaPython {
+  python "if len(this.catalog\[\"stalk\"]):\n    stalk_dnuuid = this.catalog\[\"stalk\"]\[0]\[\"dnuuid\"]\n    codex_array = codex.CodexArray.create(stalk_dnuuid)\n    this.catalog\['leaf'] = codex_array.filter(codex.ItemType.deep, \"0\")\n    for item in codex_array.filter(codex.ItemType.deep, \"1\"):\n        if item.get(\"dnuuid\"):\n            data_object = item.get(\"dnuuid\").as_data_object()\n            if data_object.hasAttr(\"format\") and data_object.get(\"format\") == \"id\":\n                this.catalog\['id'].append(item)\n            else:\n                this.catalog\['leaf'].append(item)\n    this.catalog\['stalk'].clear()\n"
+  name MetaLeafsFromStalkPy
+  tile_color 0x4800ff
+  xpos -40
+  ypos -10
+ }
+ MetaFilter {
+  regex variance_|playback
+  name MetaFilter1
+  tile_color 0x4800ff
+  xpos -40
+  ypos 14
+ }
+ ModifyMetaData {
+  metadata {
+   {set input/stalk_dnuuid "\[value parent.stalk_dnuuid \"knob stalk_dnnuid not found\"]"}
+  }
+  name ModifyMetaData1
+  xpos -40
+  ypos 51
+ }
+ Codex {
+  file /jobs/S2/us0240/CG/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v004/beauty/2156x1152/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v004.####.exr
+  format "2156 1152 0 0 2156 1152 1 S2 Working Proxy"
+  first 1001
+  last 1102
+  on_error "nearest frame"
+  smartGrade true
+  aovs ""
+  name Codex
+  xpos -40
+  ypos 75
+ }
+ Output {
+  name Output1
+  xpos -40
+  ypos 123
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "<p>Codex Template Script\n/jobs/LIBRARY/ASSET/ivy/cdxc/CDXC_LIBRARY_v002/CDXC_LIBRARY_v002.nk"
+  note_font_size 12
+  xpos 160
+  ypos -46
+ }
+end_group
+Group {
+ inputs 0
+ name AOVCodex13
+ autolabel "__import__(\"dnnuke.nodes.codex_utils\", fromlist=\[\"autolabel_codex_group\"]).autolabel_codex_group()"
+ tile_color 0x242424ff
+ label E_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005_d001
+ note_font_color 0xffffffff
+ selected true
+ xpos 6671
+ ypos -13180
+ postage_stamp true
+ addUserKnob {20 AOVCodex}
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class AOVCodex
+ addUserKnob {1 _wrapper l "" +STARTLINE +INVISIBLE}
+ _wrapper "AOVCodex dnnuke.nodes.aov_codex.wrapper"
+ addUserKnob {22 docButton l Documentation -STARTLINE T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())"}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ file /jobs/S2/us0240/ELEMENT/E_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005_d001/beauty/4312x2304/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005.####.exr
+ addUserKnob {41 AOVs T Codex.aovs}
+ addUserKnob {20 custom l Custom n 1}
+ addUserKnob {41 enableFilters T Output1.enableFilters}
+ addUserKnob {41 removeDeep +INVISIBLE T Output1.removeDeep}
+ addUserKnob {20 custom_end l Custom n -1}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {41 format T Codex.format}
+ addUserKnob {41 first l "frame range" T Codex.first}
+ addUserKnob {41 before l "" -STARTLINE T Codex.before}
+ addUserKnob {41 last l "" -STARTLINE T Codex.last}
+ addUserKnob {41 after l "" -STARTLINE T Codex.after}
+ addUserKnob {41 frame_mode l frame T Codex.frame_mode}
+ addUserKnob {41 frame l "" -STARTLINE T Codex.frame}
+ addUserKnob {41 on_error l "missing frames" T Codex.on_error}
+ addUserKnob {20 readknobsEndGroup l "Read Knobs" n -1}
+ addUserKnob {20 leafmeta_tab l LeafMeta}
+ addUserKnob {41 leaf0 l 0 T Codex.leaf0}
+ addUserKnob {41 meta0 l "" -STARTLINE T Codex.meta0}
+ addUserKnob {41 leaf1 l 1 T Codex.leaf1}
+ addUserKnob {41 meta1 l "" -STARTLINE T Codex.meta1}
+ addUserKnob {41 leaf2 l 2 T Codex.leaf2}
+ addUserKnob {41 meta2 l "" -STARTLINE T Codex.meta2}
+ addUserKnob {20 template_tab l Template}
+ addUserKnob {26 template l "script : " T CDXC_S2_v006.nk}
+ addUserKnob {26 _1 l "" +STARTLINE T " "}
+ addUserKnob {22 ivy_publish l Publish... t "Publish internal nodes as a new codex template to the SHOW.<br />New AOVCodex nodes import the latest published, approved template." T "__import__('dnnuke.core.codex.publisher', fromlist=\['publish']).publish(group=nuke.thisNode())" +STARTLINE}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid cf96dfc4-d078-43a1-9ffd-47dcd164f909
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 2d6f360d-e2ee-4453-9ad1-48ce76825807
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid e9f824fa-c932-4c3e-acbd-c612fb5ea846
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 8fd2172f-32ce-4a0f-86a9-f43043abd27b
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype elmr
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "'Automatic denoiser of CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005'"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ MetaPython {
+  inputs 0
+  python "stalk_dnuuid = nuke.thisNode()\['stalk_dnuuid'].value()\n\nthis.catalog\['stalk'].clear()\nif stalk_dnuuid:\n    codex_item = codex.CodexItem.create(stalk_dnuuid, \"Stalk\")\n    this.catalog\['stalk'].append(codex_item)\n"
+  name MetaStalkCreatePy
+  tile_color 0x4800ff
+  label "stalk_dnuuid : \[value stalk_dnuuid]"
+  selected true
+  xpos -40
+  ypos -46
+  addUserKnob {20 StalkCreate}
+  addUserKnob {1 stalk_dnuuid}
+  stalk_dnuuid 2d6f360d-e2ee-4453-9ad1-48ce76825807
+ }
+ MetaPython {
+  python "if len(this.catalog\[\"stalk\"]):\n    stalk_dnuuid = this.catalog\[\"stalk\"]\[0]\[\"dnuuid\"]\n    codex_array = codex.CodexArray.create(stalk_dnuuid)\n    this.catalog\['leaf'] = codex_array.filter(codex.ItemType.deep, \"0\")\n    for item in codex_array.filter(codex.ItemType.deep, \"1\"):\n        if item.get(\"dnuuid\"):\n            data_object = item.get(\"dnuuid\").as_data_object()\n            if data_object.hasAttr(\"format\") and data_object.get(\"format\") == \"id\":\n                this.catalog\['id'].append(item)\n            else:\n                this.catalog\['leaf'].append(item)\n    this.catalog\['stalk'].clear()\n"
+  name MetaLeafsFromStalkPy
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos -10
+ }
+ MetaFilter {
+  regex variance_|playback
+  name MetaFilter1
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 14
+ }
+set N144146c0 [stack 0]
+ MetaLayerEdit {
+  edit "20 alpha_proxy0:__alpha11 6 enable1 030 beauty_lpe_proxy0:__beauty_lpe11 6 enable1 042 clearcoat_albedo_proxy0:__clearcoat_albedo11 6 enable1 048 clearcoat_roughness_proxy0:__clearcoat_roughness11 6 enable1 048 cryptomatte_asset00_proxy0:__cryptomatte_asset0011 6 enable1 048 cryptomatte_asset02_proxy0:__cryptomatte_asset0211 6 enable1 044 cryptomatte_asset_proxy0:__cryptomatte_asset11 6 enable1 054 cryptomatte_material00_proxy0:__cryptomatte_material0011 6 enable1 054 cryptomatte_material01_proxy0:__cryptomatte_material0111 6 enable1 054 cryptomatte_material02_proxy0:__cryptomatte_material0211 6 enable1 050 cryptomatte_material_proxy0:__cryptomatte_material11 6 enable1 050 cryptomatte_object00_proxy0:__cryptomatte_object0011 6 enable1 050 cryptomatte_object01_proxy0:__cryptomatte_object0111 6 enable1 050 cryptomatte_object02_proxy0:__cryptomatte_object0211 6 enable1 046 cryptomatte_object_proxy0:__cryptomatte_object11 6 enable1 020 depth_proxy0:__depth0 72 diagnostics_camera_sample_count_proxy0:__diagnostics_camera_sample_count11 6 enable1 038 diffuse_albedo_proxy0:__diffuse_albedo11 6 enable1 044 diffuse_roughness_proxy0:__diffuse_roughness11 6 enable1 052 diffuse_transmittance_proxy0:__diffuse_transmittance11 6 enable1 048 direct_incandescent_proxy0:__direct_incandescent0 42 disney_basecolor_proxy0:__disney_basecolor11 6 enable1 026 distance_proxy0:__distance11 6 enable1 051 genericLightning_01_proxy0:dneg_genericlightning_010 51 genericLightning_02_proxy0:dneg_genericlightning_020 51 genericLightning_03_proxy0:dneg_genericlightning_030 51 genericLightning_04_proxy0:dneg_genericlightning_040 36 global_matte0_proxy0:__global_matte011 6 enable1 038 global_matte10_proxy0:__global_matte1011 6 enable1 038 global_matte11_proxy0:__global_matte110 38 global_matte12_proxy0:__global_matte1211 6 enable1 038 global_matte13_proxy0:__global_matte1311 6 enable1 038 global_matte14_proxy0:__global_matte1411 6 enable1 038 global_matte15_proxy0:__global_matte1511 6 enable1 038 global_matte16_proxy0:__global_matte1611 6 enable1 036 global_matte1_proxy0:__global_matte111 6 enable1 036 global_matte2_proxy0:__global_matte211 6 enable1 036 global_matte3_proxy0:__global_matte311 6 enable1 036 global_matte4_proxy0:__global_matte411 6 enable1 036 global_matte5_proxy0:__global_matte50 36 global_matte6_proxy0:__global_matte611 6 enable1 036 global_matte7_proxy0:__global_matte711 6 enable1 036 global_matte8_proxy0:__global_matte811 6 enable1 036 global_matte9_proxy0:__global_matte911 6 enable1 034 incandescent_proxy0:__incandescent11 6 enable1 052 indirect_incandescent_proxy0:__indirect_incandescent11 6 enable1 060 light_grp0_direct_diffuse_proxy0:__light_grp0_direct_diffuse11 6 enable1 082 light_grp0_direct_diffuse_unoccluded_proxy0:__light_grp0_direct_diffuse_unoccluded11 6 enable1 062 light_grp0_direct_specular_proxy0:__light_grp0_direct_specular11 6 enable1 064 light_grp0_indirect_diffuse_proxy0:__light_grp0_indirect_diffuse11 6 enable1 066 light_grp0_indirect_specular_proxy0:__light_grp0_indirect_specular11 6 enable1 030 light_grp0_proxy0:__light_grp00 62 light_grp10_direct_diffuse_proxy0:__light_grp10_direct_diffuse11 6 enable1 064 light_grp10_direct_specular_proxy0:__light_grp10_direct_specular11 6 enable1 066 light_grp10_indirect_diffuse_proxy0:__light_grp10_indirect_diffuse11 6 enable1 068 light_grp10_indirect_specular_proxy0:__light_grp10_indirect_specular11 6 enable1 032 light_grp10_proxy0:__light_grp100 62 light_grp11_direct_diffuse_proxy0:__light_grp11_direct_diffuse11 6 enable1 064 light_grp11_direct_specular_proxy0:__light_grp11_direct_specular11 6 enable1 066 light_grp11_indirect_diffuse_proxy0:__light_grp11_indirect_diffuse11 6 enable1 068 light_grp11_indirect_specular_proxy0:__light_grp11_indirect_specular11 6 enable1 032 light_grp11_proxy0:__light_grp110 62 light_grp12_direct_diffuse_proxy0:__light_grp12_direct_diffuse11 6 enable1 064 light_grp12_direct_specular_proxy0:__light_grp12_direct_specular11 6 enable1 066 light_grp12_indirect_diffuse_proxy0:__light_grp12_indirect_diffuse11 6 enable1 068 light_grp12_indirect_specular_proxy0:__light_grp12_indirect_specular11 6 enable1 032 light_grp12_proxy0:__light_grp120 62 light_grp13_direct_diffuse_proxy0:__light_grp13_direct_diffuse11 6 enable1 064 light_grp13_direct_specular_proxy0:__light_grp13_direct_specular11 6 enable1 066 light_grp13_indirect_diffuse_proxy0:__light_grp13_indirect_diffuse11 6 enable1 068 light_grp13_indirect_specular_proxy0:__light_grp13_indirect_specular11 6 enable1 032 light_grp13_proxy0:__light_grp130 60 light_grp1_direct_diffuse_proxy0:__light_grp1_direct_diffuse11 6 enable1 082 light_grp1_direct_diffuse_unoccluded_proxy0:__light_grp1_direct_diffuse_unoccluded11 6 enable1 062 light_grp1_direct_specular_proxy0:__light_grp1_direct_specular11 6 enable1 064 light_grp1_indirect_diffuse_proxy0:__light_grp1_indirect_diffuse11 6 enable1 066 light_grp1_indirect_specular_proxy0:__light_grp1_indirect_specular11 6 enable1 030 light_grp1_proxy0:__light_grp10 60 light_grp2_direct_diffuse_proxy0:__light_grp2_direct_diffuse11 6 enable1 062 light_grp2_direct_specular_proxy0:__light_grp2_direct_specular11 6 enable1 064 light_grp2_indirect_diffuse_proxy0:__light_grp2_indirect_diffuse11 6 enable1 066 light_grp2_indirect_specular_proxy0:__light_grp2_indirect_specular11 6 enable1 030 light_grp2_proxy0:__light_grp20 60 light_grp3_direct_diffuse_proxy0:__light_grp3_direct_diffuse11 6 enable1 062 light_grp3_direct_specular_proxy0:__light_grp3_direct_specular11 6 enable1 064 light_grp3_indirect_diffuse_proxy0:__light_grp3_indirect_diffuse11 6 enable1 066 light_grp3_indirect_specular_proxy0:__light_grp3_indirect_specular11 6 enable1 030 light_grp3_proxy0:__light_grp30 60 light_grp4_direct_diffuse_proxy0:__light_grp4_direct_diffuse11 6 enable1 062 light_grp4_direct_specular_proxy0:__light_grp4_direct_specular11 6 enable1 064 light_grp4_indirect_diffuse_proxy0:__light_grp4_indirect_diffuse11 6 enable1 066 light_grp4_indirect_specular_proxy0:__light_grp4_indirect_specular11 6 enable1 030 light_grp4_proxy0:__light_grp40 60 light_grp5_direct_diffuse_proxy0:__light_grp5_direct_diffuse11 6 enable1 062 light_grp5_direct_specular_proxy0:__light_grp5_direct_specular11 6 enable1 064 light_grp5_indirect_diffuse_proxy0:__light_grp5_indirect_diffuse11 6 enable1 066 light_grp5_indirect_specular_proxy0:__light_grp5_indirect_specular11 6 enable1 030 light_grp5_proxy0:__light_grp50 60 light_grp6_direct_diffuse_proxy0:__light_grp6_direct_diffuse11 6 enable1 062 light_grp6_direct_specular_proxy0:__light_grp6_direct_specular11 6 enable1 064 light_grp6_indirect_diffuse_proxy0:__light_grp6_indirect_diffuse11 6 enable1 066 light_grp6_indirect_specular_proxy0:__light_grp6_indirect_specular11 6 enable1 030 light_grp6_proxy0:__light_grp60 60 light_grp7_direct_diffuse_proxy0:__light_grp7_direct_diffuse11 6 enable1 062 light_grp7_direct_specular_proxy0:__light_grp7_direct_specular11 6 enable1 064 light_grp7_indirect_diffuse_proxy0:__light_grp7_indirect_diffuse11 6 enable1 066 light_grp7_indirect_specular_proxy0:__light_grp7_indirect_specular11 6 enable1 030 light_grp7_proxy0:__light_grp70 60 light_grp8_direct_diffuse_proxy0:__light_grp8_direct_diffuse11 6 enable1 062 light_grp8_direct_specular_proxy0:__light_grp8_direct_specular11 6 enable1 064 light_grp8_indirect_diffuse_proxy0:__light_grp8_indirect_diffuse11 6 enable1 066 light_grp8_indirect_specular_proxy0:__light_grp8_indirect_specular11 6 enable1 030 light_grp8_proxy0:__light_grp80 60 light_grp9_direct_diffuse_proxy0:__light_grp9_direct_diffuse11 6 enable1 062 light_grp9_direct_specular_proxy0:__light_grp9_direct_specular11 6 enable1 064 light_grp9_indirect_diffuse_proxy0:__light_grp9_indirect_diffuse11 6 enable1 066 light_grp9_indirect_specular_proxy0:__light_grp9_indirect_specular11 6 enable1 030 light_grp9_proxy0:__light_grp90 36 motion_vector_proxy0:__motion_vector11 6 enable1 036 normal_camera_proxy0:__normal_camera11 6 enable1 034 normal_world_proxy0:__normal_world11 6 enable1 040 position_object_proxy0:__position_object11 6 enable1 046 position_reference_proxy0:__position_reference0 38 position_world_proxy0:__position_world0 40 specular_albedo_proxy0:__specular_albedo11 6 enable1 046 specular_roughness_proxy0:__specular_roughness11 6 enable1 054 specular_transmittance_proxy0:__specular_transmittance11 6 enable1 024 uv_map1_proxy0:__uv_map111 6 enable1 0"
+  name MetaLayerEdit1
+  selected true
+  xpos 133
+  ypos 63
+ }
+push $N144146c0
+ Switch {
+  inputs 2
+  which {{Output1.enableFilters}}
+  name Switch1
+  label "\[value which]"
+  selected true
+  xpos -40
+  ypos 93
+ }
+ MetaFilter {
+  regex deep
+  name MetaFilter2
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 129
+  disable {{!parent.Output1.removeDeep}}
+ }
+ ModifyMetaData {
+  metadata {
+   {set input/stalk_dnuuid "\[value parent.stalk_dnuuid \"knob stalk_dnnuid not found\"]"}
+  }
+  name ModifyMetaData1
+  selected true
+  xpos -40
+  ypos 228
+ }
+ Codex {
+  file /jobs/S2/us0240/ELEMENT/E_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005_d001/beauty/4312x2304/CG_us0240_lighting_fx_fogBottom_L100_BEAUTY_v005.####.exr
+  format "4312 2304 0 0 4312 2304 1 S2 Working"
+  first 1001
+  last 1102
+  on_error "nearest frame"
+  smartGrade true
+  aovs ""
+  name Codex
+  selected true
+  xpos -40
+  ypos 252
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -40
+  ypos 300
+  addUserKnob {20 User}
+  addUserKnob {6 enableFilters l "Enable Filters (removes uncommon AOVs)" +STARTLINE}
+  addUserKnob {6 removeDeep l "Remove Deep (removes deep from being loaded)" +INVISIBLE +STARTLINE}
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "<p>Codex Template Script\n/jobs/S2/ASSET/ivy/cdxc/CDXC_S2_v006/CDXC_S2_v006.nk"
+  note_font_size 12
+  xpos 160
+  ypos -46
+ }
+end_group
+set N13580bf0 [stack 0]
+push $N13e92670
+AOVLayerSwap {
+ inputs 2
+ _version 1
+ name AOVLayerSwap11
+ selected true
+ xpos 6403
+ ypos -13056
+}
+Group {
+ inputs 0
+ name AOVCodex26
+ autolabel "__import__(\"dnnuke.nodes.codex_utils\", fromlist=\[\"autolabel_codex_group\"]).autolabel_codex_group()"
+ tile_color 0x242424ff
+ label CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v004
+ note_font_color 0xffffffff
+ selected true
+ xpos 6131
+ ypos -11527
+ postage_stamp true
+ addUserKnob {20 AOVCodex}
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class AOVCodex
+ addUserKnob {1 _wrapper l "" +STARTLINE +INVISIBLE}
+ _wrapper "AOVCodex dnnuke.nodes.aov_codex.wrapper"
+ addUserKnob {22 docButton l Documentation -STARTLINE T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())"}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ file /jobs/S2/us0240/CG/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v004/beauty/2156x1152/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v004.####.exr
+ addUserKnob {41 AOVs T Codex.aovs}
+ addUserKnob {20 custom l Custom n 1}
+ addUserKnob {20 custom_end l Custom n -1}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {41 format T Codex.format}
+ addUserKnob {41 first l "frame range" T Codex.first}
+ addUserKnob {41 before l "" -STARTLINE T Codex.before}
+ addUserKnob {41 last l "" -STARTLINE T Codex.last}
+ addUserKnob {41 after l "" -STARTLINE T Codex.after}
+ addUserKnob {41 frame_mode l frame T Codex.frame_mode}
+ addUserKnob {41 frame l "" -STARTLINE T Codex.frame}
+ addUserKnob {41 on_error l "missing frames" T Codex.on_error}
+ addUserKnob {20 readknobsEndGroup l "Read Knobs" n -1}
+ addUserKnob {20 leafmeta_tab l LeafMeta}
+ addUserKnob {41 leaf0 l 0 T Codex.leaf0}
+ addUserKnob {41 meta0 l "" -STARTLINE T Codex.meta0}
+ addUserKnob {41 leaf1 l 1 T Codex.leaf1}
+ addUserKnob {41 meta1 l "" -STARTLINE T Codex.meta1}
+ addUserKnob {41 leaf2 l 2 T Codex.leaf2}
+ addUserKnob {41 meta2 l "" -STARTLINE T Codex.meta2}
+ addUserKnob {20 template_tab l Template}
+ addUserKnob {26 template l "script : " T CDXC_LIBRARY_v002.nk}
+ addUserKnob {26 _1 l "" +STARTLINE T " "}
+ addUserKnob {22 ivy_publish l Publish... t "Publish internal nodes as a new codex template to the SHOW.<br />New AOVCodex nodes import the latest published, approved template." T "__import__('dnnuke.core.codex.publisher', fromlist=\['publish']).publish(group=nuke.thisNode())" +STARTLINE}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 326fd58c-4be4-4a81-81d4-bacfcdd71b67
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 4d582149-9a47-4a17-b4c6-a09515940ef7
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 053253ae-c7cf-4d13-b22e-1219a8e5951e
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 150ae115-ea06-4a4b-8ee5-1519424b3824
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype cgr
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 4
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "FFR | 2K fx fog density + light update"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ MetaPython {
+  inputs 0
+  python "stalk_dnuuid = nuke.thisNode()\['stalk_dnuuid'].value()\n\nthis.catalog\['stalk'].clear()\nif stalk_dnuuid:\n    codex_item = codex.CodexItem.create(stalk_dnuuid, \"Stalk\")\n    this.catalog\['stalk'].append(codex_item)\n"
+  name MetaStalkCreatePy
+  tile_color 0x4800ff
+  label "stalk_dnuuid : \[value stalk_dnuuid]"
+  xpos -40
+  ypos -46
+  addUserKnob {20 StalkCreate}
+  addUserKnob {1 stalk_dnuuid}
+  stalk_dnuuid 4d582149-9a47-4a17-b4c6-a09515940ef7
+ }
+ MetaPython {
+  python "if len(this.catalog\[\"stalk\"]):\n    stalk_dnuuid = this.catalog\[\"stalk\"]\[0]\[\"dnuuid\"]\n    codex_array = codex.CodexArray.create(stalk_dnuuid)\n    this.catalog\['leaf'] = codex_array.filter(codex.ItemType.deep, \"0\")\n    for item in codex_array.filter(codex.ItemType.deep, \"1\"):\n        if item.get(\"dnuuid\"):\n            data_object = item.get(\"dnuuid\").as_data_object()\n            if data_object.hasAttr(\"format\") and data_object.get(\"format\") == \"id\":\n                this.catalog\['id'].append(item)\n            else:\n                this.catalog\['leaf'].append(item)\n    this.catalog\['stalk'].clear()\n"
+  name MetaLeafsFromStalkPy
+  tile_color 0x4800ff
+  xpos -40
+  ypos -10
+ }
+ MetaFilter {
+  regex variance_|playback
+  name MetaFilter1
+  tile_color 0x4800ff
+  xpos -40
+  ypos 14
+ }
+ ModifyMetaData {
+  metadata {
+   {set input/stalk_dnuuid "\[value parent.stalk_dnuuid \"knob stalk_dnnuid not found\"]"}
+  }
+  name ModifyMetaData1
+  xpos -40
+  ypos 51
+ }
+ Codex {
+  file /jobs/S2/us0240/CG/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v004/beauty/2156x1152/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v004.####.exr
+  format "2156 1152 0 0 2156 1152 1 S2 Working Proxy"
+  first 1001
+  last 1102
+  on_error "nearest frame"
+  smartGrade true
+  aovs ""
+  name Codex
+  xpos -40
+  ypos 75
+ }
+ Output {
+  name Output1
+  xpos -40
+  ypos 123
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "<p>Codex Template Script\n/jobs/LIBRARY/ASSET/ivy/cdxc/CDXC_LIBRARY_v002/CDXC_LIBRARY_v002.nk"
+  note_font_size 12
+  xpos 160
+  ypos -46
+ }
+end_group
+Group {
+ inputs 0
+ name AOVCodex27
+ autolabel "__import__(\"dnnuke.nodes.codex_utils\", fromlist=\[\"autolabel_codex_group\"]).autolabel_codex_group()"
+ tile_color 0x242424ff
+ label E_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005_d001
+ note_font_color 0xffffffff
+ selected true
+ xpos 6648
+ ypos -11475
+ postage_stamp true
+ addUserKnob {20 AOVCodex}
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class AOVCodex
+ addUserKnob {1 _wrapper l "" +STARTLINE +INVISIBLE}
+ _wrapper "AOVCodex dnnuke.nodes.aov_codex.wrapper"
+ addUserKnob {22 docButton l Documentation -STARTLINE T "__import__('dnnuke.utils.asst.common', fromlist=\['openDocs']).openDocs(nuke.thisNode())"}
+ addUserKnob {26 docdivider l "" +STARTLINE}
+ addUserKnob {1 file l Beauty}
+ file /jobs/S2/us0240/ELEMENT/E_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005_d001/beauty/4312x2304/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005.####.exr
+ addUserKnob {41 AOVs T Codex.aovs}
+ addUserKnob {20 custom l Custom n 1}
+ addUserKnob {41 enableFilters T Output1.enableFilters}
+ addUserKnob {41 removeDeep +INVISIBLE T Output1.removeDeep}
+ addUserKnob {20 custom_end l Custom n -1}
+ addUserKnob {20 readknobs l "Read Knobs" n 1}
+ addUserKnob {41 format T Codex.format}
+ addUserKnob {41 first l "frame range" T Codex.first}
+ addUserKnob {41 before l "" -STARTLINE T Codex.before}
+ addUserKnob {41 last l "" -STARTLINE T Codex.last}
+ addUserKnob {41 after l "" -STARTLINE T Codex.after}
+ addUserKnob {41 frame_mode l frame T Codex.frame_mode}
+ addUserKnob {41 frame l "" -STARTLINE T Codex.frame}
+ addUserKnob {41 on_error l "missing frames" T Codex.on_error}
+ addUserKnob {20 readknobsEndGroup l "Read Knobs" n -1}
+ addUserKnob {20 leafmeta_tab l LeafMeta}
+ addUserKnob {41 leaf0 l 0 T Codex.leaf0}
+ addUserKnob {41 meta0 l "" -STARTLINE T Codex.meta0}
+ addUserKnob {41 leaf1 l 1 T Codex.leaf1}
+ addUserKnob {41 meta1 l "" -STARTLINE T Codex.meta1}
+ addUserKnob {41 leaf2 l 2 T Codex.leaf2}
+ addUserKnob {41 meta2 l "" -STARTLINE T Codex.meta2}
+ addUserKnob {20 template_tab l Template}
+ addUserKnob {26 template l "script : " T CDXC_S2_v006.nk}
+ addUserKnob {26 _1 l "" +STARTLINE T " "}
+ addUserKnob {22 ivy_publish l Publish... t "Publish internal nodes as a new codex template to the SHOW.<br />New AOVCodex nodes import the latest published, approved template." T "__import__('dnnuke.core.codex.publisher', fromlist=\['publish']).publish(group=nuke.thisNode())" +STARTLINE}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': '', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \{\}, 'ivy_shot': '', 'ivy_regex': False, 'ivy_type': '', 'ivy_versionquery': '', 'spider_uri': ''\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid d6519886-4ed8-44eb-8262-f70606783d22
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid b4e078e3-e4c2-4655-803e-95be23207a18
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid e9f824fa-c932-4c3e-acbd-c612fb5ea846
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid cb70273d-9d2b-42ce-9d48-86724dc3e619
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype elmr
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main_proxy0
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "'Automatic denoiser of CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005'"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ MetaPython {
+  inputs 0
+  python "stalk_dnuuid = nuke.thisNode()\['stalk_dnuuid'].value()\n\nthis.catalog\['stalk'].clear()\nif stalk_dnuuid:\n    codex_item = codex.CodexItem.create(stalk_dnuuid, \"Stalk\")\n    this.catalog\['stalk'].append(codex_item)\n"
+  name MetaStalkCreatePy
+  tile_color 0x4800ff
+  label "stalk_dnuuid : \[value stalk_dnuuid]"
+  selected true
+  xpos -40
+  ypos -46
+  addUserKnob {20 StalkCreate}
+  addUserKnob {1 stalk_dnuuid}
+  stalk_dnuuid b4e078e3-e4c2-4655-803e-95be23207a18
+ }
+ MetaPython {
+  python "if len(this.catalog\[\"stalk\"]):\n    stalk_dnuuid = this.catalog\[\"stalk\"]\[0]\[\"dnuuid\"]\n    codex_array = codex.CodexArray.create(stalk_dnuuid)\n    this.catalog\['leaf'] = codex_array.filter(codex.ItemType.deep, \"0\")\n    for item in codex_array.filter(codex.ItemType.deep, \"1\"):\n        if item.get(\"dnuuid\"):\n            data_object = item.get(\"dnuuid\").as_data_object()\n            if data_object.hasAttr(\"format\") and data_object.get(\"format\") == \"id\":\n                this.catalog\['id'].append(item)\n            else:\n                this.catalog\['leaf'].append(item)\n    this.catalog\['stalk'].clear()\n"
+  name MetaLeafsFromStalkPy
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos -10
+ }
+ MetaFilter {
+  regex variance_|playback
+  name MetaFilter1
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 14
+ }
+set N138b6c10 [stack 0]
+ MetaLayerEdit {
+  edit "20 alpha_proxy0:__alpha11 6 enable1 030 beauty_lpe_proxy0:__beauty_lpe11 6 enable1 042 clearcoat_albedo_proxy0:__clearcoat_albedo11 6 enable1 048 clearcoat_roughness_proxy0:__clearcoat_roughness11 6 enable1 048 cryptomatte_asset00_proxy0:__cryptomatte_asset0011 6 enable1 048 cryptomatte_asset02_proxy0:__cryptomatte_asset0211 6 enable1 044 cryptomatte_asset_proxy0:__cryptomatte_asset11 6 enable1 054 cryptomatte_material00_proxy0:__cryptomatte_material0011 6 enable1 054 cryptomatte_material01_proxy0:__cryptomatte_material0111 6 enable1 054 cryptomatte_material02_proxy0:__cryptomatte_material0211 6 enable1 050 cryptomatte_material_proxy0:__cryptomatte_material11 6 enable1 050 cryptomatte_object00_proxy0:__cryptomatte_object0011 6 enable1 050 cryptomatte_object01_proxy0:__cryptomatte_object0111 6 enable1 050 cryptomatte_object02_proxy0:__cryptomatte_object0211 6 enable1 046 cryptomatte_object_proxy0:__cryptomatte_object11 6 enable1 020 depth_proxy0:__depth0 72 diagnostics_camera_sample_count_proxy0:__diagnostics_camera_sample_count11 6 enable1 038 diffuse_albedo_proxy0:__diffuse_albedo11 6 enable1 044 diffuse_roughness_proxy0:__diffuse_roughness11 6 enable1 052 diffuse_transmittance_proxy0:__diffuse_transmittance11 6 enable1 048 direct_incandescent_proxy0:__direct_incandescent0 42 disney_basecolor_proxy0:__disney_basecolor11 6 enable1 026 distance_proxy0:__distance11 6 enable1 051 genericLightning_01_proxy0:dneg_genericlightning_010 51 genericLightning_02_proxy0:dneg_genericlightning_020 51 genericLightning_03_proxy0:dneg_genericlightning_030 51 genericLightning_04_proxy0:dneg_genericlightning_040 36 global_matte0_proxy0:__global_matte011 6 enable1 038 global_matte10_proxy0:__global_matte1011 6 enable1 038 global_matte11_proxy0:__global_matte110 38 global_matte12_proxy0:__global_matte1211 6 enable1 038 global_matte13_proxy0:__global_matte1311 6 enable1 038 global_matte14_proxy0:__global_matte1411 6 enable1 038 global_matte15_proxy0:__global_matte1511 6 enable1 038 global_matte16_proxy0:__global_matte1611 6 enable1 036 global_matte1_proxy0:__global_matte111 6 enable1 036 global_matte2_proxy0:__global_matte211 6 enable1 036 global_matte3_proxy0:__global_matte311 6 enable1 036 global_matte4_proxy0:__global_matte411 6 enable1 036 global_matte5_proxy0:__global_matte50 36 global_matte6_proxy0:__global_matte611 6 enable1 036 global_matte7_proxy0:__global_matte711 6 enable1 036 global_matte8_proxy0:__global_matte811 6 enable1 036 global_matte9_proxy0:__global_matte911 6 enable1 034 incandescent_proxy0:__incandescent11 6 enable1 052 indirect_incandescent_proxy0:__indirect_incandescent11 6 enable1 060 light_grp0_direct_diffuse_proxy0:__light_grp0_direct_diffuse11 6 enable1 082 light_grp0_direct_diffuse_unoccluded_proxy0:__light_grp0_direct_diffuse_unoccluded11 6 enable1 062 light_grp0_direct_specular_proxy0:__light_grp0_direct_specular11 6 enable1 064 light_grp0_indirect_diffuse_proxy0:__light_grp0_indirect_diffuse11 6 enable1 066 light_grp0_indirect_specular_proxy0:__light_grp0_indirect_specular11 6 enable1 030 light_grp0_proxy0:__light_grp00 62 light_grp10_direct_diffuse_proxy0:__light_grp10_direct_diffuse11 6 enable1 064 light_grp10_direct_specular_proxy0:__light_grp10_direct_specular11 6 enable1 066 light_grp10_indirect_diffuse_proxy0:__light_grp10_indirect_diffuse11 6 enable1 068 light_grp10_indirect_specular_proxy0:__light_grp10_indirect_specular11 6 enable1 032 light_grp10_proxy0:__light_grp100 62 light_grp11_direct_diffuse_proxy0:__light_grp11_direct_diffuse11 6 enable1 064 light_grp11_direct_specular_proxy0:__light_grp11_direct_specular11 6 enable1 066 light_grp11_indirect_diffuse_proxy0:__light_grp11_indirect_diffuse11 6 enable1 068 light_grp11_indirect_specular_proxy0:__light_grp11_indirect_specular11 6 enable1 032 light_grp11_proxy0:__light_grp110 62 light_grp12_direct_diffuse_proxy0:__light_grp12_direct_diffuse11 6 enable1 064 light_grp12_direct_specular_proxy0:__light_grp12_direct_specular11 6 enable1 066 light_grp12_indirect_diffuse_proxy0:__light_grp12_indirect_diffuse11 6 enable1 068 light_grp12_indirect_specular_proxy0:__light_grp12_indirect_specular11 6 enable1 032 light_grp12_proxy0:__light_grp120 62 light_grp13_direct_diffuse_proxy0:__light_grp13_direct_diffuse11 6 enable1 064 light_grp13_direct_specular_proxy0:__light_grp13_direct_specular11 6 enable1 066 light_grp13_indirect_diffuse_proxy0:__light_grp13_indirect_diffuse11 6 enable1 068 light_grp13_indirect_specular_proxy0:__light_grp13_indirect_specular11 6 enable1 032 light_grp13_proxy0:__light_grp130 60 light_grp1_direct_diffuse_proxy0:__light_grp1_direct_diffuse11 6 enable1 082 light_grp1_direct_diffuse_unoccluded_proxy0:__light_grp1_direct_diffuse_unoccluded11 6 enable1 062 light_grp1_direct_specular_proxy0:__light_grp1_direct_specular11 6 enable1 064 light_grp1_indirect_diffuse_proxy0:__light_grp1_indirect_diffuse11 6 enable1 066 light_grp1_indirect_specular_proxy0:__light_grp1_indirect_specular11 6 enable1 030 light_grp1_proxy0:__light_grp10 60 light_grp2_direct_diffuse_proxy0:__light_grp2_direct_diffuse11 6 enable1 062 light_grp2_direct_specular_proxy0:__light_grp2_direct_specular11 6 enable1 064 light_grp2_indirect_diffuse_proxy0:__light_grp2_indirect_diffuse11 6 enable1 066 light_grp2_indirect_specular_proxy0:__light_grp2_indirect_specular11 6 enable1 030 light_grp2_proxy0:__light_grp20 60 light_grp3_direct_diffuse_proxy0:__light_grp3_direct_diffuse11 6 enable1 062 light_grp3_direct_specular_proxy0:__light_grp3_direct_specular11 6 enable1 064 light_grp3_indirect_diffuse_proxy0:__light_grp3_indirect_diffuse11 6 enable1 066 light_grp3_indirect_specular_proxy0:__light_grp3_indirect_specular11 6 enable1 030 light_grp3_proxy0:__light_grp30 60 light_grp4_direct_diffuse_proxy0:__light_grp4_direct_diffuse11 6 enable1 062 light_grp4_direct_specular_proxy0:__light_grp4_direct_specular11 6 enable1 064 light_grp4_indirect_diffuse_proxy0:__light_grp4_indirect_diffuse11 6 enable1 066 light_grp4_indirect_specular_proxy0:__light_grp4_indirect_specular11 6 enable1 030 light_grp4_proxy0:__light_grp40 60 light_grp5_direct_diffuse_proxy0:__light_grp5_direct_diffuse11 6 enable1 062 light_grp5_direct_specular_proxy0:__light_grp5_direct_specular11 6 enable1 064 light_grp5_indirect_diffuse_proxy0:__light_grp5_indirect_diffuse11 6 enable1 066 light_grp5_indirect_specular_proxy0:__light_grp5_indirect_specular11 6 enable1 030 light_grp5_proxy0:__light_grp50 60 light_grp6_direct_diffuse_proxy0:__light_grp6_direct_diffuse11 6 enable1 062 light_grp6_direct_specular_proxy0:__light_grp6_direct_specular11 6 enable1 064 light_grp6_indirect_diffuse_proxy0:__light_grp6_indirect_diffuse11 6 enable1 066 light_grp6_indirect_specular_proxy0:__light_grp6_indirect_specular11 6 enable1 030 light_grp6_proxy0:__light_grp60 60 light_grp7_direct_diffuse_proxy0:__light_grp7_direct_diffuse11 6 enable1 062 light_grp7_direct_specular_proxy0:__light_grp7_direct_specular11 6 enable1 064 light_grp7_indirect_diffuse_proxy0:__light_grp7_indirect_diffuse11 6 enable1 066 light_grp7_indirect_specular_proxy0:__light_grp7_indirect_specular11 6 enable1 030 light_grp7_proxy0:__light_grp70 60 light_grp8_direct_diffuse_proxy0:__light_grp8_direct_diffuse11 6 enable1 062 light_grp8_direct_specular_proxy0:__light_grp8_direct_specular11 6 enable1 064 light_grp8_indirect_diffuse_proxy0:__light_grp8_indirect_diffuse11 6 enable1 066 light_grp8_indirect_specular_proxy0:__light_grp8_indirect_specular11 6 enable1 030 light_grp8_proxy0:__light_grp80 60 light_grp9_direct_diffuse_proxy0:__light_grp9_direct_diffuse11 6 enable1 062 light_grp9_direct_specular_proxy0:__light_grp9_direct_specular11 6 enable1 064 light_grp9_indirect_diffuse_proxy0:__light_grp9_indirect_diffuse11 6 enable1 066 light_grp9_indirect_specular_proxy0:__light_grp9_indirect_specular11 6 enable1 030 light_grp9_proxy0:__light_grp90 36 motion_vector_proxy0:__motion_vector11 6 enable1 036 normal_camera_proxy0:__normal_camera11 6 enable1 034 normal_world_proxy0:__normal_world11 6 enable1 040 position_object_proxy0:__position_object11 6 enable1 046 position_reference_proxy0:__position_reference0 38 position_world_proxy0:__position_world0 40 specular_albedo_proxy0:__specular_albedo11 6 enable1 046 specular_roughness_proxy0:__specular_roughness11 6 enable1 054 specular_transmittance_proxy0:__specular_transmittance11 6 enable1 024 uv_map1_proxy0:__uv_map111 6 enable1 0"
+  name MetaLayerEdit1
+  selected true
+  xpos 133
+  ypos 63
+ }
+push $N138b6c10
+ Switch {
+  inputs 2
+  which {{Output1.enableFilters}}
+  name Switch1
+  label "\[value which]"
+  selected true
+  xpos -40
+  ypos 93
+ }
+ MetaFilter {
+  regex deep
+  name MetaFilter2
+  tile_color 0x4800ff
+  selected true
+  xpos -40
+  ypos 129
+  disable {{!parent.Output1.removeDeep}}
+ }
+ ModifyMetaData {
+  metadata {
+   {set input/stalk_dnuuid "\[value parent.stalk_dnuuid \"knob stalk_dnnuid not found\"]"}
+  }
+  name ModifyMetaData1
+  selected true
+  xpos -40
+  ypos 228
+ }
+ Codex {
+  file /jobs/S2/us0240/ELEMENT/E_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005_d001/beauty/4312x2304/CG_us0240_lighting_fx_fogBottom_L120_BEAUTY_v005.####.exr
+  format "4312 2304 0 0 4312 2304 1 S2 Working"
+  first 1001
+  last 1102
+  on_error "nearest frame"
+  smartGrade true
+  aovs ""
+  name Codex
+  selected true
+  xpos -40
+  ypos 252
+ }
+ Output {
+  name Output1
+  selected true
+  xpos -40
+  ypos 300
+  addUserKnob {20 User}
+  addUserKnob {6 enableFilters l "Enable Filters (removes uncommon AOVs)" +STARTLINE}
+  addUserKnob {6 removeDeep l "Remove Deep (removes deep from being loaded)" +INVISIBLE +STARTLINE}
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "<p>Codex Template Script\n/jobs/S2/ASSET/ivy/cdxc/CDXC_S2_v006/CDXC_S2_v006.nk"
+  note_font_size 12
+  xpos 160
+  ypos -46
+ }
+end_group
+set N147825c0 [stack 0]
+push $N13333270
+AOVLayerSwap {
+ inputs 2
+ _version 1
+ name AOVLayerSwap13
+ selected true
+ xpos 6371
+ ypos -11395
+}
+Roto {
+ inputs 0
+ output alpha
+ cliptype none
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x4506c000 x44900000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Ellipse1 512 bezier
+     {{cc
+       {f 8192}
+       {px
+        {x4485a000 x4485c000 x4485e000}
+        {{{x 2
+        {xc3048c60 -}}      xc3048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x43d45bdc 0 1 xc39b5bdc 1}
+       {x42e40000 xc39b5bdc 1 0 1}      xc39430e0}
+      {{x44c3c273 0 1 xc45484e6 1}
+       {x44330000 xc45484e6 1 0 1}      x41f09c40}}
+        {{{x 2
+        {x43048c60 -}}      x43048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {xc36f23a8 -}}      xc36f23a8}}
+        {{{x44262dee 0 1 xc39b5bdc 1}
+       {x43b10000 xc39b5bdc 1 0 1}      xc26186f8}
+      {{x44f9e273 0 1 xc45484e6 1}
+       {x448fa000 xc45484e6 1 0 1}      x43e789c4}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {x436f23a8 -}}      x436f23a8}}
+        {{{x 2
+        {x43048c60 -}}      x43048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x43d45bdc 0 1 xc39b5bdc 1}
+       {x42e40000 xc39b5bdc 1 0 1}      xc39430e0}
+      {{x4518013a 0 1 xc45484e8 1}
+       {x44c5c000 xc45484e8 1 0 1}      x446004e2}}
+        {{{x 2
+        {xc3048c60 -}}      xc3048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {x436f23a8 -}}      x436f23a8}}
+        {{{x4338b7b7 0 1 xc39b5bdc 1}
+       {xc2fc0000 xc39b5bdc 1 0 1}      xc4061870}
+      {{x44f9e273 0 1 xc45484e6 1}
+       {x448fa000 xc45484e6 1 0 1}      x43e789c4}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {xc36f23a8 -}}      xc36f23a8}}}}
+      {cc
+       {f 8192}
+       {px
+        {x4485a000 x4485c000 x4485e000}
+        {{{x 2
+        {xc3048c60 -}}      xc3048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {x43048c60 -}}      x43048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {xc36f23a8 -}}      xc36f23a8}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {x436f23a8 -}}      x436f23a8}}
+        {{{x 2
+        {x43048c60 -}}      x43048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {xc3048c60 -}}      xc3048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {x436f23a8 -}}      x436f23a8}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {xc36f23a8 -}}      xc36f23a8}}}}}
+     {tx x4485c000 x42e40000 x448fa000}
+     {a opc
+   {{x4485a000 0 0 1 x3fc00000 1}
+    {x4485c000 1 -}
+    {x4485e000 0 xbfc00000 1 0 1}}     osw x41200000 osf 0 str 1 spx x4506c000 spy x44900000 sb 1 ltn x4485c000 ltm x4485c000 tt x40e00000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 tt 7 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {2156 1152}
+ colorOverlay {0 0 0 0}
+ opacity {{curve x1069 0 1 0}}
+ lifetime_type "all frames"
+ lifetime_start 1070
+ lifetime_end 1070
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto110
+ selected true
+ xpos 6007
+ ypos -10566
+}
+Roto {
+ inputs 0
+ output alpha
+ cliptype none
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x4506c000 x44900000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Bezier1 512 bezier
+     {{cc
+       {f 8192}
+       {px
+        {x447a4000 x4489c000}
+        {{x40bd5800}
+      {x3ee46000 x3ee45000}}
+        {{x450410ff x4503b764}
+      {x448b8776 x448bb443}}
+        {{xc0bd5800}
+      {xbee46000}}
+        {{x3f1e2000}
+      {x40e6f400}}
+        {{x4503806c x450326d1}
+      {x4487b042 x4487dd0f}}
+        {{xbf1e3000}
+      {xc0e6f200 xc0e6f300}}
+        {{xc0a36e00}
+      {x41a78a80}}
+        {{x4503604b x450306b0}
+      {x4476cc0a x447725a3}}
+        {{x40a36c00}
+      {xc1a78a80}}
+        {{xc1e34e80}
+      {x41500d00}}
+        {{x45074443 x4506eaa8}
+      {x44519eaa x4451f843}}
+        {{x41e34e00}
+      {xc1500d00}}
+        {{xc21d2ac0}
+      {xc217fe80}}
+        {{x45180559 x4517abbe}
+      {x4451015a x44515af3}}
+        {{x421d2ac0}
+      {x4217fe60}}
+        {{x4222c840}
+      {xc20eddc0 xc20edde0}}
+        {{x4518e63e x45188ca3}
+      {x448aea26 x448b16f3}}
+        {{xc222c800}
+      {x420eddc0}}}}     idem}
+     {tx x4489c000 x450ad800 x447a8000}
+     {a osw x41200000 osf 0 str 1 spx x4506c000 spy x44900000 sb 1 ltn x4489c000 ltm x4489c000 tt x40800000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {2156 1152}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ lifetime_start 1102
+ lifetime_end 1102
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto111
+ selected true
+ xpos 6447
+ ypos -10602
+}
+Blur {
+ size 50
+ name Blur117
+ selected true
+ xpos 6447
+ ypos -10566
+}
+push $N147825c0
+Reformat {
+ pbb true
+ name Reformat67
+ selected true
+ xpos 6525
+ ypos -11243
+}
+Group {
+ name IvyGroup3
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 6227
+ ypos -11010
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... +HIDDEN T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ _expressions {{curve}}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  xpos -58
+  ypos 394
+ }
+set N141992e0 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  xpos 100
+  ypos 394
+ }
+add_layer {__depth __depth.red __depth.green __depth.blue __depth.alpha __depth.r __depth.x __depth.y __depth.z __depth.Z __depth.r __depth.Z __depth.r}
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  xpos 66
+  ypos 440
+ }
+set N1391efe0 [stack 0]
+push $N1391efe0
+push $N1391efe0
+push $N1391efe0
+push $N1391efe0
+push $N1391efe0
+push $N141992e0
+ Unpremult {
+  channels all
+  name Unpremult
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  xpos -92
+  ypos 496
+ }
+add_layer {__normal_world __normal_world.x __normal_world.y __normal_world.z __normal_world.red __normal_world.green __normal_world.blue __normal_world.alpha __normal_world.alpha}
+ Copy {
+  inputs 2
+  channels {__normal_world.x __normal_world.y __normal_world.z -__normal_world.red}
+  name Copy2
+  xpos -92
+  ypos 546
+ }
+add_layer {__position_object __position_object.x __position_object.y __position_object.z __position_object.y __position_object.z}
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  xpos -92
+  ypos 595
+ }
+add_layer {__position_reference __position_reference.x __position_reference.y __position_reference.z}
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  xpos -92
+  ypos 644
+ }
+add_layer {__position_world __position_world.x __position_world.y __position_world.z __position_world.red __position_world.green __position_world.blue __position_world.alpha __position_world.alpha}
+ Copy {
+  inputs 2
+  channels {__position_world.x __position_world.y __position_world.z -__position_world.red}
+  name Copy5
+  xpos -92
+  ypos 695
+ }
+add_layer {__motion_vector __motion_vector.x __motion_vector.y __motion_vector.z __motion_vector.red __motion_vector.green __motion_vector.blue __motion_vector.alpha}
+ Copy {
+  inputs 2
+  channels {__motion_vector.x __motion_vector.y -__motion_vector.z -__motion_vector.red}
+  name Copy6
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  xpos -92
+  ypos 839
+ }
+end_group
+Density {
+ name Density11
+ selected true
+ xpos 6227
+ ypos -10710
+ value 0.5
+ debug 0
+ maskChannel rgba.alpha
+}
+Multiply {
+ inputs 1+1
+ value 0
+ name Multiply20
+ selected true
+ xpos 6227
+ ypos -10566
+}
+set N179299e0 [stack 0]
+push $N14738500
+Keymix {
+ inputs 3
+ name Keymix18
+ selected true
+ xpos 6007
+ ypos -10470
+}
+push $N179299e0
+Grade {
+ white {1.03 0.9 0.85 1}
+ white_panelDropped true
+ name Grade103
+ selected true
+ xpos 6227
+ ypos -10488
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy19
+ selected true
+ xpos 6227
+ ypos -10446
+}
+Premult {
+ channels all
+ name Premult24
+ selected true
+ xpos 6227
+ ypos -10398
+}
+FixVals {
+ Mode "Fix (Auto Fill)"
+ name FixVals20
+ selected true
+ xpos 6227
+ ypos -10350
+}
+Remove {
+ operation keep
+ channels rgba
+ channels2 {__depth.red __depth.green __depth.blue __depth.alpha}
+ name Remove57
+ selected true
+ xpos 6227
+ ypos -10296
+}
+Dot {
+ name Dot205
+ selected true
+ xpos 6255
+ ypos -10251
+}
+Roto {
+ inputs 0
+ output alpha
+ cliptype none
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x4506c000 x44900000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Ellipse1 512 bezier
+     {{cc
+       {f 8192}
+       {px
+        {x447a4000 x4489c000}
+        {{xc342f4e0}
+      {0}}
+        {{x4430c000 x4414bffe}
+      {x44460000 x44457fff}}
+        {{x4342f4e0}
+      {0}}
+        {{0}
+      {xc2186e40}}
+        {{x44848000 x446cfffe}
+      {x44574000 x4456bfff}}
+        {{0}
+      {x42186e40}}
+        {{x4342f4e0}
+      {0}}
+        {{x4430c000 x4414bffe}
+      {x44688000 x4467ffff}}
+        {{xc342f4e0}
+      {0}}
+        {{0}
+      {x42186e40}}
+        {{x43b10000 x4371fff8}
+      {x44574000 x4456bfff}}
+        {{0}
+      {xc2186e40}}}}
+      {cc
+       {f 8192}
+       {px
+        {x447a4000 x4489c000}
+        {{xc342f4e0}
+      {0}}
+        {{0}
+      {0}}
+        {{x4342f4e0}
+      {0}}
+        {{0}
+      {xc2186e40}}
+        {{0}
+      {0}}
+        {{0}
+      {x42186e40}}
+        {{x4342f4e0}
+      {0}}
+        {{0}
+      {0}}
+        {{xc342f4e0}
+      {0}}
+        {{0}
+      {x42186e40}}
+        {{0}
+      {0}}
+        {{0}
+      {xc2186e40}}}}}
+     {tx x447a4000 x4430c000 x44574000}
+     {a osw x41200000 osf 0 str 1 spx x4506c000 spy x44900000 sb 1 ltn x447a4000 ltm x447a4000 tt x40e00000}}
+    {curvegroup Bezier1 512 bezier
+     {{cc
+       {f 8192}
+       {px
+        {x447a4000 x4489c000}
+        {{{x40bd5800 -}}
+	 {{x3ee46000 0 1 xb5a237c3 1}
+	  {x3ee45000 xb5a237c3 1 0 1}}}
+        {{{x450410ff 0 1 xbd631e6a 1}
+	  {x4503b764 xbd631e6a 1 0 1}}
+	 {{x448b8776 0 1 x3c631be2 1}
+	  {x448bb443 x3c631be2 1 0 1}}}
+        {{{xc0bd5800 -}}
+	 {{xbee46000 -}}}
+        {{{x3f1e2000 -}}
+	 {{x40e6f400 -}}}
+        {{{x4503806c 0 1 xbd631e6a 1}
+	  {x450326d1 xbd631e6a 1 0 1}}
+	 {{x4487b042 0 1 x3c631be2 1}
+	  {x4487dd0f x3c631be2 1 0 1}}}
+        {{{xbf1e3000 -}}
+	 {{xc0e6f200 0 1 xb5a237c3 1}
+	  {xc0e6f300 xb5a237c3 1 0 1}}}
+        {{{xc0a36e00 -}}
+	 {{x41a78a80 -}}}
+        {{{x4503604b 0 1 xbd631e6a 1}
+	  {x450306b0 xbd631e6a 1 0 1}}
+	 {{x4476cc0a 0 1 x3c631959 1}
+	  {x447725a3 x3c631959 1 0 1}}}
+        {{{x40a36c00 -}}
+	 {{xc1a78a80 -}}}
+        {{{xc1e34e80 -}}
+	 {{x41500d00 -}}}
+        {{{x45074443 0 1 xbd631e6a 1}
+	  {x4506eaa8 xbd631e6a 1 0 1}}
+	 {{x44519eaa 0 1 x3c631959 1}
+	  {x4451f843 x3c631959 1 0 1}}}
+        {{{x41e34e00 -}}
+	 {{xc1500d00 -}}}
+        {{{xc21d2ac0 -}}
+	 {{xc217fe80 -}}}
+        {{{x45180559 0 1 xbd631e6a 1}
+	  {x4517abbe xbd631e6a 1 0 1}}
+	 {{x4451015a 0 1 x3c631959 1}
+	  {x44515af3 x3c631959 1 0 1}}}
+        {{{x421d2ac0 -}}
+	 {{x4217fe60 -}}}
+        {{{x4222c840 -}}
+	 {{xc20eddc0 0 1 xb5a237c3 1}
+	  {xc20edde0 xb5a237c3 1 0 1}}}
+        {{{x4518e63e 0 1 xbd631e6a 1}
+	  {x45188ca3 xbd631e6a 1 0 1}}
+	 {{x448aea26 0 1 x3c631be2 1}
+	  {x448b16f3 x3c631be2 1 0 1}}}
+        {{{xc222c800 -}}
+	 {{x420eddc0 -}}}}}     idem}
+     {tx x4489c000 x450ad800 x447a8000}
+     {a osw x41200000 osf 0 str 1 spx x4506c000 spy x44900000 sb 1 ltn x4489c000 ltm x4489c000 tt x40800000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 tt 7 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {2156 1152}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ lifetime_start 1001
+ lifetime_end 1001
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto112
+ selected true
+ xpos 6337
+ ypos -12123
+}
+Blur {
+ size 50
+ name Blur118
+ selected true
+ xpos 6337
+ ypos -12078
+}
+Roto {
+ inputs 0
+ output alpha
+ cliptype none
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x4506c000 x44900000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Ellipse1 512 bezier
+     {{cc
+       {f 8192}
+       {px
+        {x4485a000 x4485c000 x4485e000}
+        {{{x 2
+        {xc3048c60 -}}      xc3048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x43d45bdc 0 1 xc39b5bdc 1}
+       {x42e40000 xc39b5bdc 1 0 1}      xc39430e0}
+      {{x44c3c273 0 1 xc45484e6 1}
+       {x44330000 xc45484e6 1 0 1}      x41f09c40}}
+        {{{x 2
+        {x43048c60 -}}      x43048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {xc36f23a8 -}}      xc36f23a8}}
+        {{{x44262dee 0 1 xc39b5bdc 1}
+       {x43b10000 xc39b5bdc 1 0 1}      xc26186f8}
+      {{x44f9e273 0 1 xc45484e6 1}
+       {x448fa000 xc45484e6 1 0 1}      x43e789c4}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {x436f23a8 -}}      x436f23a8}}
+        {{{x 2
+        {x43048c60 -}}      x43048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x43d45bdc 0 1 xc39b5bdc 1}
+       {x42e40000 xc39b5bdc 1 0 1}      xc39430e0}
+      {{x4518013a 0 1 xc45484e8 1}
+       {x44c5c000 xc45484e8 1 0 1}      x446004e2}}
+        {{{x 2
+        {xc3048c60 -}}      xc3048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {x436f23a8 -}}      x436f23a8}}
+        {{{x4338b7b7 0 1 xc39b5bdc 1}
+       {xc2fc0000 xc39b5bdc 1 0 1}      xc4061870}
+      {{x44f9e273 0 1 xc45484e6 1}
+       {x448fa000 xc45484e6 1 0 1}      x43e789c4}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {xc36f23a8 -}}      xc36f23a8}}}}
+      {cc
+       {f 8192}
+       {px
+        {x4485a000 x4485c000 x4485e000}
+        {{{x 2
+        {xc3048c60 -}}      xc3048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {x43048c60 -}}      x43048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {xc36f23a8 -}}      xc36f23a8}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {x436f23a8 -}}      x436f23a8}}
+        {{{x 2
+        {x43048c60 -}}      x43048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {xc3048c60 -}}      xc3048c60}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {x436f23a8 -}}      x436f23a8}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {0 -}}      0}}
+        {{{x 2
+        {0 -}}      0}
+      {{x 2
+        {xc36f23a8 -}}      xc36f23a8}}}}}
+     {tx x4485c000 x42e40000 x448fa000}
+     {a opc
+   {{x4485a000 0 0 1 x3fc00000 1}
+    {x4485c000 1 -}
+    {x4485e000 0 xbfc00000 1 0 1}}     osw x41200000 osf 0 str 1 spx x4506c000 spy x44900000 sb 1 ltn x4485c000 ltm x4485c000 tt x40e00000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 tt 7 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {2156 1152}
+ colorOverlay {0 0 0 0}
+ opacity {{curve x1069 0 1 0}}
+ lifetime_type "all frames"
+ lifetime_start 1070
+ lifetime_end 1070
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto113
+ selected true
+ xpos 6007
+ ypos -12390
+}
+push $N13580bf0
+Reformat {
+ pbb true
+ name Reformat68
+ selected true
+ xpos 6442
+ ypos -12727
+}
+Group {
+ name IvyGroup21
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ label "<b>Unpremult32bit_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 6227
+ ypos -12570
+ addUserKnob {20 VFX_Unpremult32bit}
+ addUserKnob {41 channels l divide T Unpremult.channels}
+ addUserKnob {26 info l "" +STARTLINE T "\nUnpremulty 32bit channels with __depth blue channel.\n\n-__depth\n-__normal_world\n-__position_world\n-__position_object\n-__position_reference\n-__motion_vector"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_Unpremult32bit', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_Unpremult32bit\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_Unpremult32bit'\}), ('channels', \{'knob': 'Link_Knob', 'tcl': '\{41 channels l divide T Unpremult.channels\}', 'link': 'Unpremult.channels', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': 'all', 'range': None, 'value': 'all', 'label': 'divide'\}), ('info', \{'knob': 'Text_Knob', 'tcl': '\{26 info l \"\" +STARTLINE T \"\\\\nUnpremulty 32bit channels with __depth blue channel.\\\\n\\\\n-__depth\\\\n-__normal_world\\\\n-__position_world\\\\n-__position_object\\\\n-__position_reference\\\\n-__motion_vector\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': '\\nUnpremulty 32bit channels with __depth blue channel.\\n\\n-__depth\\n-__normal_world\\n-__position_world\\n-__position_object\\n-__position_reference\\n-__motion_vector', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... +HIDDEN T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: Unpremult32bit\nVersion Comment (v001): first publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'Unpremult32bit', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:Unpremult32bit;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ _ivyFile /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001/F_NKT_LIBRARY_comp_group_VFX_Unpremult32bit_v001.nk
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ _expressions {{curve}}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 3313cd76-0b1d-4288-8212-5c3bdff389be
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 7f3316ab-a9f8-4c6d-849a-a9db96a659f0
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid 25cb5bff-e53c-45a5-ba6d-647cba218ec8
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes "first publish"
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -92
+  ypos 311
+ }
+ Dot {
+  name Dot1
+  xpos -58
+  ypos 394
+ }
+set Nc1d4730 [stack 0]
+ Dot {
+  name Dot2
+  label 32bit
+  note_font_size 21
+  xpos 100
+  ypos 394
+ }
+ Unpremult {
+  channels {{{parent.Unpremult.channels}}}
+  alpha __depth.blue
+  name Unpremult1
+  xpos 66
+  ypos 440
+ }
+set Nc1de450 [stack 0]
+push $Nc1de450
+push $Nc1de450
+push $Nc1de450
+push $Nc1de450
+push $Nc1de450
+push $Nc1d4730
+ Unpremult {
+  channels all
+  name Unpremult
+  xpos -92
+  ypos 441
+ }
+ Copy {
+  inputs 2
+  channels {__depth.red __depth.green __depth.blue __depth.alpha}
+  name Copy1
+  xpos -92
+  ypos 496
+ }
+ Copy {
+  inputs 2
+  channels {__normal_world.x __normal_world.y __normal_world.z -__normal_world.red}
+  name Copy2
+  xpos -92
+  ypos 546
+ }
+ Copy {
+  inputs 2
+  channels __position_object
+  name Copy3
+  xpos -92
+  ypos 595
+ }
+ Copy {
+  inputs 2
+  channels __position_reference
+  name Copy4
+  xpos -92
+  ypos 644
+ }
+ Copy {
+  inputs 2
+  channels {__position_world.x __position_world.y __position_world.z -__position_world.red}
+  name Copy5
+  xpos -92
+  ypos 695
+ }
+ Copy {
+  inputs 2
+  channels {__motion_vector.x __motion_vector.y -__motion_vector.z -__motion_vector.red}
+  name Copy6
+  xpos -92
+  ypos 745
+ }
+ Output {
+  name Output1
+  xpos -92
+  ypos 839
+ }
+end_group
+Grade {
+ white {1.07 1 0.85 1}
+ white_panelDropped true
+ name Grade104
+ selected true
+ xpos 6227
+ ypos -12360
+}
+set Nc256750 [stack 0]
+push $N139b5820
+Shuffle {
+ in alpha_fog_bottom_l100
+ name Shuffle90
+ selected true
+ xpos 5787
+ ypos -12294
+}
+Keymix {
+ inputs 3
+ name Keymix19
+ selected true
+ xpos 6007
+ ypos -12294
+}
+push $Nc256750
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy22
+ selected true
+ xpos 6227
+ ypos -12294
+}
+Premult {
+ channels all
+ name Premult25
+ selected true
+ xpos 6227
+ ypos -12222
+}
+Density {
+ name Density14
+ selected true
+ xpos 6227
+ ypos -12150
+ debug 0
+ maskChannel rgba.alpha
+}
+Multiply {
+ inputs 1+1
+ value 0
+ name Multiply21
+ selected true
+ xpos 6227
+ ypos -12078
+}
+FixVals {
+ Mode "Fix (Auto Fill)"
+ name FixVals21
+ selected true
+ xpos 6227
+ ypos -11934
+}
+Remove {
+ operation keep
+ channels rgba
+ channels2 {__depth.red __depth.green __depth.blue __depth.alpha}
+ name Remove58
+ selected true
+ xpos 6227
+ ypos -11856
+}
+push 0
+Merge2 {
+ inputs 2
+ bbox B
+ also_merge all
+ name Merge117
+ selected true
+ xpos 6887
+ ypos -11856
+}
+Merge2 {
+ inputs 2
+ bbox B
+ also_merge all
+ name Merge118
+ selected true
+ xpos 6887
+ ypos -10248
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ label "Deep setup from us0240 unicorn shot - this was to\nwork around and to change the deep info into alpha\nfirst instead of precomping JUST the deep data.\nBecase its FXfog, the deep was calculating all the\npoints/particles and there are millions of them.\nSo precomps were taknig hours to days.   Pay\nattention to labelling"
+ note_font_size 100
+ selected true
+ xpos 3453
+ ypos -14302
+}
