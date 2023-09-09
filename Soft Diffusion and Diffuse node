@@ -1,0 +1,469 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push $cut_paste_input
+Group {
+ name Diffuse1
+ selected true
+ xpos 382
+ ypos -123
+ addUserKnob {20 settings l Settings}
+ addUserKnob {41 channels T Blur1.channels}
+ addUserKnob {41 mix T Blur1.mix}
+ addUserKnob {41 multiply T Grade1.multiply}
+ addUserKnob {26 "" l mask T ""}
+ addUserKnob {41 maskChannelMask l "" -STARTLINE T Blur1.maskChannelMask}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Blur1.invert_mask}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 296
+  ypos -660
+ }
+ Dot {
+  name Dot1
+  xpos 330
+  ypos -593
+ }
+set N1df454f0 [stack 0]
+ Dot {
+  name Dot3
+  xpos 169
+  ypos -593
+ }
+ Dot {
+  name Dot2
+  xpos 169
+  ypos -36
+ }
+ Input {
+  inputs 0
+  name Matte
+  xpos 472
+  ypos -662
+  number 1
+ }
+ Dot {
+  name Dot6
+  xpos 506
+  ypos -526
+ }
+set N1df2aaf0 [stack 0]
+push $N1df2aaf0
+push $N1df2aaf0
+push $N1df2aaf0
+push $N1df2aaf0
+push $N1df2aaf0
+push $N1df2aaf0
+push $N1df2aaf0
+push $N1df454f0
+ Blur {
+  inputs 1+1
+  channels rgb
+  size 5
+  maskChannelMask -rgba.alpha
+  mix 0.1
+  name Blur1
+  xpos 296
+  ypos -535
+ }
+ Blur {
+  inputs 1+1
+  channels {{{parent.Blur1.channels}}}
+  size 12
+  mix {{parent.Blur1.mix}}
+  name Blur7
+  xpos 296
+  ypos -481
+ }
+ Blur {
+  inputs 1+1
+  channels {{{parent.Blur1.channels}}}
+  size 25
+  mix {{parent.Blur1.mix}}
+  name Blur6
+  xpos 296
+  ypos -416
+ }
+ Blur {
+  inputs 1+1
+  channels {{{parent.Blur1.channels}}}
+  size 50
+  mix {{parent.Blur1.mix}}
+  name Blur2
+  selected true
+  xpos 296
+  ypos -338
+ }
+ Blur {
+  inputs 1+1
+  channels {{{parent.Blur1.channels}}}
+  size 100
+  mix {{parent.Blur1.mix}}
+  name Blur3
+  xpos 296
+  ypos -277
+ }
+ Blur {
+  inputs 1+1
+  channels {{{parent.Blur1.channels}}}
+  size 200
+  mix {{parent.Blur1.mix}}
+  name Blur4
+  xpos 296
+  ypos -225
+ }
+ Blur {
+  inputs 1+1
+  channels {{{parent.Blur1.channels}}}
+  size 400
+  mix {{parent.Blur1.mix}}
+  name Blur5
+  xpos 296
+  ypos -167
+ }
+ Grade {
+  inputs 1+1
+  name Grade1
+  xpos 296
+  ypos -91
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox1
+  xpos 296
+  ypos -39
+ }
+ Output {
+  name Output1
+  xpos 296
+  ypos 76
+ }
+end_group
+push $cut_paste_input
+Group {
+ name IvyGroup1
+ onCreate "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['onCreate']).onCreate()"
+ knobChanged "__import__('dnnuke.core.ivy.tab.callbacks', fromlist=\['knobChanged']).knobChanged()"
+ tile_color 0xca7f50ff
+ label "<b>SoftDiffusion_v\[format %03d \[value ivy_version]]</b>(comp)"
+ selected true
+ xpos 386
+ ypos -79
+ addUserKnob {20 VFX_SoftDiffusion}
+ addUserKnob {7 Mix l which t "Integer will choose that input. Non-integer will mix between the two nearest inputs."}
+ Mix 0.7
+ addUserKnob {14 size R 0 100}
+ size 800
+ addUserKnob {3 quality l "" t "quality level: Lower numbers make it faster but not as smooth. The image is scaled down so the blur filter is no larger than this number, and then scaled up with linear interpolation after filtering." -STARTLINE R 0 15}
+ quality 15
+ addUserKnob {26 luma_matte l "<b>Luma Matte"}
+ addUserKnob {7 loVal}
+ loVal 0.5
+ addUserKnob {7 hiVal}
+ hiVal 1
+ addUserKnob {7 loSmooth}
+ loSmooth 0.5
+ addUserKnob {7 hiSmooth}
+ addUserKnob {26 cntr_restore l "<b>Contrast Restore"}
+ addUserKnob {26 shdws l Shadows}
+ addUserKnob {7 shdw_centre l centre}
+ shdw_centre 0.2
+ addUserKnob {7 shdw_contrast l contrast R 0 2}
+ shdw_contrast 0.5
+ addUserKnob {26 hghts l Highlights}
+ addUserKnob {7 hghts_centre l centre}
+ hghts_centre 0.7
+ addUserKnob {7 hghts_contrast l contrast R 0 2}
+ addUserKnob {20 infoTab l Info}
+ addUserKnob {26 infoText l "" +STARTLINE T "SoftDiffusion based on SvO_Diffusion snippet.\nLast updated 06.08.2019 by Sebastian von Overheidt (svo@dneg.com)"}
+ addUserKnob {1 default_values +INVISIBLE}
+ default_values "\[('VFX_SoftDiffusion', \{'knob': 'Tab_Knob', 'tcl': '\{20 VFX_SoftDiffusion\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'VFX_SoftDiffusion'\}), ('Mix', \{'knob': 'Double_Knob', 'tcl': '\{7 Mix l which t \"\\\\\"Integer will choose that input. Non-integer will mix between the two nearest inputs.\\\\\"\"\}', 'link': '', 'tooltip': '\"\\\\\"Integer will choose that input. Non-integer will mix between the two nearest inputs.\\\\\"\"', 'default': None, 'flags': \{\}, 'toScript': '0.7', 'range': (0.0, 1.0), 'value': 0.7, 'label': 'which'\}), ('size', \{'knob': 'WH_Knob', 'tcl': '\{14 size R 0 100\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '800', 'range': (0.0, 100.0), 'value': 800.0, 'label': 'size'\}), ('quality', \{'knob': 'Int_Knob', 'tcl': '\{3 quality l \"\" t \"\\\\\"quality level: Lower numbers make it faster but not as smooth. The image is scaled down so the blur filter is no larger than this number, and then scaled up with linear interpolation after filtering.\\\\\"\" -STARTLINE R 0 15\}', 'link': '', 'tooltip': '\"\\\\\"quality level: Lower numbers make it faster but not as smooth. The image is scaled down so the blur filter is no larger than this number, and then scaled up with linear interpolation after filtering.\\\\\"\"', 'default': None, 'flags': \{4096: False\}, 'toScript': '15', 'range': (0.0, 15.0), 'value': 15.0, 'label': ''\}), ('luma_matte', \{'knob': 'Text_Knob', 'tcl': '\{26 luma_matte l \"<b>Luma Matte\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '', 'range': None, 'value': '', 'label': '<b>Luma Matte'\}), ('loVal', \{'knob': 'Double_Knob', 'tcl': '\{7 loVal\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0.5', 'range': (0.0, 1.0), 'value': 0.5, 'label': 'loVal'\}), ('hiVal', \{'knob': 'Double_Knob', 'tcl': '\{7 hiVal\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': (0.0, 1.0), 'value': 1.0, 'label': 'hiVal'\}), ('loSmooth', \{'knob': 'Double_Knob', 'tcl': '\{7 loSmooth\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0.5', 'range': (0.0, 1.0), 'value': 0.5, 'label': 'loSmooth'\}), ('hiSmooth', \{'knob': 'Double_Knob', 'tcl': '\{7 hiSmooth\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0', 'range': (0.0, 1.0), 'value': 0.0, 'label': 'hiSmooth'\}), ('cntr_restore', \{'knob': 'Text_Knob', 'tcl': '\{26 cntr_restore l \"<b>Contrast Restore\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '', 'range': None, 'value': '', 'label': '<b>Contrast Restore'\}), ('shdws', \{'knob': 'Text_Knob', 'tcl': '\{26 shdws l Shadows\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '', 'range': None, 'value': '', 'label': 'Shadows'\}), ('shdw_centre', \{'knob': 'Double_Knob', 'tcl': '\{7 shdw_centre l centre\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0.2', 'range': (0.0, 1.0), 'value': 0.2, 'label': 'centre'\}), ('shdw_contrast', \{'knob': 'Double_Knob', 'tcl': '\{7 shdw_contrast l contrast R 0 2\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0.5', 'range': (0.0, 2.0), 'value': 0.5, 'label': 'contrast'\}), ('hghts', \{'knob': 'Text_Knob', 'tcl': '\{26 hghts l Highlights\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '', 'range': None, 'value': '', 'label': 'Highlights'\}), ('hghts_centre', \{'knob': 'Double_Knob', 'tcl': '\{7 hghts_centre l centre\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0.7', 'range': (0.0, 1.0), 'value': 0.7, 'label': 'centre'\}), ('hghts_contrast', \{'knob': 'Double_Knob', 'tcl': '\{7 hghts_contrast l contrast R 0 2\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '0', 'range': (0.0, 2.0), 'value': 0.0, 'label': 'contrast'\}), ('infoTab', \{'knob': 'Tab_Knob', 'tcl': '\{20 infoTab l Info\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{\}, 'toScript': '1', 'range': None, 'value': True, 'label': 'Info'\}), ('infoText', \{'knob': 'Text_Knob', 'tcl': '\{26 infoText l \"\" +STARTLINE T \"SoftDiffusion based on SvO_Diffusion snippet.\\\\nLast updated 06.08.2019 by Sebastian von Overheidt (svo@dneg.com)\"\}', 'link': '', 'tooltip': '', 'default': None, 'flags': \{4096: True\}, 'toScript': '', 'range': None, 'value': 'SoftDiffusion based on SvO_Diffusion snippet.\\nLast updated 06.08.2019 by Sebastian von Overheidt (svo@dneg.com)', 'label': ''\})]"
+ addUserKnob {20 ivygrouptab l IvyGroup}
+ addUserKnob {2 file l "Script Path"}
+ file /jobs/LIBRARY/ASSET/ivy/nkt/F_NKT_LIBRARY_comp_group_VFX_SoftDiffusion_v001/F_NKT_LIBRARY_comp_group_VFX_SoftDiffusion_v001.nk
+ addUserKnob {6 internal_updates l "Update internal spider nodes" t "Whether or not to recursively update all internal Ivy nodes as well" +STARTLINE}
+ internal_updates true
+ addUserKnob {6 save_template l "Save Template on Update" t "Saves the current template at update time internally allowing switching between the old and new one" -STARTLINE}
+ save_template true
+ addUserKnob {6 execute_spawners l "Execute internal spawners" t "Whether or not to recursively execute all internal spawner nodes" +STARTLINE}
+ execute_spawners true
+ addUserKnob {6 previous_template l "Output Previous Template" t "Toggles displaying of the previously saved template" +HIDDEN +STARTLINE}
+ addUserKnob {22 clearPreviousTemplate l "Clear Previous Template" t "Clears the previous template that was saved at update" +HIDDEN T "__import__('dnnuke.core.ivy.template.group', fromlist=\['clearIvyGroups']).clearIvyGroups(nuke.thisNode())" +STARTLINE}
+ addUserKnob {6 ivygroup -STARTLINE +INVISIBLE}
+ ivygroup true
+ addUserKnob {1 _class l "" +STARTLINE +INVISIBLE}
+ _class IvyGroup
+ addUserKnob {26 divider10 l "" +STARTLINE}
+ addUserKnob {22 ivy_publish l Publish... +HIDDEN T "__import__('dnnuke.core.ivy.template', fromlist=\['publish']).publish(nodes=\[nuke.thisNode()])" +STARTLINE}
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {26 comment l "" +STARTLINE T "Publish Comment: SVO Diffusion Template as a Gizmo\nVersion Comment (v001): publish"}
+ addUserKnob {20 Ivy}
+ addUserKnob {22 ivy_documentation l "Ivy Documentation" t "Open IvyTab documentation page in your web browser" T "__import__('dnnuke.toolbox.v1.nodes.docs', fromlist=\['open_docs_name']).open_docs_name('IvyTab')" +STARTLINE}
+ addUserKnob {26 divider4 l "" +STARTLINE}
+ addUserKnob {1 _ivyVals l "" +STARTLINE +HIDDEN}
+ _ivyVals "\{'ivy_job': 'LIBRARY', 'ivy_usemanualuri': False, 'leafname': '', 'ivy_vnum': 0, 'ivy_twignametags': \[\{'text': 'comp', 'required': False, 'name': 'department'\}, \{'text': 'VFX', 'required': False, 'name': 'discipline'\}, \{'text': 'group', 'required': False, 'name': 'type'\}, \{'text': 'SoftDiffusion', 'required': False, 'name': 'label'\}], 'ivy_shot': 'LIBRARY', 'ivy_regex': False, 'ivy_type': 'nkt', 'ivy_versionquery': 'approved', 'spider_uri': 'spider://query@Stalk.latest?Stem.job==LIBRARY&Stem.stemname==LIBRARY&TwigType.code.re(nkt)&Twig.transfix_map.re(^department:comp;discipline:VFX;label:SoftDiffusion;type:group\$)&Stalk.reviewstatus==Approved&Stalk.state==complete'\}"
+ addUserKnob {52 ivyTab l "" -STARTLINE T "__import__('nukescripts').panels.WidgetKnob(__import__('dnnuke.core.ivy.tab.widget.query', fromlist=\['getBoundKnob']).getBoundKnob(nuke.thisNode()))"}
+ addUserKnob {1 _ivyFile l "" +STARTLINE +HIDDEN +INVISIBLE}
+ addUserKnob {78 _expressions l "" -STARTLINE +HIDDEN +INVISIBLE n 1}
+ addUserKnob {26 divider0 l "" +STARTLINE}
+ addUserKnob {20 dbinfo l "DB Info" n 1}
+ dbinfo 0
+ addUserKnob {1 twig_dnuuid l "Twig Id"}
+ twig_dnuuid 022d3bfd-5227-4f28-98f9-62486e2d4349
+ addUserKnob {1 stalk_dnuuid l "Stalk Id"}
+ stalk_dnuuid 6fbe2246-b5df-4220-85b0-8fffa115af4e
+ addUserKnob {1 twigtype_dnuuid l "Twig Type Id"}
+ twigtype_dnuuid 9a87d850-8e1b-4781-95c5-e50580d06fe5
+ addUserKnob {1 leaf_dnuuid l "Leaf Id"}
+ leaf_dnuuid a5c030fe-cfed-466e-8e98-b34afd54b40e
+ addUserKnob {26 divider1 l "" +STARTLINE}
+ addUserKnob {1 twigtype l "Twig Type"}
+ twigtype nkt
+ addUserKnob {1 leaf_label l Leaf}
+ leaf_label main
+ addUserKnob {1 ivy_version l Version}
+ ivy_version 1
+ addUserKnob {43 ivy_notes l Notes}
+ ivy_notes publish
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {1 build_label l "Build Label"}
+ addUserKnob {20 dbinfoEndGroup l "DB Info" n -1}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x2c2c2cff
+  label "SvO Diffusion"
+  note_font_size 42
+  note_font_color 0x7f7f7fff
+  selected true
+  xpos -915
+  ypos -1037
+  bdwidth 682
+  bdheight 1474
+ }
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos -642
+  ypos -903
+ }
+ Dot {
+  name Dot1
+  selected true
+  xpos -608
+  ypos -846
+ }
+set N2638c500 [stack 0]
+ Dot {
+  name Dot2
+  selected true
+  xpos -608
+  ypos -785
+ }
+set N2662f670 [stack 0]
+ Colorspace {
+  colorspace_out AlexaV3LogC
+  name Colorspace1
+  selected true
+  xpos -522
+  ypos -789
+ }
+ LumaKey2 {
+  loVal {{parent.loVal}}
+  hiVal {{parent.hiVal}}
+  loSmooth {{parent.loSmooth}}
+  hiSmooth {{parent.hiSmooth}}
+  matteMult true
+  name LumaKey2
+  selected true
+  xpos -522
+  ypos -700
+ }
+ Dot {
+  name Dot3
+  selected true
+  xpos -488
+  ypos -479
+ }
+push $N2662f670
+ Remove {
+  operation keep
+  channels rgba
+  name Remove2
+  selected true
+  xpos -752
+  ypos -789
+ }
+ Blur {
+  channels rgba
+  size {{parent.size}}
+  quality {{parent.quality}}
+  name Blur1
+  selected true
+  xpos -752
+  ypos -742
+ }
+set N267441c0 [stack 0]
+ Dot {
+  name Dot4
+  selected true
+  xpos -794
+  ypos -738
+ }
+ Dot {
+  name Dot5
+  selected true
+  xpos -794
+  ypos -546
+ }
+push $N267441c0
+ Grade {
+  multiply 0.34
+  gamma 2
+  name Grade1
+  selected true
+  xpos -752
+  ypos -700
+ }
+push $N2662f670
+ Merge2 {
+  inputs 2
+  operation overlay
+  sRGB true
+  bbox B
+  name Merge3
+  selected true
+  xpos -642
+  ypos -700
+ }
+ Saturation {
+  saturation 0.7
+  name Saturation1
+  selected true
+  xpos -642
+  ypos -634
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  bbox B
+  mix 0.38
+  name Merge4
+  label "\[value mix]"
+  selected true
+  xpos -642
+  ypos -556
+ }
+ Colorspace {
+  colorspace_out AlexaV3LogC
+  name Colorspace3
+  selected true
+  xpos -642
+  ypos -518
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  bbox B
+  mix 0.13
+  name Merge5
+  label "\[value mix]"
+  selected true
+  xpos -642
+  ypos -489
+ }
+ Colorspace {
+  colorspace_in AlexaV3LogC
+  name Colorspace4
+  selected true
+  xpos -642
+  ypos -442
+ }
+ Colorspace {
+  colorspace_out HSV
+  name Colorspace2
+  selected true
+  xpos -642
+  ypos -239
+ }
+set N2696e7e0 [stack 0]
+ Contrast {
+  name Contrast3
+  label "blacks\n"
+  selected true
+  xpos -515
+  ypos -245
+  colorValue {1 1 {shdw_contrast+1}}
+  center {0.05555165187 0.2651569843 {shdw_centre}}
+  maskChannel alpha
+ }
+push $N2696e7e0
+ Merge2 {
+  inputs 2
+  operation min
+  name Merge34
+  selected true
+  xpos -642
+  ypos -178
+ }
+set N26b1da00 [stack 0]
+ Contrast {
+  name Contrast4
+  label highlights
+  selected true
+  xpos -510
+  ypos -121
+  colorValue {1 1 {hghts_contrast+1}}
+  center {0.5863007903 0.110320814 {hghts_centre}}
+  maskChannel all
+ }
+push $N26b1da00
+ Merge2 {
+  inputs 2
+  operation max
+  name Merge35
+  selected true
+  xpos -642
+  ypos -115
+ }
+ Colorspace {
+  colorspace_in HSV
+  name Colorspace5
+  selected true
+  xpos -642
+  ypos -71
+ }
+push $N2638c500
+ Dot {
+  name Dot7
+  selected true
+  xpos -380
+  ypos -846
+ }
+ Dot {
+  name Dot8
+  selected true
+  xpos -380
+  ypos 200
+ }
+ Dissolve {
+  inputs 2
+  channels rgba
+  which {{parent.Mix}}
+  name Dissolve1
+  label "\[value which]"
+  selected true
+  xpos -642
+  ypos 190
+ }
+ Output {
+  name Output1
+  tile_color 0xca7f50ff
+  selected true
+  xpos -642
+  ypos 339
+ }
+end_group
