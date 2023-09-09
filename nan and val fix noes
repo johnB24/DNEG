@@ -1,0 +1,329 @@
+set cut_paste_input [stack 0]
+version 12.1 v5
+push $cut_paste_input
+Group {
+ name FixNegativeValues
+ tile_color 0xeeeeeeff
+ note_font_color 0xcbcbcbff
+ selected true
+ xpos 7480
+ ypos -11145
+ addUserKnob {20 User l "NegValues Viewer"}
+ addUserKnob {26 Info -STARTLINE T "This nodes fix the negative\nvalues if they are.\n\nBy default the View Negative Values option is enabled.\nIf there is no color overlay your input has no\nNegative Values.\n\nUse the Set min level slider to set the min black level of the Negative Pixels."}
+ addUserKnob {41 disable_1 l "View Negative Values" T Switch1.disable}
+ addUserKnob {41 factor l "Set min level" T Expression4.factor}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 520
+  ypos -175
+ }
+ Dot {
+  name Dot10
+  xpos 554
+  ypos -83
+ }
+set N295630e0 [stack 0]
+ Expression {
+  temp_name0 th
+  temp_expr0 threshold
+  temp_name1 min
+  temp_expr1 minvalue
+  expr0 r<th?r:0
+  expr1 g<th?g:0
+  expr2 b<th?b:0
+  name Expression1
+  xpos 520
+  ypos -3
+  addUserKnob {20 User}
+  addUserKnob {7 threshold l Treshold R 0 0.005}
+  addUserKnob {7 minvalue l MinValue R 0 0.005}
+ }
+ Dot {
+  name Dot1
+  xpos 554
+  ypos 23
+ }
+set N29545730 [stack 0]
+ Expression {
+  expr0 r*-1
+  expr1 g*-1
+  expr2 b*-1
+  name Expression2
+  xpos 520
+  ypos 45
+ }
+ Multiply {
+  value 2
+  name Multiply1
+  selected true
+  xpos 519
+  ypos 71
+ }
+ Expression {
+  temp_name0 fac
+  temp_expr0 factor
+  expr0 r==0?r:r+fac
+  expr1 g==0?g:g+fac
+  expr2 b==0?b:b+fac
+  name Expression4
+  xpos 519
+  ypos 102
+  addUserKnob {20 User}
+  addUserKnob {7 factor l "Set min level" R 0 0.005}
+ }
+ Dot {
+  name Dot12
+  xpos 554
+  ypos 142
+ }
+push $N295630e0
+ Dot {
+  name Dot11
+  xpos 670
+  ypos -83
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Plus1
+  xpos 636
+  ypos 138
+ }
+push $N29545730
+ Dot {
+  name Dot4
+  xpos 451
+  ypos 23
+ }
+ Expression {
+  expr0 r<0?1:r
+  expr1 g<0?1:g
+  expr2 b<0?1:b
+  name Expression3
+  xpos 417
+  ypos 202
+ }
+push $N295630e0
+ Dot {
+  name Dot3
+  xpos 341
+  ypos -83
+ }
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos 307
+  ypos 202
+ }
+ Dot {
+  name Dot2
+  xpos 341
+  ypos 321
+ }
+ Switch {
+  inputs 2
+  which 1
+  name Switch1
+  xpos 636
+  ypos 317
+ }
+ Output {
+  name Output1
+  xpos 636
+  ypos 363
+ }
+end_group
+Group {
+ name DepthFix6
+ selected true
+ xpos 7480
+ ypos -11119
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -895
+  ypos -595
+ }
+add_layer {__depth __depth.red __depth.green __depth.blue __depth.alpha __depth.r __depth.x __depth.y __depth.z __depth.Z __depth.r __depth.Z __depth.r}
+ Unpremult {
+  channels {__depth.red __depth.green __depth.blue none}
+  name Unpremult2
+  xpos -895
+  ypos -555
+ }
+ Expression {
+  channel0 depth
+  expr0 "rgba.alpha > 0.000001? 0 : 1/__depth.red"
+  channel1 {-rgba.red rgba.green -rgba.blue none}
+  channel2 {-rgba.red -rgba.green rgba.blue none}
+  name Expression2
+  xpos -895
+  ypos -519
+ }
+ Premult {
+  channels {__depth.red __depth.green __depth.blue none}
+  name Premult2
+  selected true
+  xpos -895
+  ypos -495
+ }
+ Output {
+  name Output1
+  xpos -895
+  ypos -391
+ }
+end_group
+Expression {
+ expr0 isnan(r)?r(x+1,y):r
+ expr1 isnan(g)?g(x+1,y):g
+ expr2 isnan(b)?b(x+1,y):b
+ expr3 isnan(a)?a(x+1,y):a
+ name NaN_FIX1
+ tile_color 0xeeeeeeff
+ selected true
+ xpos 7480
+ ypos -11084
+}
+Group {
+ name NaNKiller2
+ help "A gizmo that kills and repairs NaN pixels.\n\nOptions are to kill the NaNs only, repair using the surrounding pixel values, or to use the area from a different frame in the sequence (good for static shots).\n\nSteve Newbold - 2010"
+ tile_color 0xff3402ff
+ label v1.0
+ selected true
+ xpos 7480
+ ypos -11058
+ addUserKnob {20 nanKiller l NaNKiller}
+ addUserKnob {4 repair_method l Method M {"Replace with color" "Fill with surrounding pixels" "Frame offset" "" "" ""}}
+ addUserKnob {19 replace_with_color_color l Color}
+ replace_with_color_color {0 0 0 1}
+ addUserKnob {6 replace_with_color_color_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {41 mode l "Fill mode" T MarkerRemoval2.mode}
+ addUserKnob {41 linearsearch l "Fill search area" T MarkerRemoval2.linearsearch}
+ addUserKnob {3 toffset l "Time offset"}
+ toffset -1
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -380
+  ypos -438
+ }
+ Dot {
+  name Dot1
+  xpos -346
+  ypos -331
+ }
+set N29c8fea0 [stack 0]
+ Expression {
+  channel0 {rgba.red -rgba.green -rgba.blue -rgba.alpha}
+  expr0 "isnan(r) || isinf(r) ?1:0"
+  channel1 {-rgba.red rgba.green -rgba.blue -rgba.alpha}
+  expr1 "isnan(g) || isinf(g) ?1:0"
+  channel2 {-rgba.red -rgba.green rgba.blue -rgba.alpha}
+  expr2 "isnan(b) || isinf(b) ?1:0"
+  channel3 {-rgba.red -rgba.green -rgba.blue rgba.alpha}
+  expr3 "isnan(a) || isinf(a) ?1:0"
+  name nan_matte
+  xpos -32
+  ypos -335
+ }
+ Expression {
+  channel0 alpha
+  expr0 clamp(r+g+b+a)
+  channel1 none
+  channel2 none
+  channel3 none
+  name all
+  xpos -32
+  ypos -214
+ }
+set N29bf0d40 [stack 0]
+push $N29bf0d40
+push $N29c8fea0
+ Expression {
+  expr0 "isnan(r) || isinf(r) ?0:r"
+  expr1 "isnan(g) || isinf(g) ?0:g"
+  expr2 "isnan(b) || isinf(b) ?0:b"
+  expr3 "isnan(a) || isinf(a) ?0:a"
+  name black
+  xpos -380
+  ypos -276
+ }
+ ShuffleCopy {
+  inputs 2
+  alpha alpha2
+  black alpha
+  out2 mask
+  name ShuffleCopy1
+  xpos -380
+  ypos -214
+ }
+ Dot {
+  name Dot3
+  xpos -346
+  ypos -54
+ }
+set N29b839e0 [stack 0]
+ TimeOffset {
+  time_offset {{parent.toffset}}
+  time ""
+  name TimeOffset2
+  xpos -183
+  ypos -58
+ }
+push $N29b839e0
+ Keymix {
+  inputs 3
+  name Keymix1
+  xpos -183
+  ypos 63
+ }
+push $N29b839e0
+ MarkerRemoval {
+  linearsearch 5
+  ctrlMask mask.a
+  name MarkerRemoval2
+  xpos -380
+  ypos 58
+ }
+ Remove {
+  channels mask
+  name Remove1
+  xpos -380
+  ypos 98
+ }
+push $N29c8fea0
+ Dot {
+  name Dot2
+  xpos -556
+  ypos -331
+ }
+ Expression {
+  expr0 "isnan(r) || isinf(r) ?color.r:r"
+  expr1 "isnan(g) || isinf(g) ?color.g:g"
+  expr2 "isnan(b) || isinf(b) ?color.b:b"
+  expr3 "isnan(a) || isinf(a) ?color.a:a"
+  name replace_with_color
+  xpos -590
+  ypos 63
+  addUserKnob {20 User}
+  addUserKnob {19 color l Color}
+  color {{parent.replace_with_color_color.r} {parent.replace_with_color_color.g} {parent.replace_with_color_color.b} {parent.replace_with_color_color.a}}
+  addUserKnob {6 color_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ }
+ Switch {
+  inputs 3
+  which {{parent.repair_method}}
+  name Switch2
+  xpos -380
+  ypos 193
+ }
+ Output {
+  name Output1
+  xpos -380
+  ypos 280
+ }
+end_group
